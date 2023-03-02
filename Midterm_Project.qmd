@@ -121,7 +121,7 @@ for index in Filter_1_series.index:
 #Update the dataset
 for index in Filter_1.index:
     nyc311.loc[index,'Latitude']   = Filter_1['Latitude'][index]
-    nyc311.loc[index,'Loingitude'] = Filter_1['Longitude'][index]
+    nyc311.loc[index,'Longitude'] = Filter_1['Longitude'][index]
 
 ```
 
@@ -308,23 +308,23 @@ Only one data still in progress. We can remove that too.
 ```{python}
 nyc311_NYPD = nyc311_NYPD[nyc311_NYPD['Closed Date'].notnull()]
 
-nyc311_NYPD['duration'] = nyc311_NYPD['Closed Date'] - nyc311_NYPD['Created Date']
+nyc311_NYPD['Duration (hours)'] = nyc311_NYPD['Closed Date'] - nyc311_NYPD['Created Date']
 
-col = nyc311_NYPD.pop("duration")
+col = nyc311_NYPD.pop("Duration (hours)")
 
 s_hours = col.dt.total_seconds() / 3600.0
 
 nyc311_NYPD.insert(3,s_hours.name ,s_hours)
 
-nyc311_NYPD['day_type'] = nyc311_NYPD['Created Date'].dt.dayofweek
+nyc311_NYPD['Day type'] = nyc311_NYPD['Created Date'].dt.dayofweek
 
 for index in nyc311_NYPD.index:
-    if nyc311_NYPD['day_type'][index] < 5:
-       nyc311_NYPD.loc[index,'day_type'] = 'Weekday'
+    if nyc311_NYPD['Day type'][index] < 5:
+       nyc311_NYPD.loc[index,'Day type'] = 'Weekday'
     else:
-       nyc311_NYPD.loc[index,'day_type'] = 'Weekend'
+       nyc311_NYPD.loc[index,'Day type'] = 'Weekend'
        
-col = nyc311_NYPD.pop("day_type")
+col = nyc311_NYPD.pop("Day type")
 
 nyc311_NYPD.insert(4,col.name ,col)
 
@@ -343,8 +343,8 @@ nyc311_NYPD = nyc311_NYPD[nyc311_NYPD['Incident Zip'].notnull()]
 from plotnine import *
 
 (
-    ggplot(nyc311_NYPD, aes(x='day_type',fill='Borough'))
-    + geom_histogram(binwidth=0.5)
+    ggplot(nyc311_NYPD, aes(x='Borough',y = 'Duration (hours)', fill='Day type'))
+    + geom_boxplot()
 )
 
 ```
@@ -354,12 +354,12 @@ Test whether the distributions are the same across weekdays/weekends and across 
 ```{python}
 # Create a crosstab
 
-Cross = pd.crosstab(index=nyc311_NYPD['day_type'], columns=nyc311_NYPD['Borough'])
+Cross = pd.crosstab(index=nyc311_NYPD['Day type'], columns=nyc311_NYPD['Borough'])
 
 Cross
 ```
 
-Null hypothesis is there is no assocition between `day_type` and `Borough`.
+Null hypothesis is there is no assocition between `Day type` and `Borough`.
 
 ```{python}
 from scipy.stats import chi2_contingency

@@ -150,7 +150,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>nyc311.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="25">
+<div class="cell-output cell-output-display" data-execution_count="1">
 
 <div>
 
@@ -314,7 +314,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>nyc311.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="26">
+<div class="cell-output cell-output-display" data-execution_count="2">
 
 <div>
 
@@ -423,7 +423,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>nyc311.isna().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="27">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>Unique Key                            0
 Created Date                          0
 Closed Date                        5176
@@ -543,7 +543,7 @@ memory usage: 17.0+ MB</code></pre>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>Filter_1.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="30">
+<div class="cell-output cell-output-display" data-execution_count="6">
 
 <div>
 
@@ -722,7 +722,7 @@ memory usage: 17.0+ MB</code></pre>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>Filter_1.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="31">
+<div class="cell-output cell-output-display" data-execution_count="7">
 
 <div>
 
@@ -926,7 +926,7 @@ memory usage: 17.0+ MB</code></pre>
 <span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a><span class="co">#Update the dataset</span></span>
 <span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> Filter_1.index:</span>
 <span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    nyc311.loc[index,<span class="st">'Latitude'</span>]   <span class="op">=</span> Filter_1[<span class="st">'Latitude'</span>][index]</span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    nyc311.loc[index,<span class="st">'Loingitude'</span>] <span class="op">=</span> Filter_1[<span class="st">'Longitude'</span>][index]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    nyc311.loc[index,<span class="st">'Longitude'</span>] <span class="op">=</span> Filter_1[<span class="st">'Longitude'</span>][index]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>These are the remaining data without <code>Latitude</code> and <code>Longitude</code>. We can start with working with intersection.</p>
@@ -1023,7 +1023,7 @@ memory usage: 17.0+ MB</code></pre>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Filter_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="37">
+<div class="cell-output cell-output-display" data-execution_count="13">
 
 <div>
 
@@ -1042,6 +1042,7 @@ memory usage: 17.0+ MB</code></pre>
       <th>Incident Zip</th>
       <th>Incident Address</th>
       <th>...</th>
+      <th>Vehicle Type</th>
       <th>Taxi Company Borough</th>
       <th>Taxi Pick Up Location</th>
       <th>Bridge Highway Name</th>
@@ -1051,7 +1052,6 @@ memory usage: 17.0+ MB</code></pre>
       <th>Latitude</th>
       <th>Longitude</th>
       <th>Location</th>
-      <th>Loingitude</th>
     </tr>
   </thead>
   <tbody>
@@ -1141,8 +1141,8 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>...</td>
       <td>NaN</td>
-      <td>1000 10th Ave, New York, NY 10019, USA</td>
       <td>NaN</td>
+      <td>1000 10th Ave, New York, NY 10019, USA</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1166,11 +1166,11 @@ memory usage: 17.0+ MB</code></pre>
       <td>...</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>Belt Pkwy</td>
       <td>East/Queens Bound</td>
       <td>Roadway</td>
       <td>Coney Island Ave (Exit 8) - Knapp St Sheepshea...</td>
-      <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1214,11 +1214,11 @@ memory usage: 17.0+ MB</code></pre>
       <td>...</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>Long Island Expwy</td>
       <td>West/Manhattan Bound</td>
       <td>Roadway</td>
       <td>Junction Blvd (Exit 20) - Queens Blvd (NY 25) ...</td>
-      <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1237,8 +1237,8 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>...</td>
       <td>NaN</td>
-      <td>Northern Blvd, New York, ç¾å</td>
       <td>NaN</td>
+      <td>Northern Blvd, New York, ç¾å</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1262,11 +1262,11 @@ memory usage: 17.0+ MB</code></pre>
       <td>...</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>Jackie Robinson/Interboro Pkwy</td>
       <td>West/Brooklyn Bound</td>
       <td>Roadway</td>
       <td>Forest Park Dr (Exit 4) - Cypress Hills St (Ex...</td>
-      <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1286,11 +1286,11 @@ memory usage: 17.0+ MB</code></pre>
       <td>...</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>Belt Pkwy</td>
       <td>West/Staten Island Bound</td>
       <td>Roadway</td>
       <td>Cross Bay Blvd (Exit 17S) - Erskine St (Exit 15)</td>
-      <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1310,6 +1310,7 @@ memory usage: 17.0+ MB</code></pre>
       <td>...</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>Long Island Expwy</td>
       <td>West/Manhattan Bound</td>
       <td>Roadway</td>
@@ -1317,11 +1318,10 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>NaN</td>
     </tr>
   </tbody>
 </table>
-<p>180 rows × 42 columns</p>
+<p>180 rows × 41 columns</p>
 </div>
 </div>
 </div>
@@ -1351,7 +1351,7 @@ memory usage: 17.0+ MB</code></pre>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>Filter_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="39">
+<div class="cell-output cell-output-display" data-execution_count="15">
 
 <div>
 
@@ -1370,6 +1370,7 @@ memory usage: 17.0+ MB</code></pre>
       <th>Incident Zip</th>
       <th>Incident Address</th>
       <th>...</th>
+      <th>Vehicle Type</th>
       <th>Taxi Company Borough</th>
       <th>Taxi Pick Up Location</th>
       <th>Bridge Highway Name</th>
@@ -1379,7 +1380,6 @@ memory usage: 17.0+ MB</code></pre>
       <th>Latitude</th>
       <th>Longitude</th>
       <th>Location</th>
-      <th>Loingitude</th>
     </tr>
   </thead>
   <tbody>
@@ -1469,8 +1469,8 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>...</td>
       <td>NaN</td>
-      <td>1000 10th Ave, New York, NY 10019, USA</td>
       <td>NaN</td>
+      <td>1000 10th Ave, New York, NY 10019, USA</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1494,11 +1494,11 @@ memory usage: 17.0+ MB</code></pre>
       <td>...</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>Belt Pkwy</td>
       <td>East/Queens Bound</td>
       <td>Roadway</td>
       <td>Coney Island Ave (Exit 8) - Knapp St Sheepshea...</td>
-      <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1542,11 +1542,11 @@ memory usage: 17.0+ MB</code></pre>
       <td>...</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>Long Island Expwy</td>
       <td>West/Manhattan Bound</td>
       <td>Roadway</td>
       <td>Junction Blvd (Exit 20) - Queens Blvd (NY 25) ...</td>
-      <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1565,8 +1565,8 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>...</td>
       <td>NaN</td>
-      <td>Northern Blvd, New York, ç¾å</td>
       <td>NaN</td>
+      <td>Northern Blvd, New York, ç¾å</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1590,11 +1590,11 @@ memory usage: 17.0+ MB</code></pre>
       <td>...</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>Jackie Robinson/Interboro Pkwy</td>
       <td>West/Brooklyn Bound</td>
       <td>Roadway</td>
       <td>Forest Park Dr (Exit 4) - Cypress Hills St (Ex...</td>
-      <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1614,11 +1614,11 @@ memory usage: 17.0+ MB</code></pre>
       <td>...</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>Belt Pkwy</td>
       <td>West/Staten Island Bound</td>
       <td>Roadway</td>
       <td>Cross Bay Blvd (Exit 17S) - Erskine St (Exit 15)</td>
-      <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1638,6 +1638,7 @@ memory usage: 17.0+ MB</code></pre>
       <td>...</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>Long Island Expwy</td>
       <td>West/Manhattan Bound</td>
       <td>Roadway</td>
@@ -1645,11 +1646,10 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>NaN</td>
     </tr>
   </tbody>
 </table>
-<p>180 rows × 42 columns</p>
+<p>180 rows × 41 columns</p>
 </div>
 </div>
 </div>
@@ -1710,11 +1710,7 @@ memory usage: 17.0+ MB</code></pre>
 <span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co">#Show the filled state plane </span></span>
 <span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>Filter_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\predicates.py:540: RuntimeWarning: invalid value encountered in contains
-C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement.py:74: RuntimeWarning: invalid value encountered in distance</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="41">
+<div class="cell-output cell-output-display" data-execution_count="17">
 
 <div>
 
@@ -1733,6 +1729,7 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <th>Incident Zip</th>
       <th>Incident Address</th>
       <th>...</th>
+      <th>Vehicle Type</th>
       <th>Taxi Company Borough</th>
       <th>Taxi Pick Up Location</th>
       <th>Bridge Highway Name</th>
@@ -1742,7 +1739,6 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <th>Latitude</th>
       <th>Longitude</th>
       <th>Location</th>
-      <th>Loingitude</th>
     </tr>
   </thead>
   <tbody>
@@ -1765,10 +1761,10 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>40.870000</td>
+      <td>-73.900000</td>
       <td>NaN</td>
-      <td>NaN</td>
-      <td>-73.90</td>
     </tr>
     <tr>
       <th>1197</th>
@@ -1789,9 +1785,9 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>40.711285</td>
       <td>-73.728634</td>
-      <td>NaN</td>
       <td>NaN</td>
     </tr>
     <tr>
@@ -1813,10 +1809,10 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>40.800000</td>
+      <td>-73.950000</td>
       <td>NaN</td>
-      <td>NaN</td>
-      <td>-73.95</td>
     </tr>
     <tr>
       <th>1261</th>
@@ -1837,10 +1833,10 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>40.800000</td>
+      <td>-73.950000</td>
       <td>NaN</td>
-      <td>NaN</td>
-      <td>-73.95</td>
     </tr>
     <tr>
       <th>1262</th>
@@ -1861,10 +1857,10 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>40.800000</td>
+      <td>-73.950000</td>
       <td>NaN</td>
-      <td>NaN</td>
-      <td>-73.95</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1909,10 +1905,10 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>40.630000</td>
+      <td>-74.120000</td>
       <td>NaN</td>
-      <td>NaN</td>
-      <td>-74.12</td>
     </tr>
     <tr>
       <th>53699</th>
@@ -1933,10 +1929,10 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>40.770000</td>
+      <td>-73.990000</td>
       <td>NaN</td>
-      <td>NaN</td>
-      <td>-73.99</td>
     </tr>
     <tr>
       <th>53819</th>
@@ -1957,10 +1953,10 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>40.660000</td>
+      <td>-73.730000</td>
       <td>NaN</td>
-      <td>NaN</td>
-      <td>-73.73</td>
     </tr>
     <tr>
       <th>53933</th>
@@ -1981,10 +1977,10 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>40.720000</td>
+      <td>-73.860000</td>
       <td>NaN</td>
-      <td>NaN</td>
-      <td>-73.86</td>
     </tr>
     <tr>
       <th>53964</th>
@@ -2005,14 +2001,14 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>40.600000</td>
+      <td>-73.760000</td>
       <td>NaN</td>
-      <td>NaN</td>
-      <td>-73.76</td>
     </tr>
   </tbody>
 </table>
-<p>797 rows × 42 columns</p>
+<p>797 rows × 41 columns</p>
 </div>
 </div>
 </div>
@@ -2020,13 +2016,13 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
 <div class="cell" data-execution_count="18">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD <span class="op">=</span> nyc311[nyc311[<span class="st">'Agency'</span>] <span class="op">==</span> <span class="st">'NYPD'</span>]</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Closed Date'</span>].isnull()]</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>A</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD <span class="op">=</span> nyc311[nyc311[<span class="st">'Agency'</span>] <span class="op">==</span> <span class="st">'NYPD'</span>]</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Closed Date'</span>].isnull()]</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>A</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="42">
+<div class="cell-output cell-output-display" data-execution_count="18">
 
 <div>
 
@@ -2045,6 +2041,7 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <th>Incident Zip</th>
       <th>Incident Address</th>
       <th>...</th>
+      <th>Vehicle Type</th>
       <th>Taxi Company Borough</th>
       <th>Taxi Pick Up Location</th>
       <th>Bridge Highway Name</th>
@@ -2054,7 +2051,6 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <th>Latitude</th>
       <th>Longitude</th>
       <th>Location</th>
-      <th>Loingitude</th>
     </tr>
   </thead>
   <tbody>
@@ -2077,14 +2073,14 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>40.655622</td>
       <td>-73.916891</td>
       <td>(40.65562177191011, -73.91689052688147)</td>
-      <td>NaN</td>
     </tr>
   </tbody>
 </table>
-<p>1 rows × 42 columns</p>
+<p>1 rows × 41 columns</p>
 </div>
 </div>
 </div>
@@ -2092,31 +2088,31 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
 <div class="cell" data-execution_count="19">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Closed Date'</span>].notnull()]</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD[<span class="st">'duration'</span>] <span class="op">=</span> nyc311_NYPD[<span class="st">'Closed Date'</span>] <span class="op">-</span> nyc311_NYPD[<span class="st">'Created Date'</span>]</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>col <span class="op">=</span> nyc311_NYPD.pop(<span class="st">"duration"</span>)</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>s_hours <span class="op">=</span> col.dt.total_seconds() <span class="op">/</span> <span class="fl">3600.0</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD.insert(<span class="dv">3</span>,s_hours.name ,s_hours)</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD[<span class="st">'day_type'</span>] <span class="op">=</span> nyc311_NYPD[<span class="st">'Created Date'</span>].dt.dayofweek</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> nyc311_NYPD.index:</span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> nyc311_NYPD[<span class="st">'day_type'</span>][index] <span class="op">&lt;</span> <span class="dv">5</span>:</span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>       nyc311_NYPD.loc[index,<span class="st">'day_type'</span>] <span class="op">=</span> <span class="st">'Weekday'</span></span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>       nyc311_NYPD.loc[index,<span class="st">'day_type'</span>] <span class="op">=</span> <span class="st">'Weekend'</span></span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>       </span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>col <span class="op">=</span> nyc311_NYPD.pop(<span class="st">"day_type"</span>)</span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD.insert(<span class="dv">4</span>,col.name ,col)</span>
-<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Closed Date'</span>].notnull()]</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD[<span class="st">'Duration (hours)'</span>] <span class="op">=</span> nyc311_NYPD[<span class="st">'Closed Date'</span>] <span class="op">-</span> nyc311_NYPD[<span class="st">'Created Date'</span>]</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>col <span class="op">=</span> nyc311_NYPD.pop(<span class="st">"Duration (hours)"</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>s_hours <span class="op">=</span> col.dt.total_seconds() <span class="op">/</span> <span class="fl">3600.0</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD.insert(<span class="dv">3</span>,s_hours.name ,s_hours)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD[<span class="st">'Day type'</span>] <span class="op">=</span> nyc311_NYPD[<span class="st">'Created Date'</span>].dt.dayofweek</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> nyc311_NYPD.index:</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> nyc311_NYPD[<span class="st">'Day type'</span>][index] <span class="op">&lt;</span> <span class="dv">5</span>:</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>       nyc311_NYPD.loc[index,<span class="st">'Day type'</span>] <span class="op">=</span> <span class="st">'Weekday'</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>       nyc311_NYPD.loc[index,<span class="st">'Day type'</span>] <span class="op">=</span> <span class="st">'Weekend'</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>       </span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>col <span class="op">=</span> nyc311_NYPD.pop(<span class="st">"Day type"</span>)</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD.insert(<span class="dv">4</span>,col.name ,col)</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="43">
+<div class="cell-output cell-output-display" data-execution_count="19">
 
 <div>
 
@@ -2127,14 +2123,15 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <th>Unique Key</th>
       <th>Created Date</th>
       <th>Closed Date</th>
-      <th>duration</th>
-      <th>day_type</th>
+      <th>Duration (hours)</th>
+      <th>Day type</th>
       <th>Agency</th>
       <th>Agency Name</th>
       <th>Complaint Type</th>
       <th>Descriptor</th>
       <th>Location Type</th>
       <th>...</th>
+      <th>Vehicle Type</th>
       <th>Taxi Company Borough</th>
       <th>Taxi Pick Up Location</th>
       <th>Bridge Highway Name</th>
@@ -2144,7 +2141,6 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <th>Latitude</th>
       <th>Longitude</th>
       <th>Location</th>
-      <th>Loingitude</th>
     </tr>
   </thead>
   <tbody>
@@ -2167,10 +2163,10 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>40.863611</td>
       <td>-73.870409</td>
       <td>(40.8636112787934, -73.87040864262848)</td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>6</th>
@@ -2191,10 +2187,10 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>40.702772</td>
       <td>-73.837580</td>
       <td>(40.70277200816068, -73.83758019372564)</td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>7</th>
@@ -2215,10 +2211,10 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>40.687196</td>
       <td>-73.981921</td>
       <td>(40.68719608843765, -73.98192072171082)</td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>8</th>
@@ -2239,10 +2235,10 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>40.832358</td>
       <td>-73.858906</td>
       <td>(40.83235751279932, -73.85890589915455)</td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>9</th>
@@ -2263,10 +2259,10 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>40.773667</td>
       <td>-73.947833</td>
       <td>(40.773667438961155, -73.94783272698673)</td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>...</th>
@@ -2311,10 +2307,10 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>40.706779</td>
       <td>-73.929213</td>
       <td>(40.70677887148764, -73.92921256734658)</td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>54461</th>
@@ -2335,10 +2331,10 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>40.722513</td>
       <td>-73.946805</td>
       <td>(40.72251308480256, -73.94680489829233)</td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>54462</th>
@@ -2359,10 +2355,10 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>40.694502</td>
       <td>-73.977995</td>
       <td>(40.694501981434954, -73.97799524430377)</td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>54463</th>
@@ -2383,10 +2379,10 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>40.757643</td>
       <td>-73.875333</td>
       <td>(40.75764288488996, -73.87533252677208)</td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>54464</th>
@@ -2407,14 +2403,14 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>40.846388</td>
       <td>-73.828280</td>
       <td>(40.84638812959795, -73.82828029128923)</td>
-      <td>NaN</td>
     </tr>
   </tbody>
 </table>
-<p>21534 rows × 44 columns</p>
+<p>21534 rows × 43 columns</p>
 </div>
 </div>
 </div>
@@ -2422,37 +2418,37 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
 <div class="cell" data-execution_count="20">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the unspecified Borough</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD <span class="op">=</span> nyc311_NYPD[ nyc311_NYPD[<span class="st">'Borough'</span>] <span class="op">!=</span> <span class="st">'Unspecified'</span>]</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the zipcode that is null due to missing latitude and longitude</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Incident Zip'</span>].notnull()]</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    ggplot(nyc311_NYPD, aes(x<span class="op">=</span><span class="st">'day_type'</span>,fill<span class="op">=</span><span class="st">'Borough'</span>))</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_histogram(binwidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the unspecified Borough</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD <span class="op">=</span> nyc311_NYPD[ nyc311_NYPD[<span class="st">'Borough'</span>] <span class="op">!=</span> <span class="st">'Unspecified'</span>]</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the zipcode that is null due to missing latitude and longitude</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Incident Zip'</span>].notnull()]</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    ggplot(nyc311_NYPD, aes(x<span class="op">=</span><span class="st">'Borough'</span>,y <span class="op">=</span> <span class="st">'Duration (hours)'</span>, fill<span class="op">=</span><span class="st">'Day type'</span>))</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_boxplot()</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <p><img src="Midterm_Project_files/figure-html/cell-21-output-1.png" class="img-fluid"></p>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="44">
-<pre><code>&lt;ggplot: (156453274122)&gt;</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<pre><code>&lt;ggplot: (166986048567)&gt;</code></pre>
 </div>
 </div>
 <p>Test whether the distributions are the same across weekdays/weekends and across borough.</p>
 <div class="cell" data-execution_count="21">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a crosstab</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>Cross <span class="op">=</span> pd.crosstab(index<span class="op">=</span>nyc311_NYPD[<span class="st">'day_type'</span>], columns<span class="op">=</span>nyc311_NYPD[<span class="st">'Borough'</span>])</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>Cross</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a crosstab</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>Cross <span class="op">=</span> pd.crosstab(index<span class="op">=</span>nyc311_NYPD[<span class="st">'Day type'</span>], columns<span class="op">=</span>nyc311_NYPD[<span class="st">'Borough'</span>])</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>Cross</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="45">
+<div class="cell-output cell-output-display" data-execution_count="21">
 
 <div>
 
@@ -2467,7 +2463,7 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
       <th>STATEN ISLAND</th>
     </tr>
     <tr>
-      <th>day_type</th>
+      <th>Day type</th>
       <th></th>
       <th></th>
       <th></th>
@@ -2497,20 +2493,20 @@ C:\Users\YkChua\.conda\envs\ML_DataScience\lib\site-packages\shapely\measurement
 </div>
 </div>
 </div>
-<p>Null hypothesis is there is no assocition between <code>day_type</code> and <code>Borough</code>.</p>
+<p>Null hypothesis is there is no assocition between <code>Day type</code> and <code>Borough</code>.</p>
 <div class="cell" data-execution_count="22">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> chi2_contingency</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the crosstab to array</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>Cross <span class="op">=</span> Cross.to_numpy()</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>chi2, pval, dof, expected <span class="op">=</span> chi2_contingency(Cross)</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Chi-square statistic:"</span>, chi2)</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Degrees of freedom:"</span>, dof)</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"P-value:"</span>, pval)</span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Expected frequencies:</span><span class="ch">\n</span><span class="st">"</span>, expected)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> chi2_contingency</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the crosstab to array</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>Cross <span class="op">=</span> Cross.to_numpy()</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>chi2, pval, dof, expected <span class="op">=</span> chi2_contingency(Cross)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Chi-square statistic:"</span>, chi2)</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Degrees of freedom:"</span>, dof)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"P-value:"</span>, pval)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Expected frequencies:</span><span class="ch">\n</span><span class="st">"</span>, expected)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Chi-square statistic: 25.99928713782284
@@ -2526,27 +2522,27 @@ Expected frequencies:
 <div class="cell" data-execution_count="23">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># set the default database file location</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>db_file <span class="op">=</span> os.path.abspath(<span class="st">"simple_db.sqlite"</span>)</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co"># change to your own path after installing uszipcode</span></span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>con <span class="op">=</span> sqlite3.<span class="ex">connect</span>(db_file)</span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>zipdf <span class="op">=</span> pd.read_sql_query(<span class="st">"SELECT * from simple_zipcode"</span>, con)</span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>zipdf.info()</span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the type to float64</span></span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>zipdf[<span class="st">'zipcode'</span>] <span class="op">=</span> zipdf[<span class="st">'zipcode'</span>].astype(<span class="st">'float64'</span>)</span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the type to float64 too</span></span>
-<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD[<span class="st">'Incident Zip'</span>] <span class="op">=</span> nyc311_NYPD[<span class="st">'Incident Zip'</span>].astype(<span class="st">'float64'</span>)</span>
-<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>merged_df <span class="op">=</span> pd.merge(nyc311_NYPD, zipdf, how <span class="op">=</span> <span class="st">'left'</span>, left_on <span class="op">=</span> <span class="st">'Incident Zip'</span>, right_on <span class="op">=</span> <span class="st">'zipcode'</span>)</span>
-<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop repeating data</span></span>
-<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>merged_df <span class="op">=</span> merged_df.drop([<span class="st">'zipcode'</span>,<span class="st">'lat'</span>,<span class="st">'lng'</span>],axis <span class="op">=</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># set the default database file location</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>db_file <span class="op">=</span> os.path.abspath(<span class="st">"simple_db.sqlite"</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co"># change to your own path after installing uszipcode</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>con <span class="op">=</span> sqlite3.<span class="ex">connect</span>(db_file)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>zipdf <span class="op">=</span> pd.read_sql_query(<span class="st">"SELECT * from simple_zipcode"</span>, con)</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>zipdf.info()</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the type to float64</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>zipdf[<span class="st">'zipcode'</span>] <span class="op">=</span> zipdf[<span class="st">'zipcode'</span>].astype(<span class="st">'float64'</span>)</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the type to float64 too</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD[<span class="st">'Incident Zip'</span>] <span class="op">=</span> nyc311_NYPD[<span class="st">'Incident Zip'</span>].astype(<span class="st">'float64'</span>)</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>merged_df <span class="op">=</span> pd.merge(nyc311_NYPD, zipdf, how <span class="op">=</span> <span class="st">'left'</span>, left_on <span class="op">=</span> <span class="st">'Incident Zip'</span>, right_on <span class="op">=</span> <span class="st">'zipcode'</span>)</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop repeating data</span></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>merged_df <span class="op">=</span> merged_df.drop([<span class="st">'zipcode'</span>,<span class="st">'lat'</span>,<span class="st">'lng'</span>],axis <span class="op">=</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -2586,9 +2582,9 @@ memory usage: 7.8+ MB</code></pre>
 <div class="cell" data-execution_count="24">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>merged_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>merged_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="48">
+<div class="cell-output cell-output-display" data-execution_count="24">
 
 <div>
 
@@ -2599,8 +2595,8 @@ memory usage: 7.8+ MB</code></pre>
       <th>Unique Key</th>
       <th>Created Date</th>
       <th>Closed Date</th>
-      <th>duration</th>
-      <th>day_type</th>
+      <th>Duration (hours)</th>
+      <th>Day type</th>
       <th>Agency</th>
       <th>Agency Name</th>
       <th>Complaint Type</th>
@@ -2886,7 +2882,7 @@ memory usage: 7.8+ MB</code></pre>
     </tr>
   </tbody>
 </table>
-<p>21488 rows × 65 columns</p>
+<p>21488 rows × 64 columns</p>
 </div>
 </div>
 </div>
