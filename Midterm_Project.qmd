@@ -294,6 +294,10 @@ for index in Filter_1.index:
 #Show the filled state plane 
 Filter_1
 ```
+Summary after cleaning the data.
+    * There are more missing `X Coordinate (State Plane)` than `Y Coordinate (State Plane)`.
+    * Comments.
+
 Remove the request not from NYPD
 
 ```{python}
@@ -331,7 +335,7 @@ nyc311_NYPD.insert(4,col.name ,col)
 nyc311_NYPD
 ```
 
-Visualize the distribution of uncensored duration by weekdays/weekend and by borough
+Visualize the distribution of uncensored duration by weekdays/weekend and by borough.
 
 ```{python}
 # Remove the unspecified Borough
@@ -349,32 +353,42 @@ from plotnine import *
 
 ```
 
-Test whether the distributions are the same across weekdays/weekends and across borough.
+Test whether the distributions are the same across weekdays/weekends.
 
 ```{python}
-# Create a crosstab
+from scipy.stats import kruskal
 
-Cross = pd.crosstab(index=nyc311_NYPD['Day type'], columns=nyc311_NYPD['Borough'])
+# Create the subset of data
+weekday_dur = nyc311_NYPD.loc[nyc311_NYPD['Day type'] == 'Weekday', 'Duration (hours)']
 
-Cross
+weekend_dur = nyc311_NYPD.loc[nyc311_NYPD['Day type'] == 'Weekend', 'Duration (hours)']
+
+stat, pval = kruskal(weekday_dur, weekend_dur)
+
+print(pval)
 ```
+The pvalue shows that is diffeent accross weekdays and weekends.
 
-Null hypothesis is there is no assocition between `Day type` and `Borough`.
+Test whether the distributions are the same across borough.
 
 ```{python}
-from scipy.stats import chi2_contingency
+# Create the subset of the data
+bronx = nyc311_NYPD[nyc311_NYPD['Borough'] == 'BRONX']['Duration (hours)']
 
-# Convert the crosstab to array
-Cross = Cross.to_numpy()
-chi2, pval, dof, expected = chi2_contingency(Cross)
+brooklyn = nyc311_NYPD[nyc311_NYPD['Borough'] == 'BROOKLYN']['Duration (hours)']
 
-print("Chi-square statistic:", chi2)
-print("Degrees of freedom:", dof)
-print("P-value:", pval)
-print("Expected frequencies:\n", expected)
+manhattan = nyc311_NYPD[nyc311_NYPD['Borough'] == 'MANHATTAN']['Duration (hours)']
+
+queens = nyc311_NYPD[nyc311_NYPD['Borough'] == 'QUEENS']['Duration (hours)']
+
+staten_island = nyc311_NYPD[nyc311_NYPD['Borough'] == 'STATEN ISLAND']['Duration (hours)']
+
+stat, pval = kruskal(bronx, brooklyn, manhattan, queens, staten_island)
+
+print(pval)
 
 ```
-A p-value of 3.165508689260228e-05 indicates that there is strong evidence to suggest that there is an association between day_type and Borough.
+The pvalue shows that the distribution are different across across borough. 
 
 Lets merge with uszipcode data.
 
