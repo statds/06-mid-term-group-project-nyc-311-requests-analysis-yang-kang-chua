@@ -54,6 +54,25 @@ Filter_1 = nyc311[nyc311['Created Date'] > nyc311['Closed Date']]
 
 Filter_1.head()
 ```
+Check missing value percentage
+
+```{python}
+# Find missing value
+missing_value = nyc311.isnull()
+
+#Divide the full data length to get the percentage
+missing_value = missing_value.sum()/len(nyc311)
+
+#Convert into dataframe
+missing_value = missing_value.to_frame()
+
+#Name the column
+missing_value.columns = ['Missing Percentage']
+
+#Display
+missing_value
+
+```
 
 Few thing we can do to clean the data:
 
@@ -87,51 +106,13 @@ for index in Filter_1.index:
 
 Now work on getting `Latitude` and `Longitude` can be found using the available `Incident Address`, `Street Name`, `Cross Street 1`, `Cross Street 2`, `Intersection Street 1`, `Intersection Street 2` or as known as `Address Type`.
 
-```{python}
-# Create a Filter that Latitude and Lognitude is null. We can find one of them because if Latitude is null, Longitude is also null.
-
-Filter_1 = nyc311[nyc311['Latitude'].isnull()]
-
-#Most of them have zipcode we can get latitude and logitude from uszipcode
-Filter_1 = Filter_1[Filter_1['Incident Zip'].notnull()]
-
-from uszipcode import SearchEngine
-
-# Create a SearchEngine object
-search = SearchEngine()
-
-#Create a series of Incident Zipcode from the Filter_1
-
-Filter_1_series = Filter_1['Incident Zip']
-
-#Convert into int then into string
-
-Filter_1_series = Filter_1_series.astype(int)
-
-Filter_1_series = Filter_1_series.astype(str)
-
-for index in Filter_1_series.index:
-  # Get the zipcode from the value
-  zipcode = search.by_zipcode(Filter_1_series[index])
-
-  # Get the latitude and longitude of from the zipcode
-  Filter_1.loc[index,'Latitude'] = zipcode.lat
-  Filter_1.loc[index,'Longitude'] = zipcode.lng
-
-#Update the dataset
-for index in Filter_1.index:
-    nyc311.loc[index,'Latitude']   = Filter_1['Latitude'][index]
-    nyc311.loc[index,'Longitude'] = Filter_1['Longitude'][index]
-
-```
-
-These are the remaining data without `Latitude` and `Longitude`. We can start with working with intersection.
+Begin with solving `Address Type` that is `INTERSECTION`.
 
 ```{python}
 # Get the remaining data that is missing with Latitude
 Filter_1 = nyc311[nyc311['Latitude'].isnull()]
 
-# # Get the data that contain INTERSECTION
+# Get the data that contain INTERSECTION
 Filter_1 = Filter_1[Filter_1['Address Type'] =='INTERSECTION']
 
 from geopy.geocoders import Nominatim
@@ -152,7 +133,7 @@ for index in Filter_1.index:
     nyc311.loc[index,'Longitude'] = Filter_1['Longitude'][index]
 
 ```
-Work with address type `BLOCKFACE`.
+Then work with address type `BLOCKFACE`.
 ```{python}
 Filter_1 = nyc311[nyc311['Latitude'].isnull()]
 
@@ -203,12 +184,35 @@ for index in Filter_1.index:
     nyc311.loc[index,'Latitude']   = Filter_1['Latitude'][index]
     nyc311.loc[index,'Longitude'] = Filter_1['Longitude'][index]
 
-# Show the remaining data that has missing Latitude and Longitude
+
+```
+Solve the remaining address.
+```{python}
+# Solve the remaining address
 
 Filter_1 = nyc311[nyc311['Latitude'].isnull()]
+
+Filter_1 = Filter_1[Filter_1['Incident Address'].notnull()]
+
+Address = Filter_1['Incident Address'] + ' NY '
+
+for index in Address.index:
+    geocode = RateLimiter(GoogleV3(api_key='AIzaSyDhsJ5roz0w0ll0YegLJZn-niSBjm1ns5A').geocode, min_delay_seconds=1)
+    location = geocode(Address[index], timeout = 10)
+    if location is not None:
+        Filter_1.loc[index,['Latitude',"Longitude"]] = [location.latitude,location.longitude]
+
+for index in Filter_1.index:
+    nyc311.loc[index,'Latitude']   = Filter_1['Latitude'][index]
+    nyc311.loc[index,'Longitude'] = Filter_1['Longitude'][index]
+
 ```
 These are the remaining latitude and longitude that is missing
 ```{python}
+# Show the remaining data that has missing Latitude and Longitude
+
+Filter_1 = nyc311[nyc311['Latitude'].isnull()]
+
 Filter_1
 ```
 
@@ -217,6 +221,11 @@ Most of the latitude are due to most location is at hightway.
 Now work on getting zipcode from available `latitude` and `longitude`.
 
 ```{python}
+from uszipcode import SearchEngine
+
+# Create a SearchEngine object
+search = SearchEngine()
+
 Filter_1 = nyc311[nyc311['Incident Zip'].isnull()]
 
 Filter_1 = Filter_1[Filter_1['Latitude'].notnull()]
@@ -296,7 +305,10 @@ Filter_1
 ```
 Summary after cleaning the data.
     * There are more missing `X Coordinate (State Plane)` than `Y Coordinate (State Plane)`.
-    * Comments.
+    * There is duplicate when stating `Cross Street 1`, `Cross Street 2`, `Intersection Street 1`,and  `Intersection Street 2`.
+    * Agency from `DOT` seems commonly mixed up the `Closed Date` and `Created Date`.
+    * `Borough` that is `unspecified` should count as `missing`.
+    * Many `Park Facility Name` is `unspecified` should count as `missing`. 
 
 Remove the request not from NYPD
 

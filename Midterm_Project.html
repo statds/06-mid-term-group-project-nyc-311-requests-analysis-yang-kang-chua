@@ -701,6 +701,206 @@ memory usage: 17.0+ MB</code></pre>
 </div>
 </div>
 </div>
+<p>Check missing value percentage</p>
+<div class="cell" data-execution_count="7">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find missing value</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>missing_value <span class="op">=</span> nyc311.isnull()</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Divide the full data length to get the percentage</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>missing_value <span class="op">=</span> missing_value.<span class="bu">sum</span>()<span class="op">/</span><span class="bu">len</span>(nyc311)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Convert into dataframe</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>missing_value <span class="op">=</span> missing_value.to_frame()</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Name the column</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>missing_value.columns <span class="op">=</span> [<span class="st">'Missing Percentage'</span>]</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Display</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>missing_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="7">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Missing Percentage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Unique Key</th>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Created Date</th>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Closed Date</th>
+      <td>0.095027</td>
+    </tr>
+    <tr>
+      <th>Agency</th>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Agency Name</th>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Complaint Type</th>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Descriptor</th>
+      <td>0.016303</td>
+    </tr>
+    <tr>
+      <th>Location Type</th>
+      <td>0.135637</td>
+    </tr>
+    <tr>
+      <th>Incident Zip</th>
+      <td>0.013751</td>
+    </tr>
+    <tr>
+      <th>Incident Address</th>
+      <td>0.047440</td>
+    </tr>
+    <tr>
+      <th>Street Name</th>
+      <td>0.047440</td>
+    </tr>
+    <tr>
+      <th>Cross Street 1</th>
+      <td>0.357561</td>
+    </tr>
+    <tr>
+      <th>Cross Street 2</th>
+      <td>0.357561</td>
+    </tr>
+    <tr>
+      <th>Intersection Street 1</th>
+      <td>0.399842</td>
+    </tr>
+    <tr>
+      <th>Intersection Street 2</th>
+      <td>0.399108</td>
+    </tr>
+    <tr>
+      <th>Address Type</th>
+      <td>0.007564</td>
+    </tr>
+    <tr>
+      <th>City</th>
+      <td>0.043603</td>
+    </tr>
+    <tr>
+      <th>Landmark</th>
+      <td>0.471351</td>
+    </tr>
+    <tr>
+      <th>Facility Type</th>
+      <td>0.994786</td>
+    </tr>
+    <tr>
+      <th>Status</th>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Due Date</th>
+      <td>0.998091</td>
+    </tr>
+    <tr>
+      <th>Resolution Description</th>
+      <td>0.032147</td>
+    </tr>
+    <tr>
+      <th>Resolution Action Updated Date</th>
+      <td>0.031302</td>
+    </tr>
+    <tr>
+      <th>Community Board</th>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>BBL</th>
+      <td>0.114285</td>
+    </tr>
+    <tr>
+      <th>Borough</th>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>X Coordinate (State Plane)</th>
+      <td>0.017882</td>
+    </tr>
+    <tr>
+      <th>Y Coordinate (State Plane)</th>
+      <td>0.017313</td>
+    </tr>
+    <tr>
+      <th>Open Data Channel Type</th>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Park Facility Name</th>
+      <td>0.000165</td>
+    </tr>
+    <tr>
+      <th>Park Borough</th>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Vehicle Type</th>
+      <td>0.999835</td>
+    </tr>
+    <tr>
+      <th>Taxi Company Borough</th>
+      <td>0.999449</td>
+    </tr>
+    <tr>
+      <th>Taxi Pick Up Location</th>
+      <td>0.989554</td>
+    </tr>
+    <tr>
+      <th>Bridge Highway Name</th>
+      <td>0.993703</td>
+    </tr>
+    <tr>
+      <th>Bridge Highway Direction</th>
+      <td>0.996714</td>
+    </tr>
+    <tr>
+      <th>Road Ramp</th>
+      <td>0.997522</td>
+    </tr>
+    <tr>
+      <th>Bridge Highway Segment</th>
+      <td>0.993703</td>
+    </tr>
+    <tr>
+      <th>Latitude</th>
+      <td>0.017955</td>
+    </tr>
+    <tr>
+      <th>Longitude</th>
+      <td>0.017955</td>
+    </tr>
+    <tr>
+      <th>Location</th>
+      <td>0.017955</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
 <p>Few thing we can do to clean the data:</p>
 <ul>
 <li>Reorganize the <code>Created Date</code> and <code>Closed Date</code>.</li>
@@ -710,19 +910,19 @@ memory usage: 17.0+ MB</code></pre>
 <li>Update <code>Borough</code> from <code>Incident Zip</code>.</li>
 </ul>
 <p>Begin by Reorganize the <code>Created Date</code> and <code>Closed Date</code>.</p>
-<div class="cell" data-execution_count="7">
+<div class="cell" data-execution_count="8">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a copy of a Closed Date(Created Date)</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Created_Date <span class="op">=</span> Filter_1[<span class="st">'Closed Date'</span>].copy()</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> Filter_1.index:</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    Filter_1.loc[index,[<span class="st">'Closed Date'</span>]] <span class="op">=</span> Filter_1[<span class="st">'Created Date'</span>][index]</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    Filter_1.loc[index,[<span class="st">'Created Date'</span>]] <span class="op">=</span> Created_Date[index]</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>Filter_1.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a copy of a Closed Date(Created Date)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>Created_Date <span class="op">=</span> Filter_1[<span class="st">'Closed Date'</span>].copy()</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> Filter_1.index:</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    Filter_1.loc[index,[<span class="st">'Closed Date'</span>]] <span class="op">=</span> Filter_1[<span class="st">'Created Date'</span>][index]</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    Filter_1.loc[index,[<span class="st">'Created Date'</span>]] <span class="op">=</span> Created_Date[index]</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>Filter_1.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="8">
 
 <div>
 
@@ -881,62 +1081,23 @@ memory usage: 17.0+ MB</code></pre>
 </div>
 </div>
 <p>Put into the original data.</p>
-<div class="cell" data-execution_count="8">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> Filter_1.index:</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  nyc311.loc[index,[<span class="st">'Created Date'</span>]] <span class="op">=</span> Filter_1[<span class="st">'Created Date'</span>][index]</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  nyc311.loc[index,[<span class="st">'Closed Date'</span>]]  <span class="op">=</span> Filter_1[<span class="st">'Closed Date'</span>][index]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<p>Now work on getting <code>Latitude</code> and <code>Longitude</code> can be found using the available <code>Incident Address</code>, <code>Street Name</code>, <code>Cross Street 1</code>, <code>Cross Street 2</code>, <code>Intersection Street 1</code>, <code>Intersection Street 2</code> or as known as <code>Address Type</code>.</p>
 <div class="cell" data-execution_count="9">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Filter that Latitude and Lognitude is null. We can find one of them because if Latitude is null, Longitude is also null.</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>Filter_1 <span class="op">=</span> nyc311[nyc311[<span class="st">'Latitude'</span>].isnull()]</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Most of them have zipcode we can get latitude and logitude from uszipcode</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>Filter_1 <span class="op">=</span> Filter_1[Filter_1[<span class="st">'Incident Zip'</span>].notnull()]</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> uszipcode <span class="im">import</span> SearchEngine</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a SearchEngine object</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>search <span class="op">=</span> SearchEngine()</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a series of Incident Zipcode from the Filter_1</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>Filter_1_series <span class="op">=</span> Filter_1[<span class="st">'Incident Zip'</span>]</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co">#Convert into int then into string</span></span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>Filter_1_series <span class="op">=</span> Filter_1_series.astype(<span class="bu">int</span>)</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>Filter_1_series <span class="op">=</span> Filter_1_series.astype(<span class="bu">str</span>)</span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> Filter_1_series.index:</span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get the zipcode from the value</span></span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>  zipcode <span class="op">=</span> search.by_zipcode(Filter_1_series[index])</span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get the latitude and longitude of from the zipcode</span></span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>  Filter_1.loc[index,<span class="st">'Latitude'</span>] <span class="op">=</span> zipcode.lat</span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>  Filter_1.loc[index,<span class="st">'Longitude'</span>] <span class="op">=</span> zipcode.lng</span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a><span class="co">#Update the dataset</span></span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> Filter_1.index:</span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    nyc311.loc[index,<span class="st">'Latitude'</span>]   <span class="op">=</span> Filter_1[<span class="st">'Latitude'</span>][index]</span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    nyc311.loc[index,<span class="st">'Longitude'</span>] <span class="op">=</span> Filter_1[<span class="st">'Longitude'</span>][index]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> Filter_1.index:</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  nyc311.loc[index,[<span class="st">'Created Date'</span>]] <span class="op">=</span> Filter_1[<span class="st">'Created Date'</span>][index]</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  nyc311.loc[index,[<span class="st">'Closed Date'</span>]]  <span class="op">=</span> Filter_1[<span class="st">'Closed Date'</span>][index]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>These are the remaining data without <code>Latitude</code> and <code>Longitude</code>. We can start with working with intersection.</p>
+<p>Now work on getting <code>Latitude</code> and <code>Longitude</code> can be found using the available <code>Incident Address</code>, <code>Street Name</code>, <code>Cross Street 1</code>, <code>Cross Street 2</code>, <code>Intersection Street 1</code>, <code>Intersection Street 2</code> or as known as <code>Address Type</code>.</p>
+<p>Begin with solving <code>Address Type</code> that is <code>INTERSECTION</code>.</p>
 <div class="cell" data-execution_count="10">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the remaining data that is missing with Latitude</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>Filter_1 <span class="op">=</span> nyc311[nyc311[<span class="st">'Latitude'</span>].isnull()]</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># # Get the data that contain INTERSECTION</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the data that contain INTERSECTION</span></span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>Filter_1 <span class="op">=</span> Filter_1[Filter_1[<span class="st">'Address Type'</span>] <span class="op">==</span><span class="st">'INTERSECTION'</span>]</span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> geopy.geocoders <span class="im">import</span> Nominatim</span>
@@ -957,7 +1118,7 @@ memory usage: 17.0+ MB</code></pre>
 <span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    nyc311.loc[index,<span class="st">'Longitude'</span>] <span class="op">=</span> Filter_1[<span class="st">'Longitude'</span>][index]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Work with address type <code>BLOCKFACE</code>.</p>
+<p>Then work with address type <code>BLOCKFACE</code>.</p>
 <div class="cell" data-execution_count="11">
 <details>
 <summary>Code</summary>
@@ -1010,20 +1171,43 @@ memory usage: 17.0+ MB</code></pre>
 <span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Update</span></span>
 <span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> Filter_1.index:</span>
 <span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    nyc311.loc[index,<span class="st">'Latitude'</span>]   <span class="op">=</span> Filter_1[<span class="st">'Latitude'</span>][index]</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    nyc311.loc[index,<span class="st">'Longitude'</span>] <span class="op">=</span> Filter_1[<span class="st">'Longitude'</span>][index]</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the remaining data that has missing Latitude and Longitude</span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>Filter_1 <span class="op">=</span> nyc311[nyc311[<span class="st">'Latitude'</span>].isnull()]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    nyc311.loc[index,<span class="st">'Longitude'</span>] <span class="op">=</span> Filter_1[<span class="st">'Longitude'</span>][index]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>These are the remaining latitude and longitude that is missing</p>
+<p>Solve the remaining address.</p>
 <div class="cell" data-execution_count="13">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Filter_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solve the remaining address</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>Filter_1 <span class="op">=</span> nyc311[nyc311[<span class="st">'Latitude'</span>].isnull()]</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>Filter_1 <span class="op">=</span> Filter_1[Filter_1[<span class="st">'Incident Address'</span>].notnull()]</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>Address <span class="op">=</span> Filter_1[<span class="st">'Incident Address'</span>] <span class="op">+</span> <span class="st">' NY '</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> Address.index:</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    geocode <span class="op">=</span> RateLimiter(GoogleV3(api_key<span class="op">=</span><span class="st">'AIzaSyDhsJ5roz0w0ll0YegLJZn-niSBjm1ns5A'</span>).geocode, min_delay_seconds<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    location <span class="op">=</span> geocode(Address[index], timeout <span class="op">=</span> <span class="dv">10</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> location <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>        Filter_1.loc[index,[<span class="st">'Latitude'</span>,<span class="st">"Longitude"</span>]] <span class="op">=</span> [location.latitude,location.longitude]</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> Filter_1.index:</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    nyc311.loc[index,<span class="st">'Latitude'</span>]   <span class="op">=</span> Filter_1[<span class="st">'Latitude'</span>][index]</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    nyc311.loc[index,<span class="st">'Longitude'</span>] <span class="op">=</span> Filter_1[<span class="st">'Longitude'</span>][index]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="13">
+</div>
+<p>These are the remaining latitude and longitude that is missing</p>
+<div class="cell" data-execution_count="14">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the remaining data that has missing Latitude and Longitude</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>Filter_1 <span class="op">=</span> nyc311[nyc311[<span class="st">'Latitude'</span>].isnull()]</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>Filter_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="14">
 
 <div>
 
@@ -1327,31 +1511,36 @@ memory usage: 17.0+ MB</code></pre>
 </div>
 <p>Most of the latitude are due to most location is at hightway.</p>
 <p>Now work on getting zipcode from available <code>latitude</code> and <code>longitude</code>.</p>
-<div class="cell" data-execution_count="14">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Filter_1 <span class="op">=</span> nyc311[nyc311[<span class="st">'Incident Zip'</span>].isnull()]</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>Filter_1 <span class="op">=</span> Filter_1[Filter_1[<span class="st">'Latitude'</span>].notnull()]</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> Filter_1.index:</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> search.by_coordinates(Filter_1[<span class="st">'Latitude'</span>][index],Filter_1[<span class="st">'Longitude'</span>][index], radius <span class="op">=</span> <span class="dv">25</span>)</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    Filter_1.loc[index,<span class="st">'Incident Zip'</span>] <span class="op">=</span> z[<span class="dv">0</span>].zipcode</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Make an update</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> Filter_1.index:</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    nyc311.loc[index,<span class="st">'Incident Zip'</span>]   <span class="op">=</span> Filter_1[<span class="st">'Incident Zip'</span>][index]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<p>The remaining missing date still shown here, this means that the rest of the <code>Incident Zip</code> is filled!</p>
 <div class="cell" data-execution_count="15">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Filter_1 <span class="op">=</span> nyc311[nyc311[<span class="st">'Incident Zip'</span>].isnull()]</span>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> uszipcode <span class="im">import</span> SearchEngine</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>Filter_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a SearchEngine object</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>search <span class="op">=</span> SearchEngine()</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>Filter_1 <span class="op">=</span> nyc311[nyc311[<span class="st">'Incident Zip'</span>].isnull()]</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>Filter_1 <span class="op">=</span> Filter_1[Filter_1[<span class="st">'Latitude'</span>].notnull()]</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> Filter_1.index:</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> search.by_coordinates(Filter_1[<span class="st">'Latitude'</span>][index],Filter_1[<span class="st">'Longitude'</span>][index], radius <span class="op">=</span> <span class="dv">25</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    Filter_1.loc[index,<span class="st">'Incident Zip'</span>] <span class="op">=</span> z[<span class="dv">0</span>].zipcode</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Make an update</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> Filter_1.index:</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    nyc311.loc[index,<span class="st">'Incident Zip'</span>]   <span class="op">=</span> Filter_1[<span class="st">'Incident Zip'</span>][index]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="15">
+</div>
+<p>The remaining missing date still shown here, this means that the rest of the <code>Incident Zip</code> is filled!</p>
+<div class="cell" data-execution_count="16">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Filter_1 <span class="op">=</span> nyc311[nyc311[<span class="st">'Incident Zip'</span>].isnull()]</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>Filter_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="16">
 
 <div>
 
@@ -1654,63 +1843,63 @@ memory usage: 17.0+ MB</code></pre>
 </div>
 </div>
 <p>Update <code>Borough</code> from <code>Incident Zip</code>.</p>
-<div class="cell" data-execution_count="16">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function that classified the borough</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> nyczip2burough(<span class="bu">zip</span>):</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    nzip <span class="op">=</span> <span class="bu">int</span>(<span class="bu">zip</span>)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> nzip <span class="op">&gt;=</span> <span class="dv">10001</span> <span class="kw">and</span> nzip <span class="op">&lt;=</span> <span class="dv">10282</span>:</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"MANHATTAN"</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> nzip <span class="op">&gt;=</span> <span class="dv">10301</span> <span class="kw">and</span> nzip <span class="op">&lt;=</span> <span class="dv">10314</span>:</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"STATEN ISLAND"</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> nzip <span class="op">&gt;=</span> <span class="dv">10451</span> <span class="kw">and</span> nzip <span class="op">&lt;=</span> <span class="dv">10475</span>:</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"BRONX"</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> nzip <span class="op">&gt;=</span> <span class="dv">11004</span> <span class="kw">and</span> nzip <span class="op">&lt;=</span> <span class="dv">11109</span>:</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"QUEENS"</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> nzip <span class="op">&gt;=</span> <span class="dv">11351</span> <span class="kw">and</span> nzip <span class="op">&lt;=</span> <span class="dv">11697</span>:</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"QUEENS"</span></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> nzip <span class="op">&gt;=</span> <span class="dv">11201</span> <span class="kw">and</span> nzip <span class="op">&lt;=</span> <span class="dv">11256</span>:</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"BROOKLYN"</span></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.nan</span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>Filter_1 <span class="op">=</span> nyc311[nyc311[<span class="st">'Borough'</span>] <span class="op">==</span> <span class="st">'Unspecified'</span>]</span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>Filter_1 <span class="op">=</span> Filter_1[Filter_1[<span class="st">'Incident Zip'</span>].notnull()]</span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> Filter_1.index:</span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>    burough <span class="op">=</span> nyczip2burough(Filter_1.loc[index,[<span class="st">'Incident Zip'</span>]])</span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>    Filter_1.loc[index,<span class="st">'Borough'</span>] <span class="op">=</span> burough</span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a><span class="co">#Update the data</span></span>
-<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> Filter_1.index:</span>
-<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>  nyc311.loc[index,<span class="st">'Borough'</span>]   <span class="op">=</span> Filter_1[<span class="st">'Borough'</span>][index]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<p>Get <code>X Coordinate (State Plane)</code>and <code>Y Coordinate (State Plane)</code> using <code>stateplane</code>.</p>
 <div class="cell" data-execution_count="17">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> stateplane</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>Filter_1 <span class="op">=</span> nyc311[nyc311[<span class="st">'X Coordinate (State Plane)'</span>].isnull()]</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>Filter_1 <span class="op">=</span> Filter_1[Filter_1[<span class="st">'Latitude'</span>].notnull()]</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> Filter_1.index:</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    x, y <span class="op">=</span> stateplane.from_lonlat(Filter_1[<span class="st">'Longitude'</span>][index],Filter_1[<span class="st">'Latitude'</span>][index])</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    Filter_1.loc[index,<span class="st">'X Coordinate (State Plane)'</span>] <span class="op">=</span> x</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    Filter_1.loc[index,<span class="st">'Y Coordinate (State Plane)'</span>] <span class="op">=</span> y</span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> Filter_1.index:</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    nyc311.loc[index,<span class="st">'X Coordinate (State Plane)'</span>] <span class="op">=</span> Filter_1[<span class="st">'X Coordinate (State Plane)'</span>][index]</span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    nyc311.loc[index,<span class="st">'Y Coordinate (State Plane)'</span>] <span class="op">=</span> Filter_1[<span class="st">'Y Coordinate (State Plane)'</span>][index]</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co">#Show the filled state plane </span></span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>Filter_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function that classified the borough</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> nyczip2burough(<span class="bu">zip</span>):</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    nzip <span class="op">=</span> <span class="bu">int</span>(<span class="bu">zip</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> nzip <span class="op">&gt;=</span> <span class="dv">10001</span> <span class="kw">and</span> nzip <span class="op">&lt;=</span> <span class="dv">10282</span>:</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"MANHATTAN"</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> nzip <span class="op">&gt;=</span> <span class="dv">10301</span> <span class="kw">and</span> nzip <span class="op">&lt;=</span> <span class="dv">10314</span>:</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"STATEN ISLAND"</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> nzip <span class="op">&gt;=</span> <span class="dv">10451</span> <span class="kw">and</span> nzip <span class="op">&lt;=</span> <span class="dv">10475</span>:</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"BRONX"</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> nzip <span class="op">&gt;=</span> <span class="dv">11004</span> <span class="kw">and</span> nzip <span class="op">&lt;=</span> <span class="dv">11109</span>:</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"QUEENS"</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> nzip <span class="op">&gt;=</span> <span class="dv">11351</span> <span class="kw">and</span> nzip <span class="op">&lt;=</span> <span class="dv">11697</span>:</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"QUEENS"</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> nzip <span class="op">&gt;=</span> <span class="dv">11201</span> <span class="kw">and</span> nzip <span class="op">&lt;=</span> <span class="dv">11256</span>:</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"BROOKLYN"</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.nan</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>Filter_1 <span class="op">=</span> nyc311[nyc311[<span class="st">'Borough'</span>] <span class="op">==</span> <span class="st">'Unspecified'</span>]</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>Filter_1 <span class="op">=</span> Filter_1[Filter_1[<span class="st">'Incident Zip'</span>].notnull()]</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> Filter_1.index:</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>    burough <span class="op">=</span> nyczip2burough(Filter_1.loc[index,[<span class="st">'Incident Zip'</span>]])</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>    Filter_1.loc[index,<span class="st">'Borough'</span>] <span class="op">=</span> burough</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a><span class="co">#Update the data</span></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> Filter_1.index:</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>  nyc311.loc[index,<span class="st">'Borough'</span>]   <span class="op">=</span> Filter_1[<span class="st">'Borough'</span>][index]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="17">
+</div>
+<p>Get <code>X Coordinate (State Plane)</code>and <code>Y Coordinate (State Plane)</code> using <code>stateplane</code>.</p>
+<div class="cell" data-execution_count="18">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> stateplane</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>Filter_1 <span class="op">=</span> nyc311[nyc311[<span class="st">'X Coordinate (State Plane)'</span>].isnull()]</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>Filter_1 <span class="op">=</span> Filter_1[Filter_1[<span class="st">'Latitude'</span>].notnull()]</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> Filter_1.index:</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    x, y <span class="op">=</span> stateplane.from_lonlat(Filter_1[<span class="st">'Longitude'</span>][index],Filter_1[<span class="st">'Latitude'</span>][index])</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    Filter_1.loc[index,<span class="st">'X Coordinate (State Plane)'</span>] <span class="op">=</span> x</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    Filter_1.loc[index,<span class="st">'Y Coordinate (State Plane)'</span>] <span class="op">=</span> y</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> Filter_1.index:</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    nyc311.loc[index,<span class="st">'X Coordinate (State Plane)'</span>] <span class="op">=</span> Filter_1[<span class="st">'X Coordinate (State Plane)'</span>][index]</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    nyc311.loc[index,<span class="st">'Y Coordinate (State Plane)'</span>] <span class="op">=</span> Filter_1[<span class="st">'Y Coordinate (State Plane)'</span>][index]</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="co">#Show the filled state plane </span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>Filter_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="18">
 
 <div>
 
@@ -1762,8 +1951,8 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>40.870000</td>
-      <td>-73.900000</td>
+      <td>40.857056</td>
+      <td>-73.895860</td>
       <td>NaN</td>
     </tr>
     <tr>
@@ -1810,8 +1999,8 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>40.800000</td>
-      <td>-73.950000</td>
+      <td>40.798201</td>
+      <td>-73.953550</td>
       <td>NaN</td>
     </tr>
     <tr>
@@ -1834,8 +2023,8 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>40.800000</td>
-      <td>-73.950000</td>
+      <td>40.798201</td>
+      <td>-73.953550</td>
       <td>NaN</td>
     </tr>
     <tr>
@@ -1858,8 +2047,8 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>40.800000</td>
-      <td>-73.950000</td>
+      <td>40.798201</td>
+      <td>-73.953550</td>
       <td>NaN</td>
     </tr>
     <tr>
@@ -1906,8 +2095,8 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>40.630000</td>
-      <td>-74.120000</td>
+      <td>40.632022</td>
+      <td>-74.111703</td>
       <td>NaN</td>
     </tr>
     <tr>
@@ -1930,8 +2119,8 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>40.770000</td>
-      <td>-73.990000</td>
+      <td>40.748207</td>
+      <td>-74.007648</td>
       <td>NaN</td>
     </tr>
     <tr>
@@ -1954,8 +2143,8 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>40.660000</td>
-      <td>-73.730000</td>
+      <td>40.903521</td>
+      <td>-73.850421</td>
       <td>NaN</td>
     </tr>
     <tr>
@@ -1978,8 +2167,8 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>40.720000</td>
-      <td>-73.860000</td>
+      <td>40.713307</td>
+      <td>-73.849133</td>
       <td>NaN</td>
     </tr>
     <tr>
@@ -2002,8 +2191,8 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>40.600000</td>
-      <td>-73.760000</td>
+      <td>40.602064</td>
+      <td>-73.745433</td>
       <td>NaN</td>
     </tr>
   </tbody>
@@ -2012,18 +2201,18 @@ memory usage: 17.0+ MB</code></pre>
 </div>
 </div>
 </div>
-<p>Summary after cleaning the data. * There are more missing <code>X Coordinate (State Plane)</code> than <code>Y Coordinate (State Plane)</code>. * Comments.</p>
+<p>Summary after cleaning the data. * There are more missing <code>X Coordinate (State Plane)</code> than <code>Y Coordinate (State Plane)</code>. * There is duplicate when stating <code>Cross Street 1</code>, <code>Cross Street 2</code>, <code>Intersection Street 1</code>,and <code>Intersection Street 2</code>. * Agency from <code>DOT</code> seems commonly mixed up the <code>Closed Date</code> and <code>Created Date</code>. * <code>Borough</code> that is <code>unspecified</code> should count as <code>missing</code>. * Many <code>Park Facility Name</code> is <code>unspecified</code> should count as <code>missing</code>.</p>
 <p>Remove the request not from NYPD</p>
-<div class="cell" data-execution_count="18">
+<div class="cell" data-execution_count="19">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD <span class="op">=</span> nyc311[nyc311[<span class="st">'Agency'</span>] <span class="op">==</span> <span class="st">'NYPD'</span>]</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Closed Date'</span>].isnull()]</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>A</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD <span class="op">=</span> nyc311[nyc311[<span class="st">'Agency'</span>] <span class="op">==</span> <span class="st">'NYPD'</span>]</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Closed Date'</span>].isnull()]</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>A</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="18">
+<div class="cell-output cell-output-display" data-execution_count="19">
 
 <div>
 
@@ -2086,34 +2275,34 @@ memory usage: 17.0+ MB</code></pre>
 </div>
 </div>
 <p>Only one data still in progress. We can remove that too.</p>
-<div class="cell" data-execution_count="19">
+<div class="cell" data-execution_count="20">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Closed Date'</span>].notnull()]</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD[<span class="st">'Duration (hours)'</span>] <span class="op">=</span> nyc311_NYPD[<span class="st">'Closed Date'</span>] <span class="op">-</span> nyc311_NYPD[<span class="st">'Created Date'</span>]</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>col <span class="op">=</span> nyc311_NYPD.pop(<span class="st">"Duration (hours)"</span>)</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>s_hours <span class="op">=</span> col.dt.total_seconds() <span class="op">/</span> <span class="fl">3600.0</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD.insert(<span class="dv">3</span>,s_hours.name ,s_hours)</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD[<span class="st">'Day type'</span>] <span class="op">=</span> nyc311_NYPD[<span class="st">'Created Date'</span>].dt.dayofweek</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> nyc311_NYPD.index:</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> nyc311_NYPD[<span class="st">'Day type'</span>][index] <span class="op">&lt;</span> <span class="dv">5</span>:</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>       nyc311_NYPD.loc[index,<span class="st">'Day type'</span>] <span class="op">=</span> <span class="st">'Weekday'</span></span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>       nyc311_NYPD.loc[index,<span class="st">'Day type'</span>] <span class="op">=</span> <span class="st">'Weekend'</span></span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>       </span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>col <span class="op">=</span> nyc311_NYPD.pop(<span class="st">"Day type"</span>)</span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD.insert(<span class="dv">4</span>,col.name ,col)</span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Closed Date'</span>].notnull()]</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD[<span class="st">'Duration (hours)'</span>] <span class="op">=</span> nyc311_NYPD[<span class="st">'Closed Date'</span>] <span class="op">-</span> nyc311_NYPD[<span class="st">'Created Date'</span>]</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>col <span class="op">=</span> nyc311_NYPD.pop(<span class="st">"Duration (hours)"</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>s_hours <span class="op">=</span> col.dt.total_seconds() <span class="op">/</span> <span class="fl">3600.0</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD.insert(<span class="dv">3</span>,s_hours.name ,s_hours)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD[<span class="st">'Day type'</span>] <span class="op">=</span> nyc311_NYPD[<span class="st">'Created Date'</span>].dt.dayofweek</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> nyc311_NYPD.index:</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> nyc311_NYPD[<span class="st">'Day type'</span>][index] <span class="op">&lt;</span> <span class="dv">5</span>:</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>       nyc311_NYPD.loc[index,<span class="st">'Day type'</span>] <span class="op">=</span> <span class="st">'Weekday'</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>       nyc311_NYPD.loc[index,<span class="st">'Day type'</span>] <span class="op">=</span> <span class="st">'Weekend'</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>       </span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>col <span class="op">=</span> nyc311_NYPD.pop(<span class="st">"Day type"</span>)</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD.insert(<span class="dv">4</span>,col.name ,col)</span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="19">
+<div class="cell-output cell-output-display" data-execution_count="20">
 
 <div>
 
@@ -2416,43 +2605,43 @@ memory usage: 17.0+ MB</code></pre>
 </div>
 </div>
 <p>Visualize the distribution of uncensored duration by weekdays/weekend and by borough.</p>
-<div class="cell" data-execution_count="20">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the unspecified Borough</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD <span class="op">=</span> nyc311_NYPD[ nyc311_NYPD[<span class="st">'Borough'</span>] <span class="op">!=</span> <span class="st">'Unspecified'</span>]</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the zipcode that is null due to missing latitude and longitude</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Incident Zip'</span>].notnull()]</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    ggplot(nyc311_NYPD, aes(x<span class="op">=</span><span class="st">'Borough'</span>,y <span class="op">=</span> <span class="st">'Duration (hours)'</span>, fill<span class="op">=</span><span class="st">'Day type'</span>))</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_boxplot()</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display">
-<p><img src="Midterm_Project_files/figure-html/cell-21-output-1.png" class="img-fluid"></p>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="20">
-<pre><code>&lt;ggplot: (138942669623)&gt;</code></pre>
-</div>
-</div>
-<p>Test whether the distributions are the same across weekdays/weekends.</p>
 <div class="cell" data-execution_count="21">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> kruskal</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the subset of data</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>weekday_dur <span class="op">=</span> nyc311_NYPD.loc[nyc311_NYPD[<span class="st">'Day type'</span>] <span class="op">==</span> <span class="st">'Weekday'</span>, <span class="st">'Duration (hours)'</span>]</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>weekend_dur <span class="op">=</span> nyc311_NYPD.loc[nyc311_NYPD[<span class="st">'Day type'</span>] <span class="op">==</span> <span class="st">'Weekend'</span>, <span class="st">'Duration (hours)'</span>]</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>stat, pval <span class="op">=</span> kruskal(weekday_dur, weekend_dur)</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pval)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the unspecified Borough</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD <span class="op">=</span> nyc311_NYPD[ nyc311_NYPD[<span class="st">'Borough'</span>] <span class="op">!=</span> <span class="st">'Unspecified'</span>]</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the zipcode that is null due to missing latitude and longitude</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Incident Zip'</span>].notnull()]</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    ggplot(nyc311_NYPD, aes(x<span class="op">=</span><span class="st">'Borough'</span>,y <span class="op">=</span> <span class="st">'Duration (hours)'</span>, fill<span class="op">=</span><span class="st">'Day type'</span>))</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_boxplot()</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="Midterm_Project_files/figure-html/cell-22-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<pre><code>&lt;ggplot: (118259695689)&gt;</code></pre>
+</div>
+</div>
+<p>Test whether the distributions are the same across weekdays/weekends.</p>
+<div class="cell" data-execution_count="22">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> kruskal</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the subset of data</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>weekday_dur <span class="op">=</span> nyc311_NYPD.loc[nyc311_NYPD[<span class="st">'Day type'</span>] <span class="op">==</span> <span class="st">'Weekday'</span>, <span class="st">'Duration (hours)'</span>]</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>weekend_dur <span class="op">=</span> nyc311_NYPD.loc[nyc311_NYPD[<span class="st">'Day type'</span>] <span class="op">==</span> <span class="st">'Weekend'</span>, <span class="st">'Duration (hours)'</span>]</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>stat, pval <span class="op">=</span> kruskal(weekday_dur, weekend_dur)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pval)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.017678221661827795</code></pre>
@@ -2460,23 +2649,23 @@ memory usage: 17.0+ MB</code></pre>
 </div>
 <p>The pvalue shows that is diffeent accross weekdays and weekends.</p>
 <p>Test whether the distributions are the same across borough.</p>
-<div class="cell" data-execution_count="22">
+<div class="cell" data-execution_count="23">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the subset of the data</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>bronx <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Borough'</span>] <span class="op">==</span> <span class="st">'BRONX'</span>][<span class="st">'Duration (hours)'</span>]</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>brooklyn <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Borough'</span>] <span class="op">==</span> <span class="st">'BROOKLYN'</span>][<span class="st">'Duration (hours)'</span>]</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>manhattan <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Borough'</span>] <span class="op">==</span> <span class="st">'MANHATTAN'</span>][<span class="st">'Duration (hours)'</span>]</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>queens <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Borough'</span>] <span class="op">==</span> <span class="st">'QUEENS'</span>][<span class="st">'Duration (hours)'</span>]</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>staten_island <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Borough'</span>] <span class="op">==</span> <span class="st">'STATEN ISLAND'</span>][<span class="st">'Duration (hours)'</span>]</span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>stat, pval <span class="op">=</span> kruskal(bronx, brooklyn, manhattan, queens, staten_island)</span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pval)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the subset of the data</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>bronx <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Borough'</span>] <span class="op">==</span> <span class="st">'BRONX'</span>][<span class="st">'Duration (hours)'</span>]</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>brooklyn <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Borough'</span>] <span class="op">==</span> <span class="st">'BROOKLYN'</span>][<span class="st">'Duration (hours)'</span>]</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>manhattan <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Borough'</span>] <span class="op">==</span> <span class="st">'MANHATTAN'</span>][<span class="st">'Duration (hours)'</span>]</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>queens <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Borough'</span>] <span class="op">==</span> <span class="st">'QUEENS'</span>][<span class="st">'Duration (hours)'</span>]</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>staten_island <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Borough'</span>] <span class="op">==</span> <span class="st">'STATEN ISLAND'</span>][<span class="st">'Duration (hours)'</span>]</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>stat, pval <span class="op">=</span> kruskal(bronx, brooklyn, manhattan, queens, staten_island)</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pval)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.0</code></pre>
@@ -2484,30 +2673,30 @@ memory usage: 17.0+ MB</code></pre>
 </div>
 <p>The pvalue shows that the distribution are different across across borough.</p>
 <p>Lets merge with uszipcode data.</p>
-<div class="cell" data-execution_count="23">
+<div class="cell" data-execution_count="24">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># set the default database file location</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>db_file <span class="op">=</span> os.path.abspath(<span class="st">"simple_db.sqlite"</span>)</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co"># change to your own path after installing uszipcode</span></span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>con <span class="op">=</span> sqlite3.<span class="ex">connect</span>(db_file)</span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>zipdf <span class="op">=</span> pd.read_sql_query(<span class="st">"SELECT * from simple_zipcode"</span>, con)</span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>zipdf.info()</span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the type to float64</span></span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>zipdf[<span class="st">'zipcode'</span>] <span class="op">=</span> zipdf[<span class="st">'zipcode'</span>].astype(<span class="st">'float64'</span>)</span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the type to float64 too</span></span>
-<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD[<span class="st">'Incident Zip'</span>] <span class="op">=</span> nyc311_NYPD[<span class="st">'Incident Zip'</span>].astype(<span class="st">'float64'</span>)</span>
-<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>merged_df <span class="op">=</span> pd.merge(nyc311_NYPD, zipdf, how <span class="op">=</span> <span class="st">'left'</span>, left_on <span class="op">=</span> <span class="st">'Incident Zip'</span>, right_on <span class="op">=</span> <span class="st">'zipcode'</span>)</span>
-<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop repeating data</span></span>
-<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>merged_df <span class="op">=</span> merged_df.drop([<span class="st">'zipcode'</span>,<span class="st">'lat'</span>,<span class="st">'lng'</span>],axis <span class="op">=</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># set the default database file location</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>db_file <span class="op">=</span> os.path.abspath(<span class="st">"simple_db.sqlite"</span>)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co"># change to your own path after installing uszipcode</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>con <span class="op">=</span> sqlite3.<span class="ex">connect</span>(db_file)</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>zipdf <span class="op">=</span> pd.read_sql_query(<span class="st">"SELECT * from simple_zipcode"</span>, con)</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>zipdf.info()</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the type to float64</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>zipdf[<span class="st">'zipcode'</span>] <span class="op">=</span> zipdf[<span class="st">'zipcode'</span>].astype(<span class="st">'float64'</span>)</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the type to float64 too</span></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD[<span class="st">'Incident Zip'</span>] <span class="op">=</span> nyc311_NYPD[<span class="st">'Incident Zip'</span>].astype(<span class="st">'float64'</span>)</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>merged_df <span class="op">=</span> pd.merge(nyc311_NYPD, zipdf, how <span class="op">=</span> <span class="st">'left'</span>, left_on <span class="op">=</span> <span class="st">'Incident Zip'</span>, right_on <span class="op">=</span> <span class="st">'zipcode'</span>)</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop repeating data</span></span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>merged_df <span class="op">=</span> merged_df.drop([<span class="st">'zipcode'</span>,<span class="st">'lat'</span>,<span class="st">'lng'</span>],axis <span class="op">=</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -2544,12 +2733,12 @@ memory usage: 7.8+ MB</code></pre>
 </div>
 </div>
 <p>Displaying merged data.</p>
-<div class="cell" data-execution_count="24">
+<div class="cell" data-execution_count="25">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>merged_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>merged_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="24">
+<div class="cell-output cell-output-display" data-execution_count="25">
 
 <div>
 
