@@ -146,9 +146,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>nyc311 <span class="op">=</span> pd.read_csv(<span class="st">"nyc311_011523-012123_by022023.csv"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.max_columns'</span>, <span class="va">None</span>)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>nyc311.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>nyc311 <span class="op">=</span> pd.read_csv(<span class="st">"nyc311_011523-012123_by022023.csv"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>nyc311.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="1">
 
@@ -168,7 +170,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <th>Location Type</th>
       <th>Incident Zip</th>
       <th>Incident Address</th>
-      <th>...</th>
+      <th>Street Name</th>
+      <th>Cross Street 1</th>
+      <th>Cross Street 2</th>
+      <th>Intersection Street 1</th>
+      <th>Intersection Street 2</th>
+      <th>Address Type</th>
+      <th>City</th>
+      <th>Landmark</th>
+      <th>Facility Type</th>
+      <th>Status</th>
+      <th>Due Date</th>
+      <th>Resolution Description</th>
+      <th>Resolution Action Updated Date</th>
+      <th>Community Board</th>
+      <th>BBL</th>
+      <th>Borough</th>
+      <th>X Coordinate (State Plane)</th>
+      <th>Y Coordinate (State Plane)</th>
+      <th>Open Data Channel Type</th>
+      <th>Park Facility Name</th>
+      <th>Park Borough</th>
       <th>Vehicle Type</th>
       <th>Taxi Company Borough</th>
       <th>Taxi Pick Up Location</th>
@@ -194,7 +216,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>Restaurant/Bar/Deli/Bakery</td>
       <td>11101.0</td>
       <td>28-07 JACKSON AVENUE</td>
-      <td>...</td>
+      <td>JACKSON AVENUE</td>
+      <td>ORCHARD STREET</td>
+      <td>QUEENS PLAZA SOUTH</td>
+      <td>ORCHARD STREET</td>
+      <td>QUEENS PLAZA SOUTH</td>
+      <td>ADDRESS</td>
+      <td>LONG ISLAND CITY</td>
+      <td>JACKSON AVENUE</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Department of Health and Mental Hygiene ha...</td>
+      <td>01/23/2023 03:10:38 PM</td>
+      <td>02 QUEENS</td>
+      <td>4.004200e+09</td>
+      <td>QUEENS</td>
+      <td>1001216.0</td>
+      <td>211957.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>QUEENS</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -218,7 +260,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>Other (Explain Below)</td>
       <td>11101.0</td>
       <td>48-18 NORTHERN BOULEVARD</td>
-      <td>...</td>
+      <td>NORTHERN BOULEVARD</td>
+      <td>34 AVENUE</td>
+      <td>49 STREET</td>
+      <td>34 AVENUE</td>
+      <td>49 STREET</td>
+      <td>ADDRESS</td>
+      <td>LONG ISLAND CITY</td>
+      <td>NORTHERN BOULEVARD</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Department of Health and Mental Hygiene re...</td>
+      <td>01/23/2023 02:53:36 PM</td>
+      <td>01 QUEENS</td>
+      <td>4.001200e+09</td>
+      <td>QUEENS</td>
+      <td>1008009.0</td>
+      <td>213852.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>QUEENS</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -242,7 +304,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>Food Cart Vendor</td>
       <td>10305.0</td>
       <td>1941 HYLAN BOULEVARD</td>
-      <td>...</td>
+      <td>HYLAN BOULEVARD</td>
+      <td>SEAVER AVENUE</td>
+      <td>STOBE AVENUE</td>
+      <td>SEAVER AVENUE</td>
+      <td>STOBE AVENUE</td>
+      <td>ADDRESS</td>
+      <td>STATEN ISLAND</td>
+      <td>HYLAN BOULEVARD</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Health Departmentâs Office of Environmen...</td>
+      <td>01/17/2023 09:34:02 AM</td>
+      <td>02 STATEN ISLAND</td>
+      <td>NaN</td>
+      <td>STATEN ISLAND</td>
+      <td>957246.0</td>
+      <td>151409.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>STATEN ISLAND</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -266,7 +348,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>Restaurant/Bar/Deli/Bakery</td>
       <td>11103.0</td>
       <td>24-11 STEINWAY STREET</td>
-      <td>...</td>
+      <td>STEINWAY STREET</td>
+      <td>ASTORIA BOULEVARD SOUTH</td>
+      <td>25 AVENUE</td>
+      <td>ASTORIA BOULEVARD SOUTH</td>
+      <td>25 AVENUE</td>
+      <td>ADDRESS</td>
+      <td>ASTORIA</td>
+      <td>STEINWAY STREET</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Department of Health and Mental Hygiene ha...</td>
+      <td>01/17/2023 09:48:19 AM</td>
+      <td>01 QUEENS</td>
+      <td>4.006860e+09</td>
+      <td>QUEENS</td>
+      <td>1008882.0</td>
+      <td>219338.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>QUEENS</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -290,7 +392,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>Other (Explain Below)</td>
       <td>10036.0</td>
       <td>700 8 AVENUE</td>
-      <td>...</td>
+      <td>8 AVENUE</td>
+      <td>WEST 44 STREET</td>
+      <td>WEST 45 STREET</td>
+      <td>WEST   44 STREET</td>
+      <td>WEST   45 STREET</td>
+      <td>ADDRESS</td>
+      <td>NEW YORK</td>
+      <td>8 AVENUE</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>01/23/2023 03:08:02 PM</td>
+      <td>05 MANHATTAN</td>
+      <td>1.010168e+09</td>
+      <td>MANHATTAN</td>
+      <td>987370.0</td>
+      <td>215678.0</td>
+      <td>PHONE</td>
+      <td>Unspecified</td>
+      <td>MANHATTAN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -304,7 +426,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
   </tbody>
 </table>
-<p>5 rows × 41 columns</p>
 </div>
 </div>
 </div>
@@ -561,7 +682,27 @@ memory usage: 17.0+ MB</code></pre>
       <th>Location Type</th>
       <th>Incident Zip</th>
       <th>Incident Address</th>
-      <th>...</th>
+      <th>Street Name</th>
+      <th>Cross Street 1</th>
+      <th>Cross Street 2</th>
+      <th>Intersection Street 1</th>
+      <th>Intersection Street 2</th>
+      <th>Address Type</th>
+      <th>City</th>
+      <th>Landmark</th>
+      <th>Facility Type</th>
+      <th>Status</th>
+      <th>Due Date</th>
+      <th>Resolution Description</th>
+      <th>Resolution Action Updated Date</th>
+      <th>Community Board</th>
+      <th>BBL</th>
+      <th>Borough</th>
+      <th>X Coordinate (State Plane)</th>
+      <th>Y Coordinate (State Plane)</th>
+      <th>Open Data Channel Type</th>
+      <th>Park Facility Name</th>
+      <th>Park Borough</th>
       <th>Vehicle Type</th>
       <th>Taxi Company Borough</th>
       <th>Taxi Pick Up Location</th>
@@ -587,7 +728,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>10470.0</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>OSMAN PLACE</td>
+      <td>EAST 241 STREET</td>
+      <td>INTERSECTION</td>
+      <td>BRONX</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Pending</td>
+      <td>NaN</td>
+      <td>Service Request status for this request is ava...</td>
+      <td>01/16/2023 09:12:00 AM</td>
+      <td>12 BRONX</td>
+      <td>NaN</td>
+      <td>BRONX</td>
+      <td>1026374.0</td>
+      <td>267996.0</td>
+      <td>UNKNOWN</td>
+      <td>Unspecified</td>
+      <td>BRONX</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -611,7 +772,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>10470.0</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>WHITE PLAINS ROAD</td>
+      <td>EAST 241 STREET</td>
+      <td>INTERSECTION</td>
+      <td>BRONX</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Pending</td>
+      <td>NaN</td>
+      <td>Service Request status for this request is ava...</td>
+      <td>01/16/2023 09:37:00 AM</td>
+      <td>12 BRONX</td>
+      <td>NaN</td>
+      <td>BRONX</td>
+      <td>1025621.0</td>
+      <td>268476.0</td>
+      <td>UNKNOWN</td>
+      <td>Unspecified</td>
+      <td>BRONX</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -635,7 +816,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>10470.0</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>EAST 239 STREET</td>
+      <td>MATILDA AVENUE</td>
+      <td>INTERSECTION</td>
+      <td>BRONX</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Pending</td>
+      <td>NaN</td>
+      <td>Service Request status for this request is ava...</td>
+      <td>01/16/2023 10:15:00 AM</td>
+      <td>12 BRONX</td>
+      <td>NaN</td>
+      <td>BRONX</td>
+      <td>1024368.0</td>
+      <td>267516.0</td>
+      <td>UNKNOWN</td>
+      <td>Unspecified</td>
+      <td>BRONX</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -659,7 +860,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>10459.0</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SOUTHERN BOULEVARD</td>
+      <td>JENNINGS STREET</td>
+      <td>INTERSECTION</td>
+      <td>BRONX</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Pending</td>
+      <td>NaN</td>
+      <td>Service Request status for this request is ava...</td>
+      <td>01/16/2023 10:17:00 AM</td>
+      <td>03 BRONX</td>
+      <td>NaN</td>
+      <td>BRONX</td>
+      <td>1014492.0</td>
+      <td>242563.0</td>
+      <td>UNKNOWN</td>
+      <td>Unspecified</td>
+      <td>BRONX</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -683,7 +904,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>10457.0</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>EAST 180 STREET</td>
+      <td>PROSPECT AVENUE</td>
+      <td>INTERSECTION</td>
+      <td>BRONX</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Pending</td>
+      <td>NaN</td>
+      <td>Service Request status for this request is ava...</td>
+      <td>01/16/2023 10:27:00 AM</td>
+      <td>06 BRONX</td>
+      <td>NaN</td>
+      <td>BRONX</td>
+      <td>1015598.0</td>
+      <td>247912.0</td>
+      <td>UNKNOWN</td>
+      <td>Unspecified</td>
+      <td>BRONX</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -697,7 +938,6 @@ memory usage: 17.0+ MB</code></pre>
     </tr>
   </tbody>
 </table>
-<p>5 rows × 41 columns</p>
 </div>
 </div>
 </div>
@@ -940,7 +1180,27 @@ memory usage: 17.0+ MB</code></pre>
       <th>Location Type</th>
       <th>Incident Zip</th>
       <th>Incident Address</th>
-      <th>...</th>
+      <th>Street Name</th>
+      <th>Cross Street 1</th>
+      <th>Cross Street 2</th>
+      <th>Intersection Street 1</th>
+      <th>Intersection Street 2</th>
+      <th>Address Type</th>
+      <th>City</th>
+      <th>Landmark</th>
+      <th>Facility Type</th>
+      <th>Status</th>
+      <th>Due Date</th>
+      <th>Resolution Description</th>
+      <th>Resolution Action Updated Date</th>
+      <th>Community Board</th>
+      <th>BBL</th>
+      <th>Borough</th>
+      <th>X Coordinate (State Plane)</th>
+      <th>Y Coordinate (State Plane)</th>
+      <th>Open Data Channel Type</th>
+      <th>Park Facility Name</th>
+      <th>Park Borough</th>
       <th>Vehicle Type</th>
       <th>Taxi Company Borough</th>
       <th>Taxi Pick Up Location</th>
@@ -966,7 +1226,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>10470.0</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>OSMAN PLACE</td>
+      <td>EAST 241 STREET</td>
+      <td>INTERSECTION</td>
+      <td>BRONX</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Pending</td>
+      <td>NaN</td>
+      <td>Service Request status for this request is ava...</td>
+      <td>01/16/2023 09:12:00 AM</td>
+      <td>12 BRONX</td>
+      <td>NaN</td>
+      <td>BRONX</td>
+      <td>1026374.0</td>
+      <td>267996.0</td>
+      <td>UNKNOWN</td>
+      <td>Unspecified</td>
+      <td>BRONX</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -990,7 +1270,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>10470.0</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>WHITE PLAINS ROAD</td>
+      <td>EAST 241 STREET</td>
+      <td>INTERSECTION</td>
+      <td>BRONX</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Pending</td>
+      <td>NaN</td>
+      <td>Service Request status for this request is ava...</td>
+      <td>01/16/2023 09:37:00 AM</td>
+      <td>12 BRONX</td>
+      <td>NaN</td>
+      <td>BRONX</td>
+      <td>1025621.0</td>
+      <td>268476.0</td>
+      <td>UNKNOWN</td>
+      <td>Unspecified</td>
+      <td>BRONX</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1014,7 +1314,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>10470.0</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>EAST 239 STREET</td>
+      <td>MATILDA AVENUE</td>
+      <td>INTERSECTION</td>
+      <td>BRONX</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Pending</td>
+      <td>NaN</td>
+      <td>Service Request status for this request is ava...</td>
+      <td>01/16/2023 10:15:00 AM</td>
+      <td>12 BRONX</td>
+      <td>NaN</td>
+      <td>BRONX</td>
+      <td>1024368.0</td>
+      <td>267516.0</td>
+      <td>UNKNOWN</td>
+      <td>Unspecified</td>
+      <td>BRONX</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1038,7 +1358,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>10459.0</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SOUTHERN BOULEVARD</td>
+      <td>JENNINGS STREET</td>
+      <td>INTERSECTION</td>
+      <td>BRONX</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Pending</td>
+      <td>NaN</td>
+      <td>Service Request status for this request is ava...</td>
+      <td>01/16/2023 10:17:00 AM</td>
+      <td>03 BRONX</td>
+      <td>NaN</td>
+      <td>BRONX</td>
+      <td>1014492.0</td>
+      <td>242563.0</td>
+      <td>UNKNOWN</td>
+      <td>Unspecified</td>
+      <td>BRONX</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1062,7 +1402,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>10457.0</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>EAST 180 STREET</td>
+      <td>PROSPECT AVENUE</td>
+      <td>INTERSECTION</td>
+      <td>BRONX</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Pending</td>
+      <td>NaN</td>
+      <td>Service Request status for this request is ava...</td>
+      <td>01/16/2023 10:27:00 AM</td>
+      <td>06 BRONX</td>
+      <td>NaN</td>
+      <td>BRONX</td>
+      <td>1015598.0</td>
+      <td>247912.0</td>
+      <td>UNKNOWN</td>
+      <td>Unspecified</td>
+      <td>BRONX</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1076,7 +1436,6 @@ memory usage: 17.0+ MB</code></pre>
     </tr>
   </tbody>
 </table>
-<p>5 rows × 41 columns</p>
 </div>
 </div>
 </div>
@@ -1225,7 +1584,27 @@ memory usage: 17.0+ MB</code></pre>
       <th>Location Type</th>
       <th>Incident Zip</th>
       <th>Incident Address</th>
-      <th>...</th>
+      <th>Street Name</th>
+      <th>Cross Street 1</th>
+      <th>Cross Street 2</th>
+      <th>Intersection Street 1</th>
+      <th>Intersection Street 2</th>
+      <th>Address Type</th>
+      <th>City</th>
+      <th>Landmark</th>
+      <th>Facility Type</th>
+      <th>Status</th>
+      <th>Due Date</th>
+      <th>Resolution Description</th>
+      <th>Resolution Action Updated Date</th>
+      <th>Community Board</th>
+      <th>BBL</th>
+      <th>Borough</th>
+      <th>X Coordinate (State Plane)</th>
+      <th>Y Coordinate (State Plane)</th>
+      <th>Open Data Channel Type</th>
+      <th>Park Facility Name</th>
+      <th>Park Borough</th>
       <th>Vehicle Type</th>
       <th>Taxi Company Borough</th>
       <th>Taxi Pick Up Location</th>
@@ -1251,7 +1630,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>Ferry</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Department of Transportation contacted the...</td>
+      <td>01/17/2023 01:14:56 PM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1275,7 +1674,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>Street</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>In Progress</td>
+      <td>NaN</td>
+      <td>The Taxi and Limousine Commission (TLC) has re...</td>
+      <td>01/20/2023 08:43:18 AM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1299,7 +1718,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>Street</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>In Progress</td>
+      <td>NaN</td>
+      <td>The Taxi and Limousine Commission (TLC) has re...</td>
+      <td>01/20/2023 08:35:47 AM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1323,7 +1762,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Taxi and Limousine Commission (TLC) has de...</td>
+      <td>01/18/2023 09:24:24 AM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>MOBILE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>1000 10th Ave, New York, NY 10019, USA</td>
@@ -1347,7 +1806,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>Highway</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Department of Transportation has completed...</td>
+      <td>01/18/2023 07:00:46 AM</td>
+      <td>Unspecified BROOKLYN</td>
+      <td>NaN</td>
+      <td>BROOKLYN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>PHONE</td>
+      <td>Unspecified</td>
+      <td>BROOKLYN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1382,6 +1861,26 @@ memory usage: 17.0+ MB</code></pre>
       <td>...</td>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
       <th>50169</th>
@@ -1395,7 +1894,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>Highway</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Department of Transportation has completed...</td>
+      <td>01/24/2023 08:32:53 AM</td>
+      <td>Unspecified QUEENS</td>
+      <td>NaN</td>
+      <td>QUEENS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>PHONE</td>
+      <td>Unspecified</td>
+      <td>QUEENS</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1419,7 +1938,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>In Progress</td>
+      <td>NaN</td>
+      <td>The Taxi and Limousine Commission (TLC) has re...</td>
+      <td>01/25/2023 08:49:01 AM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>MOBILE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>Northern Blvd, New York, ç¾å</td>
@@ -1443,7 +1982,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>Highway</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>In Progress</td>
+      <td>NaN</td>
+      <td>The Department of Transportation inspected the...</td>
+      <td>02/02/2023 05:03:39 PM</td>
+      <td>Unspecified QUEENS</td>
+      <td>NaN</td>
+      <td>QUEENS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>QUEENS</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1467,7 +2026,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>Highway</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department reviewed your complaint ...</td>
+      <td>01/22/2023 12:04:34 AM</td>
+      <td>Unspecified BROOKLYN</td>
+      <td>NaN</td>
+      <td>BROOKLYN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>BROOKLYN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1491,7 +2070,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>Highway</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Department of Transportation has completed...</td>
+      <td>01/24/2023 08:32:27 AM</td>
+      <td>Unspecified QUEENS</td>
+      <td>NaN</td>
+      <td>QUEENS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>QUEENS</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1558,7 +2157,27 @@ memory usage: 17.0+ MB</code></pre>
       <th>Location Type</th>
       <th>Incident Zip</th>
       <th>Incident Address</th>
-      <th>...</th>
+      <th>Street Name</th>
+      <th>Cross Street 1</th>
+      <th>Cross Street 2</th>
+      <th>Intersection Street 1</th>
+      <th>Intersection Street 2</th>
+      <th>Address Type</th>
+      <th>City</th>
+      <th>Landmark</th>
+      <th>Facility Type</th>
+      <th>Status</th>
+      <th>Due Date</th>
+      <th>Resolution Description</th>
+      <th>Resolution Action Updated Date</th>
+      <th>Community Board</th>
+      <th>BBL</th>
+      <th>Borough</th>
+      <th>X Coordinate (State Plane)</th>
+      <th>Y Coordinate (State Plane)</th>
+      <th>Open Data Channel Type</th>
+      <th>Park Facility Name</th>
+      <th>Park Borough</th>
       <th>Vehicle Type</th>
       <th>Taxi Company Borough</th>
       <th>Taxi Pick Up Location</th>
@@ -1584,7 +2203,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>Ferry</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Department of Transportation contacted the...</td>
+      <td>01/17/2023 01:14:56 PM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1608,7 +2247,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>Street</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>In Progress</td>
+      <td>NaN</td>
+      <td>The Taxi and Limousine Commission (TLC) has re...</td>
+      <td>01/20/2023 08:43:18 AM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1632,7 +2291,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>Street</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>In Progress</td>
+      <td>NaN</td>
+      <td>The Taxi and Limousine Commission (TLC) has re...</td>
+      <td>01/20/2023 08:35:47 AM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1656,7 +2335,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Taxi and Limousine Commission (TLC) has de...</td>
+      <td>01/18/2023 09:24:24 AM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>MOBILE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>1000 10th Ave, New York, NY 10019, USA</td>
@@ -1680,7 +2379,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>Highway</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Department of Transportation has completed...</td>
+      <td>01/18/2023 07:00:46 AM</td>
+      <td>Unspecified BROOKLYN</td>
+      <td>NaN</td>
+      <td>BROOKLYN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>PHONE</td>
+      <td>Unspecified</td>
+      <td>BROOKLYN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1715,6 +2434,26 @@ memory usage: 17.0+ MB</code></pre>
       <td>...</td>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
       <th>50169</th>
@@ -1728,7 +2467,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>Highway</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Department of Transportation has completed...</td>
+      <td>01/24/2023 08:32:53 AM</td>
+      <td>Unspecified QUEENS</td>
+      <td>NaN</td>
+      <td>QUEENS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>PHONE</td>
+      <td>Unspecified</td>
+      <td>QUEENS</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1752,7 +2511,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>In Progress</td>
+      <td>NaN</td>
+      <td>The Taxi and Limousine Commission (TLC) has re...</td>
+      <td>01/25/2023 08:49:01 AM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>MOBILE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>Northern Blvd, New York, ç¾å</td>
@@ -1776,7 +2555,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>Highway</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>In Progress</td>
+      <td>NaN</td>
+      <td>The Department of Transportation inspected the...</td>
+      <td>02/02/2023 05:03:39 PM</td>
+      <td>Unspecified QUEENS</td>
+      <td>NaN</td>
+      <td>QUEENS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>QUEENS</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1800,7 +2599,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>Highway</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department reviewed your complaint ...</td>
+      <td>01/22/2023 12:04:34 AM</td>
+      <td>Unspecified BROOKLYN</td>
+      <td>NaN</td>
+      <td>BROOKLYN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>BROOKLYN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1824,7 +2643,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>Highway</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Department of Transportation has completed...</td>
+      <td>01/24/2023 08:32:27 AM</td>
+      <td>Unspecified QUEENS</td>
+      <td>NaN</td>
+      <td>QUEENS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>QUEENS</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1917,7 +2756,27 @@ memory usage: 17.0+ MB</code></pre>
       <th>Location Type</th>
       <th>Incident Zip</th>
       <th>Incident Address</th>
-      <th>...</th>
+      <th>Street Name</th>
+      <th>Cross Street 1</th>
+      <th>Cross Street 2</th>
+      <th>Intersection Street 1</th>
+      <th>Intersection Street 2</th>
+      <th>Address Type</th>
+      <th>City</th>
+      <th>Landmark</th>
+      <th>Facility Type</th>
+      <th>Status</th>
+      <th>Due Date</th>
+      <th>Resolution Description</th>
+      <th>Resolution Action Updated Date</th>
+      <th>Community Board</th>
+      <th>BBL</th>
+      <th>Borough</th>
+      <th>X Coordinate (State Plane)</th>
+      <th>Y Coordinate (State Plane)</th>
+      <th>Open Data Channel Type</th>
+      <th>Park Facility Name</th>
+      <th>Park Borough</th>
       <th>Vehicle Type</th>
       <th>Taxi Company Borough</th>
       <th>Taxi Pick Up Location</th>
@@ -1943,7 +2802,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>Street/Sidewalk</td>
       <td>10468.0</td>
       <td>CRESTON AVENUE</td>
-      <td>...</td>
+      <td>CRESTON AVENUE</td>
+      <td>EAST  184 STREET</td>
+      <td>EAST  188 STREET</td>
+      <td>EAST  184 STREET</td>
+      <td>EAST  188 STREET</td>
+      <td>BLOCKFACE</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/15/2023 02:54:07 AM</td>
+      <td>Unspecified BRONX</td>
+      <td>NaN</td>
+      <td>BRONX</td>
+      <td>308780.735504</td>
+      <td>76670.601456</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>BRONX</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1967,7 +2846,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>11429</td>
       <td>NaN</td>
-      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>HEMPSTEAD AVE</td>
+      <td>CROSS ISL PKWY N/B ET</td>
+      <td>INTERSECTION</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>Service Request status for this request is ava...</td>
+      <td>01/15/2023 09:10:00 AM</td>
+      <td>Unspecified QUEENS</td>
+      <td>NaN</td>
+      <td>QUEENS</td>
+      <td>322930.677765</td>
+      <td>60513.080836</td>
+      <td>UNKNOWN</td>
+      <td>Unspecified</td>
+      <td>QUEENS</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1991,7 +2890,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>10026.0</td>
       <td>WEST  110 STREET</td>
-      <td>...</td>
+      <td>WEST  110 STREET</td>
+      <td>7 AVENUE</td>
+      <td>LENOX AVENUE</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>BLOCKFACE</td>
+      <td>MANHATTAN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Department of Transportation determined th...</td>
+      <td>01/15/2023 07:21:21 AM</td>
+      <td>64 MANHATTAN</td>
+      <td>NaN</td>
+      <td>MANHATTAN</td>
+      <td>303919.930630</td>
+      <td>70130.460992</td>
+      <td>UNKNOWN</td>
+      <td>Unspecified</td>
+      <td>MANHATTAN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2015,7 +2934,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>10026.0</td>
       <td>WEST  110 STREET</td>
-      <td>...</td>
+      <td>WEST  110 STREET</td>
+      <td>7 AVENUE</td>
+      <td>LENOX AVENUE</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>BLOCKFACE</td>
+      <td>MANHATTAN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Department of Transportation determined th...</td>
+      <td>01/15/2023 07:21:21 AM</td>
+      <td>64 MANHATTAN</td>
+      <td>NaN</td>
+      <td>MANHATTAN</td>
+      <td>303919.930630</td>
+      <td>70130.460992</td>
+      <td>UNKNOWN</td>
+      <td>Unspecified</td>
+      <td>MANHATTAN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2039,7 +2978,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>10026.0</td>
       <td>WEST  110 STREET</td>
-      <td>...</td>
+      <td>WEST  110 STREET</td>
+      <td>7 AVENUE</td>
+      <td>LENOX AVENUE</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>BLOCKFACE</td>
+      <td>MANHATTAN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Department of Transportation inspected thi...</td>
+      <td>01/17/2023 12:35:00 PM</td>
+      <td>64 MANHATTAN</td>
+      <td>NaN</td>
+      <td>MANHATTAN</td>
+      <td>303919.930630</td>
+      <td>70130.460992</td>
+      <td>UNKNOWN</td>
+      <td>Unspecified</td>
+      <td>MANHATTAN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2053,6 +3012,26 @@ memory usage: 17.0+ MB</code></pre>
     </tr>
     <tr>
       <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
       <td>...</td>
       <td>...</td>
       <td>...</td>
@@ -2087,7 +3066,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>10310.0</td>
       <td>HARVEST AVENUE</td>
-      <td>...</td>
+      <td>HARVEST AVENUE</td>
+      <td>JIMMY OHANLON WAY</td>
+      <td>BEMENT AVENUE</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>BLOCKFACE</td>
+      <td>STATEN ISLAND</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Department of Transportation determined th...</td>
+      <td>01/21/2023 10:09:24 PM</td>
+      <td>01 STATEN ISLAND</td>
+      <td>NaN</td>
+      <td>STATEN ISLAND</td>
+      <td>290549.790490</td>
+      <td>51681.681858</td>
+      <td>UNKNOWN</td>
+      <td>Unspecified</td>
+      <td>STATEN ISLAND</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2111,7 +3110,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>Street/Sidewalk</td>
       <td>10019.0</td>
       <td>WEST   56 STREET</td>
-      <td>...</td>
+      <td>WEST   56 STREET</td>
+      <td>11 AVENUE</td>
+      <td>12 AVENUE</td>
+      <td>11 AVENUE</td>
+      <td>12 AVENUE</td>
+      <td>BLOCKFACE</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/21/2023 10:55:20 PM</td>
+      <td>Unspecified MANHATTAN</td>
+      <td>NaN</td>
+      <td>MANHATTAN</td>
+      <td>191577.268385</td>
+      <td>212705.016244</td>
+      <td>PHONE</td>
+      <td>Unspecified</td>
+      <td>MANHATTAN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2135,7 +3154,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>11422.0</td>
       <td>143 AVENUE</td>
-      <td>...</td>
+      <td>143 AVENUE</td>
+      <td>241 STREET</td>
+      <td>243 STREET</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>BLOCKFACE</td>
+      <td>QUEENS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Department of Transportation inspected thi...</td>
+      <td>01/23/2023 11:05:00 AM</td>
+      <td>13 QUEENS</td>
+      <td>NaN</td>
+      <td>QUEENS</td>
+      <td>312603.133336</td>
+      <td>81836.062615</td>
+      <td>UNKNOWN</td>
+      <td>Unspecified</td>
+      <td>QUEENS</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2159,7 +3198,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>11374.0</td>
       <td>YELLOWSTONE BOULEVARD</td>
-      <td>...</td>
+      <td>YELLOWSTONE BOULEVARD</td>
+      <td>68 ROAD</td>
+      <td>KESSEL STREET</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>BLOCKFACE</td>
+      <td>QUEENS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Department of Transportation inspected thi...</td>
+      <td>01/23/2023 08:54:00 AM</td>
+      <td>06 QUEENS</td>
+      <td>NaN</td>
+      <td>QUEENS</td>
+      <td>312748.019833</td>
+      <td>60713.079620</td>
+      <td>UNKNOWN</td>
+      <td>Unspecified</td>
+      <td>QUEENS</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2183,7 +3242,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>11691.0</td>
       <td>CAFFREY AVENUE</td>
-      <td>...</td>
+      <td>CAFFREY AVENUE</td>
+      <td>BEACH    9 STREET</td>
+      <td>READS LANE</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>BLOCKFACE</td>
+      <td>QUEENS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Department of Transportation inspected thi...</td>
+      <td>01/23/2023 09:25:00 AM</td>
+      <td>14 QUEENS</td>
+      <td>NaN</td>
+      <td>QUEENS</td>
+      <td>321546.406701</td>
+      <td>48380.133874</td>
+      <td>UNKNOWN</td>
+      <td>Unspecified</td>
+      <td>QUEENS</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2230,7 +3309,27 @@ memory usage: 17.0+ MB</code></pre>
       <th>Location Type</th>
       <th>Incident Zip</th>
       <th>Incident Address</th>
-      <th>...</th>
+      <th>Street Name</th>
+      <th>Cross Street 1</th>
+      <th>Cross Street 2</th>
+      <th>Intersection Street 1</th>
+      <th>Intersection Street 2</th>
+      <th>Address Type</th>
+      <th>City</th>
+      <th>Landmark</th>
+      <th>Facility Type</th>
+      <th>Status</th>
+      <th>Due Date</th>
+      <th>Resolution Description</th>
+      <th>Resolution Action Updated Date</th>
+      <th>Community Board</th>
+      <th>BBL</th>
+      <th>Borough</th>
+      <th>X Coordinate (State Plane)</th>
+      <th>Y Coordinate (State Plane)</th>
+      <th>Open Data Channel Type</th>
+      <th>Park Facility Name</th>
+      <th>Park Borough</th>
       <th>Vehicle Type</th>
       <th>Taxi Company Borough</th>
       <th>Taxi Pick Up Location</th>
@@ -2256,7 +3355,27 @@ memory usage: 17.0+ MB</code></pre>
       <td>Street/Sidewalk</td>
       <td>11212.0</td>
       <td>494 EAST   95 STREET</td>
-      <td>...</td>
+      <td>EAST   95 STREET</td>
+      <td>WILLMOHR STREET</td>
+      <td>CHURCH AVENUE</td>
+      <td>WILLMOHR STREET</td>
+      <td>CHURCH AVENUE</td>
+      <td>ADDRESS</td>
+      <td>BROOKLYN</td>
+      <td>EAST   95 STREET</td>
+      <td>NaN</td>
+      <td>In Progress</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>17 BROOKLYN</td>
+      <td>3.046910e+09</td>
+      <td>BROOKLYN</td>
+      <td>1007310.0</td>
+      <td>178148.0</td>
+      <td>MOBILE</td>
+      <td>Unspecified</td>
+      <td>BROOKLYN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2270,7 +3389,6 @@ memory usage: 17.0+ MB</code></pre>
     </tr>
   </tbody>
 </table>
-<p>1 rows × 41 columns</p>
 </div>
 </div>
 </div>
@@ -2320,7 +3438,29 @@ memory usage: 17.0+ MB</code></pre>
       <th>Complaint Type</th>
       <th>Descriptor</th>
       <th>Location Type</th>
-      <th>...</th>
+      <th>Incident Zip</th>
+      <th>Incident Address</th>
+      <th>Street Name</th>
+      <th>Cross Street 1</th>
+      <th>Cross Street 2</th>
+      <th>Intersection Street 1</th>
+      <th>Intersection Street 2</th>
+      <th>Address Type</th>
+      <th>City</th>
+      <th>Landmark</th>
+      <th>Facility Type</th>
+      <th>Status</th>
+      <th>Due Date</th>
+      <th>Resolution Description</th>
+      <th>Resolution Action Updated Date</th>
+      <th>Community Board</th>
+      <th>BBL</th>
+      <th>Borough</th>
+      <th>X Coordinate (State Plane)</th>
+      <th>Y Coordinate (State Plane)</th>
+      <th>Open Data Channel Type</th>
+      <th>Park Facility Name</th>
+      <th>Park Borough</th>
       <th>Vehicle Type</th>
       <th>Taxi Company Borough</th>
       <th>Taxi Pick Up Location</th>
@@ -2346,7 +3486,29 @@ memory usage: 17.0+ MB</code></pre>
       <td>Noise - Residential</td>
       <td>Banging/Pounding</td>
       <td>Residential Building/House</td>
-      <td>...</td>
+      <td>10467.0</td>
+      <td>2504 BRONX PARK EAST</td>
+      <td>BRONX PARK EAST</td>
+      <td>MACE AVENUE</td>
+      <td>ALLERTON AVENUE</td>
+      <td>MACE AVENUE</td>
+      <td>ALLERTON AVENUE</td>
+      <td>ADDRESS</td>
+      <td>BRONX</td>
+      <td>BRONX PARK EAST</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/15/2023 02:37:36 AM</td>
+      <td>11 BRONX</td>
+      <td>2.044270e+09</td>
+      <td>BRONX</td>
+      <td>1020095.0</td>
+      <td>253941.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>BRONX</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2370,7 +3532,29 @@ memory usage: 17.0+ MB</code></pre>
       <td>Noise - Street/Sidewalk</td>
       <td>Loud Music/Party</td>
       <td>Street/Sidewalk</td>
-      <td>...</td>
+      <td>11418.0</td>
+      <td>113-22 BESSEMER STREET</td>
+      <td>BESSEMER STREET</td>
+      <td>84 AVENUE</td>
+      <td>114 STREET</td>
+      <td>84 AVENUE</td>
+      <td>114 STREET</td>
+      <td>ADDRESS</td>
+      <td>RICHMOND HILL</td>
+      <td>BESSEMER STREET</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/15/2023 01:54:28 AM</td>
+      <td>09 QUEENS</td>
+      <td>4.092110e+09</td>
+      <td>QUEENS</td>
+      <td>1029284.0</td>
+      <td>195357.0</td>
+      <td>MOBILE</td>
+      <td>Unspecified</td>
+      <td>QUEENS</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2394,7 +3578,29 @@ memory usage: 17.0+ MB</code></pre>
       <td>Illegal Parking</td>
       <td>Posted Parking Sign Violation</td>
       <td>Street/Sidewalk</td>
-      <td>...</td>
+      <td>11217.0</td>
+      <td>50 NEVINS STREET</td>
+      <td>NEVINS STREET</td>
+      <td>SCHERMERHORN STREET</td>
+      <td>STATE STREET</td>
+      <td>SCHERMERHORN STREET</td>
+      <td>STATE STREET</td>
+      <td>ADDRESS</td>
+      <td>BROOKLYN</td>
+      <td>NEVINS STREET</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/15/2023 01:10:00 AM</td>
+      <td>02 BROOKLYN</td>
+      <td>3.001728e+09</td>
+      <td>BROOKLYN</td>
+      <td>989264.0</td>
+      <td>189641.0</td>
+      <td>MOBILE</td>
+      <td>Unspecified</td>
+      <td>BROOKLYN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2418,7 +3624,29 @@ memory usage: 17.0+ MB</code></pre>
       <td>Noise - Residential</td>
       <td>Loud Music/Party</td>
       <td>Residential Building/House</td>
-      <td>...</td>
+      <td>10472.0</td>
+      <td>1988 NEWBOLD AVENUE</td>
+      <td>NEWBOLD AVENUE</td>
+      <td>DEAD END</td>
+      <td>EAST  177 STREET</td>
+      <td>DEAD END</td>
+      <td>EAST  177 STREET</td>
+      <td>ADDRESS</td>
+      <td>BRONX</td>
+      <td>NEWBOLD AVENUE</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/15/2023 05:47:47 AM</td>
+      <td>09 BRONX</td>
+      <td>2.037940e+09</td>
+      <td>BRONX</td>
+      <td>1023295.0</td>
+      <td>242559.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>BRONX</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2442,7 +3670,29 @@ memory usage: 17.0+ MB</code></pre>
       <td>Noise - Residential</td>
       <td>Banging/Pounding</td>
       <td>Residential Building/House</td>
-      <td>...</td>
+      <td>10028.0</td>
+      <td>522 EAST   83 STREET</td>
+      <td>EAST   83 STREET</td>
+      <td>YORK AVENUE</td>
+      <td>EAST END AVENUE</td>
+      <td>YORK AVENUE</td>
+      <td>EAST END AVENUE</td>
+      <td>ADDRESS</td>
+      <td>NEW YORK</td>
+      <td>EAST   83 STREET</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/15/2023 01:01:33 AM</td>
+      <td>08 MANHATTAN</td>
+      <td>1.015790e+09</td>
+      <td>MANHATTAN</td>
+      <td>998699.0</td>
+      <td>221149.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>MANHATTAN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2477,6 +3727,28 @@ memory usage: 17.0+ MB</code></pre>
       <td>...</td>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
       <th>54459</th>
@@ -2490,7 +3762,29 @@ memory usage: 17.0+ MB</code></pre>
       <td>Noise - Commercial</td>
       <td>Loud Music/Party</td>
       <td>Club/Bar/Restaurant</td>
-      <td>...</td>
+      <td>11237.0</td>
+      <td>112 HARRISON PLACE</td>
+      <td>HARRISON PLACE</td>
+      <td>KNICKERBOCKER AVENUE</td>
+      <td>PORTER AVENUE</td>
+      <td>KNICKERBOCKER AVENUE</td>
+      <td>PORTER AVENUE</td>
+      <td>ADDRESS</td>
+      <td>BROOKLYN</td>
+      <td>HARRISON PLACE</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/22/2023 01:30:45 AM</td>
+      <td>01 BROOKLYN</td>
+      <td>3.030040e+09</td>
+      <td>BROOKLYN</td>
+      <td>1003876.0</td>
+      <td>196783.0</td>
+      <td>PHONE</td>
+      <td>Unspecified</td>
+      <td>BROOKLYN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2514,7 +3808,29 @@ memory usage: 17.0+ MB</code></pre>
       <td>Noise - Residential</td>
       <td>Loud Music/Party</td>
       <td>Residential Building/House</td>
-      <td>...</td>
+      <td>11222.0</td>
+      <td>12 MCGUINNESS BLVD SOUTH</td>
+      <td>MCGUINNESS BLVD SOUTH</td>
+      <td>DRIGGS AVENUE</td>
+      <td>BROOME STREET</td>
+      <td>DRIGGS AVENUE</td>
+      <td>BROOME STREET</td>
+      <td>ADDRESS</td>
+      <td>BROOKLYN</td>
+      <td>MCGUINNESS BLVD SOUTH</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/22/2023 02:50:58 AM</td>
+      <td>01 BROOKLYN</td>
+      <td>3.027008e+09</td>
+      <td>BROOKLYN</td>
+      <td>998995.0</td>
+      <td>202512.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>BROOKLYN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2538,7 +3854,29 @@ memory usage: 17.0+ MB</code></pre>
       <td>Illegal Parking</td>
       <td>Posted Parking Sign Violation</td>
       <td>Street/Sidewalk</td>
-      <td>...</td>
+      <td>11205.0</td>
+      <td>93 SAINT EDWARDS STREET</td>
+      <td>SAINT EDWARDS STREET</td>
+      <td>MONUMENT WALK</td>
+      <td>AUBURN PLACE</td>
+      <td>MONUMENT WALK</td>
+      <td>AUBURN PLACE</td>
+      <td>ADDRESS</td>
+      <td>BROOKLYN</td>
+      <td>ST EDWARDS STREET</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/22/2023 06:41:52 AM</td>
+      <td>02 BROOKLYN</td>
+      <td>3.020390e+09</td>
+      <td>BROOKLYN</td>
+      <td>990352.0</td>
+      <td>192303.0</td>
+      <td>PHONE</td>
+      <td>Unspecified</td>
+      <td>BROOKLYN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2562,7 +3900,29 @@ memory usage: 17.0+ MB</code></pre>
       <td>Noise - Residential</td>
       <td>Loud Music/Party</td>
       <td>Residential Building/House</td>
-      <td>...</td>
+      <td>11369.0</td>
+      <td>32-50 93 STREET</td>
+      <td>93 STREET</td>
+      <td>32 AVENUE</td>
+      <td>NORTHERN BOULEVARD</td>
+      <td>32 AVENUE</td>
+      <td>NORTHERN BOULEVARD</td>
+      <td>ADDRESS</td>
+      <td>EAST ELMHURST</td>
+      <td>93 STREET</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/22/2023 06:24:56 AM</td>
+      <td>03 QUEENS</td>
+      <td>4.014220e+09</td>
+      <td>QUEENS</td>
+      <td>1018788.0</td>
+      <td>215331.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>QUEENS</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2586,7 +3946,29 @@ memory usage: 17.0+ MB</code></pre>
       <td>Noise - Residential</td>
       <td>Loud Music/Party</td>
       <td>Residential Building/House</td>
-      <td>...</td>
+      <td>10461.0</td>
+      <td>3109 ROBERTS AVENUE</td>
+      <td>ROBERTS AVENUE</td>
+      <td>MAHAN AVENUE</td>
+      <td>PARKVIEW AVENUE</td>
+      <td>MAHAN AVENUE</td>
+      <td>PARKVIEW AVENUE</td>
+      <td>ADDRESS</td>
+      <td>BRONX</td>
+      <td>ROBERTS AVENUE</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/22/2023 04:29:21 AM</td>
+      <td>10 BRONX</td>
+      <td>2.041770e+09</td>
+      <td>BRONX</td>
+      <td>1031760.0</td>
+      <td>247686.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>BRONX</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2605,43 +3987,1676 @@ memory usage: 17.0+ MB</code></pre>
 </div>
 </div>
 <p>Visualize the distribution of uncensored duration by weekdays/weekend and by borough.</p>
+<p>Lets check the Borough that is <code>Unspecified</code>.</p>
 <div class="cell" data-execution_count="21">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the unspecified Borough</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD <span class="op">=</span> nyc311_NYPD[ nyc311_NYPD[<span class="st">'Borough'</span>] <span class="op">!=</span> <span class="st">'Unspecified'</span>]</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> nyc311_NYPD[ nyc311_NYPD[<span class="st">'Borough'</span>] <span class="op">==</span> <span class="st">'Unspecified'</span>]</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the zipcode that is null due to missing latitude and longitude</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Incident Zip'</span>].notnull()]</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    ggplot(nyc311_NYPD, aes(x<span class="op">=</span><span class="st">'Borough'</span>,y <span class="op">=</span> <span class="st">'Duration (hours)'</span>, fill<span class="op">=</span><span class="st">'Day type'</span>))</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_boxplot()</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>A</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display">
-<p><img src="Midterm_Project_files/figure-html/cell-22-output-1.png" class="img-fluid"></p>
-</div>
 <div class="cell-output cell-output-display" data-execution_count="21">
-<pre><code>&lt;ggplot: (118259695689)&gt;</code></pre>
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Unique Key</th>
+      <th>Created Date</th>
+      <th>Closed Date</th>
+      <th>Duration (hours)</th>
+      <th>Day type</th>
+      <th>Agency</th>
+      <th>Agency Name</th>
+      <th>Complaint Type</th>
+      <th>Descriptor</th>
+      <th>Location Type</th>
+      <th>Incident Zip</th>
+      <th>Incident Address</th>
+      <th>Street Name</th>
+      <th>Cross Street 1</th>
+      <th>Cross Street 2</th>
+      <th>Intersection Street 1</th>
+      <th>Intersection Street 2</th>
+      <th>Address Type</th>
+      <th>City</th>
+      <th>Landmark</th>
+      <th>Facility Type</th>
+      <th>Status</th>
+      <th>Due Date</th>
+      <th>Resolution Description</th>
+      <th>Resolution Action Updated Date</th>
+      <th>Community Board</th>
+      <th>BBL</th>
+      <th>Borough</th>
+      <th>X Coordinate (State Plane)</th>
+      <th>Y Coordinate (State Plane)</th>
+      <th>Open Data Channel Type</th>
+      <th>Park Facility Name</th>
+      <th>Park Borough</th>
+      <th>Vehicle Type</th>
+      <th>Taxi Company Borough</th>
+      <th>Taxi Pick Up Location</th>
+      <th>Bridge Highway Name</th>
+      <th>Bridge Highway Direction</th>
+      <th>Road Ramp</th>
+      <th>Bridge Highway Segment</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>20800</th>
+      <td>56548115</td>
+      <td>2023-01-17 17:30:38</td>
+      <td>2023-01-17 20:33:33</td>
+      <td>3.048611</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Abandoned Vehicle</td>
+      <td>With License Plate</td>
+      <td>Street/Sidewalk</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/17/2023 08:33:37 PM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>263662.0</td>
+      <td>MOBILE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>20806</th>
+      <td>56551905</td>
+      <td>2023-01-17 17:32:13</td>
+      <td>2023-01-17 19:22:50</td>
+      <td>1.843611</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Noise - Residential</td>
+      <td>Loud Music/Party</td>
+      <td>Residential Building/House</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/17/2023 07:22:54 PM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>1023302.0</td>
+      <td>NaN</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>20809</th>
+      <td>56552968</td>
+      <td>2023-01-17 17:32:50</td>
+      <td>2023-01-17 19:05:54</td>
+      <td>1.551111</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Illegal Parking</td>
+      <td>Blocked Crosswalk</td>
+      <td>Street/Sidewalk</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/17/2023 07:05:58 PM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>208263.0</td>
+      <td>MOBILE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>20817</th>
+      <td>56556125</td>
+      <td>2023-01-17 17:33:49</td>
+      <td>2023-01-17 19:25:22</td>
+      <td>1.859167</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Noise - Vehicle</td>
+      <td>Engine Idling</td>
+      <td>Street/Sidewalk</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded and upon arriv...</td>
+      <td>01/17/2023 07:25:25 PM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21833</th>
+      <td>56550662</td>
+      <td>2023-01-17 20:05:01</td>
+      <td>2023-01-17 20:37:07</td>
+      <td>0.535000</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Illegal Parking</td>
+      <td>Posted Parking Sign Violation</td>
+      <td>Street/Sidewalk</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/17/2023 08:37:12 PM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>161437.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21834</th>
+      <td>56546660</td>
+      <td>2023-01-17 20:06:04</td>
+      <td>2023-01-17 21:08:39</td>
+      <td>1.043056</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Noise - Residential</td>
+      <td>Loud Talking</td>
+      <td>Residential Building/House</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/17/2023 09:08:44 PM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>244575.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21839</th>
+      <td>56553536</td>
+      <td>2023-01-17 20:06:47</td>
+      <td>2023-01-18 01:04:24</td>
+      <td>4.960278</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Illegal Parking</td>
+      <td>Posted Parking Sign Violation</td>
+      <td>Street/Sidewalk</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department issued a summons in resp...</td>
+      <td>01/18/2023 01:04:30 AM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>192131.0</td>
+      <td>MOBILE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21840</th>
+      <td>56550574</td>
+      <td>2023-01-17 20:06:52</td>
+      <td>2023-01-17 20:45:29</td>
+      <td>0.643611</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Noise - Residential</td>
+      <td>Loud Music/Party</td>
+      <td>Residential Building/House</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/17/2023 08:45:33 PM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>243863.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21859</th>
+      <td>56550616</td>
+      <td>2023-01-17 20:08:56</td>
+      <td>2023-01-18 01:00:28</td>
+      <td>4.858889</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Noise - Residential</td>
+      <td>Loud Music/Party</td>
+      <td>Residential Building/House</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/18/2023 01:00:33 AM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>157201.0</td>
+      <td>MOBILE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21924</th>
+      <td>56549002</td>
+      <td>2023-01-17 20:20:18</td>
+      <td>2023-01-18 00:22:07</td>
+      <td>4.030278</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Illegal Parking</td>
+      <td>Blocked Hydrant</td>
+      <td>Street/Sidewalk</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department issued a summons in resp...</td>
+      <td>01/18/2023 12:22:12 AM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>193837.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21946</th>
+      <td>56550413</td>
+      <td>2023-01-17 20:22:54</td>
+      <td>2023-01-17 23:20:07</td>
+      <td>2.953611</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Illegal Parking</td>
+      <td>Commercial Overnight Parking</td>
+      <td>Street/Sidewalk</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded and upon arriv...</td>
+      <td>01/17/2023 11:20:13 PM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>1001467.0</td>
+      <td>NaN</td>
+      <td>MOBILE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21967</th>
+      <td>56551144</td>
+      <td>2023-01-17 20:26:42</td>
+      <td>2023-01-17 22:56:27</td>
+      <td>2.495833</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Illegal Parking</td>
+      <td>Commercial Overnight Parking</td>
+      <td>Street/Sidewalk</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department issued a summons in resp...</td>
+      <td>01/17/2023 10:56:32 PM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>233230.0</td>
+      <td>MOBILE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21968</th>
+      <td>56550134</td>
+      <td>2023-01-17 20:26:53</td>
+      <td>2023-01-17 21:18:48</td>
+      <td>0.865278</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Illegal Parking</td>
+      <td>Blocked Hydrant</td>
+      <td>Street/Sidewalk</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded and upon arriv...</td>
+      <td>01/17/2023 09:18:52 PM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>198674.0</td>
+      <td>MOBILE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21969</th>
+      <td>56558443</td>
+      <td>2023-01-17 20:27:05</td>
+      <td>2023-01-18 03:28:10</td>
+      <td>7.018056</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Blocked Driveway</td>
+      <td>Partial Access</td>
+      <td>Street/Sidewalk</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/18/2023 03:28:17 AM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>196522.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21978</th>
+      <td>56550247</td>
+      <td>2023-01-17 20:28:15</td>
+      <td>2023-01-17 20:29:56</td>
+      <td>0.028056</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Illegal Parking</td>
+      <td>Commercial Overnight Parking</td>
+      <td>Street/Sidewalk</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/17/2023 08:30:01 PM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>193454.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21987</th>
+      <td>56550597</td>
+      <td>2023-01-17 20:29:42</td>
+      <td>2023-01-17 21:36:58</td>
+      <td>1.121111</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Illegal Parking</td>
+      <td>Posted Parking Sign Violation</td>
+      <td>Street/Sidewalk</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/17/2023 09:37:05 PM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>235106.0</td>
+      <td>PHONE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>22243</th>
+      <td>56548104</td>
+      <td>2023-01-17 21:16:09</td>
+      <td>2023-01-17 21:59:21</td>
+      <td>0.720000</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Noise - Residential</td>
+      <td>Banging/Pounding</td>
+      <td>Residential Building/House</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/17/2023 09:59:20 PM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>236679.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>22267</th>
+      <td>56551324</td>
+      <td>2023-01-17 21:20:19</td>
+      <td>2023-01-17 22:08:30</td>
+      <td>0.803056</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Drug Activity</td>
+      <td>Use Outside</td>
+      <td>Street/Sidewalk</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/17/2023 10:08:41 PM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>231132.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>22299</th>
+      <td>56547307</td>
+      <td>2023-01-17 21:25:04</td>
+      <td>2023-01-17 22:07:03</td>
+      <td>0.699722</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Drug Activity</td>
+      <td>Use Outside</td>
+      <td>Street/Sidewalk</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/17/2023 10:07:10 PM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>231186.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>22325</th>
+      <td>56549602</td>
+      <td>2023-01-17 21:29:14</td>
+      <td>2023-01-17 22:06:03</td>
+      <td>0.613611</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Non-Emergency Police Matter</td>
+      <td>Other (complaint details)</td>
+      <td>Street/Sidewalk</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/17/2023 10:06:07 PM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>231199.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>22328</th>
+      <td>56549103</td>
+      <td>2023-01-17 21:30:23</td>
+      <td>2023-01-18 03:50:11</td>
+      <td>6.330000</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Abandoned Vehicle</td>
+      <td>With License Plate</td>
+      <td>Street/Sidewalk</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/18/2023 03:50:20 AM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>262939.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>24354</th>
+      <td>56556951</td>
+      <td>2023-01-18 08:05:19</td>
+      <td>2023-01-18 10:35:36</td>
+      <td>2.504722</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Illegal Parking</td>
+      <td>Parking Permit Improper Use</td>
+      <td>Street/Sidewalk</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded and upon arriv...</td>
+      <td>01/18/2023 10:35:44 AM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>200321.0</td>
+      <td>MOBILE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>24389</th>
+      <td>56565138</td>
+      <td>2023-01-18 08:09:30</td>
+      <td>2023-01-18 12:26:13</td>
+      <td>4.278611</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Blocked Driveway</td>
+      <td>No Access</td>
+      <td>Street/Sidewalk</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/18/2023 12:26:19 PM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>181780.0</td>
+      <td>MOBILE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>24399</th>
+      <td>56560741</td>
+      <td>2023-01-18 08:10:48</td>
+      <td>2023-01-18 09:30:53</td>
+      <td>1.334722</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Abandoned Vehicle</td>
+      <td>With License Plate</td>
+      <td>Street/Sidewalk</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/18/2023 09:30:33 AM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>221157.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>24411</th>
+      <td>56558667</td>
+      <td>2023-01-18 08:11:14</td>
+      <td>2023-01-18 10:00:22</td>
+      <td>1.818889</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Illegal Parking</td>
+      <td>Blocked Bike Lane</td>
+      <td>Street/Sidewalk</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/18/2023 10:00:27 AM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>208822.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>24417</th>
+      <td>56558730</td>
+      <td>2023-01-18 08:12:18</td>
+      <td>2023-01-18 08:37:57</td>
+      <td>0.427500</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Illegal Parking</td>
+      <td>Blocked Bike Lane</td>
+      <td>Street/Sidewalk</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded and upon arriv...</td>
+      <td>01/18/2023 08:38:02 AM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>216116.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>24469</th>
+      <td>56561431</td>
+      <td>2023-01-18 08:17:56</td>
+      <td>2023-01-18 10:35:37</td>
+      <td>2.294722</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Illegal Parking</td>
+      <td>Parking Permit Improper Use</td>
+      <td>Street/Sidewalk</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded and upon arriv...</td>
+      <td>01/18/2023 10:35:43 AM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>200321.0</td>
+      <td>MOBILE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>24473</th>
+      <td>56558908</td>
+      <td>2023-01-18 08:18:14</td>
+      <td>2023-01-18 11:34:52</td>
+      <td>3.277222</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Illegal Parking</td>
+      <td>Posted Parking Sign Violation</td>
+      <td>Street/Sidewalk</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/18/2023 11:34:56 AM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>214317.0</td>
+      <td>MOBILE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>24480</th>
+      <td>56564260</td>
+      <td>2023-01-18 08:19:05</td>
+      <td>2023-01-18 08:46:57</td>
+      <td>0.464444</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Noise - Residential</td>
+      <td>Loud Music/Party</td>
+      <td>Residential Building/House</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>Your request can not be processed at this time...</td>
+      <td>01/18/2023 08:47:02 AM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>998880.0</td>
+      <td>NaN</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>25869</th>
+      <td>56560175</td>
+      <td>2023-01-18 10:59:27</td>
+      <td>2023-01-18 16:11:06</td>
+      <td>5.194167</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Abandoned Vehicle</td>
+      <td>With License Plate</td>
+      <td>Street/Sidewalk</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/18/2023 04:11:11 PM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>PHONE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>26259</th>
+      <td>56560760</td>
+      <td>2023-01-18 11:46:21</td>
+      <td>2023-01-18 13:37:17</td>
+      <td>1.848889</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Blocked Driveway</td>
+      <td>Partial Access</td>
+      <td>Street/Sidewalk</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded and upon arriv...</td>
+      <td>01/18/2023 01:37:22 PM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>157474.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>27250</th>
+      <td>56565190</td>
+      <td>2023-01-18 13:22:17</td>
+      <td>2023-01-18 21:31:12</td>
+      <td>8.148611</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Illegal Parking</td>
+      <td>Unauthorized Bus Layover</td>
+      <td>Street/Sidewalk</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/18/2023 09:31:16 PM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>182459.0</td>
+      <td>MOBILE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>27273</th>
+      <td>56560432</td>
+      <td>2023-01-18 13:24:07</td>
+      <td>2023-01-18 22:17:26</td>
+      <td>8.888611</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Noise - Residential</td>
+      <td>Loud Music/Party</td>
+      <td>Residential Building/House</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/18/2023 10:17:30 PM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>248717.0</td>
+      <td>MOBILE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>27297</th>
+      <td>56564601</td>
+      <td>2023-01-18 13:25:52</td>
+      <td>2023-01-18 13:59:59</td>
+      <td>0.568611</td>
+      <td>Weekday</td>
+      <td>NYPD</td>
+      <td>New York City Police Department</td>
+      <td>Illegal Parking</td>
+      <td>Blocked Crosswalk</td>
+      <td>Street/Sidewalk</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/18/2023 02:00:04 PM</td>
+      <td>0 Unspecified</td>
+      <td>NaN</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>249838.0</td>
+      <td>MOBILE</td>
+      <td>Unspecified</td>
+      <td>Unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
 </div>
 </div>
-<p>Test whether the distributions are the same across weekdays/weekends.</p>
+</div>
+<p>The remaining borough that is <code>Unspecified</code> does not have <code>Incident Zip</code> which merging with uszipcode does not help to get more info about the data.</p>
 <div class="cell" data-execution_count="22">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> kruskal</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the subset of data</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>weekday_dur <span class="op">=</span> nyc311_NYPD.loc[nyc311_NYPD[<span class="st">'Day type'</span>] <span class="op">==</span> <span class="st">'Weekday'</span>, <span class="st">'Duration (hours)'</span>]</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>weekend_dur <span class="op">=</span> nyc311_NYPD.loc[nyc311_NYPD[<span class="st">'Day type'</span>] <span class="op">==</span> <span class="st">'Weekend'</span>, <span class="st">'Duration (hours)'</span>]</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>stat, pval <span class="op">=</span> kruskal(weekday_dur, weekend_dur)</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pval)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the unspecified Borough</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD <span class="op">=</span> nyc311_NYPD[ nyc311_NYPD[<span class="st">'Borough'</span>] <span class="op">!=</span> <span class="st">'Unspecified'</span>]</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the zipcode that is null due to missing latitude and longitude</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Incident Zip'</span>].notnull()]</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    ggplot(nyc311_NYPD, aes(x<span class="op">=</span><span class="st">'Borough'</span>,y <span class="op">=</span> <span class="st">'Duration (hours)'</span>, fill<span class="op">=</span><span class="st">'Day type'</span>))</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_boxplot()</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="Midterm_Project_files/figure-html/cell-23-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<pre><code>&lt;ggplot: (176471142009)&gt;</code></pre>
+</div>
+</div>
+<p>Test whether the distributions are the same across weekdays/weekends.</p>
+<div class="cell" data-execution_count="23">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> kruskal</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the subset of data</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>weekday_dur <span class="op">=</span> nyc311_NYPD.loc[nyc311_NYPD[<span class="st">'Day type'</span>] <span class="op">==</span> <span class="st">'Weekday'</span>, <span class="st">'Duration (hours)'</span>]</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>weekend_dur <span class="op">=</span> nyc311_NYPD.loc[nyc311_NYPD[<span class="st">'Day type'</span>] <span class="op">==</span> <span class="st">'Weekend'</span>, <span class="st">'Duration (hours)'</span>]</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>stat, pval <span class="op">=</span> kruskal(weekday_dur, weekend_dur)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pval)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.017678221661827795</code></pre>
@@ -2649,23 +5664,23 @@ memory usage: 17.0+ MB</code></pre>
 </div>
 <p>The pvalue shows that is diffeent accross weekdays and weekends.</p>
 <p>Test whether the distributions are the same across borough.</p>
-<div class="cell" data-execution_count="23">
+<div class="cell" data-execution_count="24">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the subset of the data</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>bronx <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Borough'</span>] <span class="op">==</span> <span class="st">'BRONX'</span>][<span class="st">'Duration (hours)'</span>]</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>brooklyn <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Borough'</span>] <span class="op">==</span> <span class="st">'BROOKLYN'</span>][<span class="st">'Duration (hours)'</span>]</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>manhattan <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Borough'</span>] <span class="op">==</span> <span class="st">'MANHATTAN'</span>][<span class="st">'Duration (hours)'</span>]</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>queens <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Borough'</span>] <span class="op">==</span> <span class="st">'QUEENS'</span>][<span class="st">'Duration (hours)'</span>]</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>staten_island <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Borough'</span>] <span class="op">==</span> <span class="st">'STATEN ISLAND'</span>][<span class="st">'Duration (hours)'</span>]</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>stat, pval <span class="op">=</span> kruskal(bronx, brooklyn, manhattan, queens, staten_island)</span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pval)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the subset of the data</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>bronx <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Borough'</span>] <span class="op">==</span> <span class="st">'BRONX'</span>][<span class="st">'Duration (hours)'</span>]</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>brooklyn <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Borough'</span>] <span class="op">==</span> <span class="st">'BROOKLYN'</span>][<span class="st">'Duration (hours)'</span>]</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>manhattan <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Borough'</span>] <span class="op">==</span> <span class="st">'MANHATTAN'</span>][<span class="st">'Duration (hours)'</span>]</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>queens <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Borough'</span>] <span class="op">==</span> <span class="st">'QUEENS'</span>][<span class="st">'Duration (hours)'</span>]</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>staten_island <span class="op">=</span> nyc311_NYPD[nyc311_NYPD[<span class="st">'Borough'</span>] <span class="op">==</span> <span class="st">'STATEN ISLAND'</span>][<span class="st">'Duration (hours)'</span>]</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>stat, pval <span class="op">=</span> kruskal(bronx, brooklyn, manhattan, queens, staten_island)</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pval)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.0</code></pre>
@@ -2673,30 +5688,30 @@ memory usage: 17.0+ MB</code></pre>
 </div>
 <p>The pvalue shows that the distribution are different across across borough.</p>
 <p>Lets merge with uszipcode data.</p>
-<div class="cell" data-execution_count="24">
+<div class="cell" data-execution_count="25">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># set the default database file location</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>db_file <span class="op">=</span> os.path.abspath(<span class="st">"simple_db.sqlite"</span>)</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co"># change to your own path after installing uszipcode</span></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>con <span class="op">=</span> sqlite3.<span class="ex">connect</span>(db_file)</span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>zipdf <span class="op">=</span> pd.read_sql_query(<span class="st">"SELECT * from simple_zipcode"</span>, con)</span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>zipdf.info()</span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the type to float64</span></span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>zipdf[<span class="st">'zipcode'</span>] <span class="op">=</span> zipdf[<span class="st">'zipcode'</span>].astype(<span class="st">'float64'</span>)</span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the type to float64 too</span></span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD[<span class="st">'Incident Zip'</span>] <span class="op">=</span> nyc311_NYPD[<span class="st">'Incident Zip'</span>].astype(<span class="st">'float64'</span>)</span>
-<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>merged_df <span class="op">=</span> pd.merge(nyc311_NYPD, zipdf, how <span class="op">=</span> <span class="st">'left'</span>, left_on <span class="op">=</span> <span class="st">'Incident Zip'</span>, right_on <span class="op">=</span> <span class="st">'zipcode'</span>)</span>
-<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop repeating data</span></span>
-<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>merged_df <span class="op">=</span> merged_df.drop([<span class="st">'zipcode'</span>,<span class="st">'lat'</span>,<span class="st">'lng'</span>],axis <span class="op">=</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># set the default database file location</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>db_file <span class="op">=</span> os.path.abspath(<span class="st">"simple_db.sqlite"</span>)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="co"># change to your own path after installing uszipcode</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>con <span class="op">=</span> sqlite3.<span class="ex">connect</span>(db_file)</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>zipdf <span class="op">=</span> pd.read_sql_query(<span class="st">"SELECT * from simple_zipcode"</span>, con)</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>zipdf.info()</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the type to float64</span></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>zipdf[<span class="st">'zipcode'</span>] <span class="op">=</span> zipdf[<span class="st">'zipcode'</span>].astype(<span class="st">'float64'</span>)</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the type to float64 too</span></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>nyc311_NYPD[<span class="st">'Incident Zip'</span>] <span class="op">=</span> nyc311_NYPD[<span class="st">'Incident Zip'</span>].astype(<span class="st">'float64'</span>)</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>merged_df <span class="op">=</span> pd.merge(nyc311_NYPD, zipdf, how <span class="op">=</span> <span class="st">'left'</span>, left_on <span class="op">=</span> <span class="st">'Incident Zip'</span>, right_on <span class="op">=</span> <span class="st">'zipcode'</span>)</span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop repeating data</span></span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>merged_df <span class="op">=</span> merged_df.drop([<span class="st">'zipcode'</span>,<span class="st">'lat'</span>,<span class="st">'lng'</span>],axis <span class="op">=</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -2733,12 +5748,12 @@ memory usage: 7.8+ MB</code></pre>
 </div>
 </div>
 <p>Displaying merged data.</p>
-<div class="cell" data-execution_count="25">
+<div class="cell" data-execution_count="26">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>merged_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>merged_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="25">
+<div class="cell-output cell-output-display" data-execution_count="26">
 
 <div>
 
@@ -2756,7 +5771,50 @@ memory usage: 7.8+ MB</code></pre>
       <th>Complaint Type</th>
       <th>Descriptor</th>
       <th>Location Type</th>
-      <th>...</th>
+      <th>Incident Zip</th>
+      <th>Incident Address</th>
+      <th>Street Name</th>
+      <th>Cross Street 1</th>
+      <th>Cross Street 2</th>
+      <th>Intersection Street 1</th>
+      <th>Intersection Street 2</th>
+      <th>Address Type</th>
+      <th>City</th>
+      <th>Landmark</th>
+      <th>Facility Type</th>
+      <th>Status</th>
+      <th>Due Date</th>
+      <th>Resolution Description</th>
+      <th>Resolution Action Updated Date</th>
+      <th>Community Board</th>
+      <th>BBL</th>
+      <th>Borough</th>
+      <th>X Coordinate (State Plane)</th>
+      <th>Y Coordinate (State Plane)</th>
+      <th>Open Data Channel Type</th>
+      <th>Park Facility Name</th>
+      <th>Park Borough</th>
+      <th>Vehicle Type</th>
+      <th>Taxi Company Borough</th>
+      <th>Taxi Pick Up Location</th>
+      <th>Bridge Highway Name</th>
+      <th>Bridge Highway Direction</th>
+      <th>Road Ramp</th>
+      <th>Bridge Highway Segment</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Location</th>
+      <th>zipcode_type</th>
+      <th>major_city</th>
+      <th>post_office_city</th>
+      <th>common_city_list</th>
+      <th>county</th>
+      <th>state</th>
+      <th>timezone</th>
+      <th>radius_in_miles</th>
+      <th>area_code_list</th>
+      <th>population</th>
+      <th>population_density</th>
       <th>land_area_in_sqmi</th>
       <th>water_area_in_sqmi</th>
       <th>housing_units</th>
@@ -2782,7 +5840,50 @@ memory usage: 7.8+ MB</code></pre>
       <td>Noise - Residential</td>
       <td>Banging/Pounding</td>
       <td>Residential Building/House</td>
-      <td>...</td>
+      <td>10467.0</td>
+      <td>2504 BRONX PARK EAST</td>
+      <td>BRONX PARK EAST</td>
+      <td>MACE AVENUE</td>
+      <td>ALLERTON AVENUE</td>
+      <td>MACE AVENUE</td>
+      <td>ALLERTON AVENUE</td>
+      <td>ADDRESS</td>
+      <td>BRONX</td>
+      <td>BRONX PARK EAST</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/15/2023 02:37:36 AM</td>
+      <td>11 BRONX</td>
+      <td>2.044270e+09</td>
+      <td>BRONX</td>
+      <td>1020095.0</td>
+      <td>253941.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>BRONX</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>40.863611</td>
+      <td>-73.870409</td>
+      <td>(40.8636112787934, -73.87040864262848)</td>
+      <td>STANDARD</td>
+      <td>Bronx</td>
+      <td>Bronx, NY</td>
+      <td>b'x\x9c\x8bVr*\xca\xcf\xabP\x8a\x05\x00\x0e\xb...</td>
+      <td>Bronx County</td>
+      <td>NY</td>
+      <td>America/New_York</td>
+      <td>2.000000</td>
+      <td>b'x\x9cS261\xd717\xb4P\x02\x00\x08f\x01\xaf'</td>
+      <td>97060.0</td>
+      <td>41649.0</td>
       <td>2.33</td>
       <td>0.00</td>
       <td>37432.0</td>
@@ -2806,7 +5907,50 @@ memory usage: 7.8+ MB</code></pre>
       <td>Noise - Street/Sidewalk</td>
       <td>Loud Music/Party</td>
       <td>Street/Sidewalk</td>
-      <td>...</td>
+      <td>11418.0</td>
+      <td>113-22 BESSEMER STREET</td>
+      <td>BESSEMER STREET</td>
+      <td>84 AVENUE</td>
+      <td>114 STREET</td>
+      <td>84 AVENUE</td>
+      <td>114 STREET</td>
+      <td>ADDRESS</td>
+      <td>RICHMOND HILL</td>
+      <td>BESSEMER STREET</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/15/2023 01:54:28 AM</td>
+      <td>09 QUEENS</td>
+      <td>4.092110e+09</td>
+      <td>QUEENS</td>
+      <td>1029284.0</td>
+      <td>195357.0</td>
+      <td>MOBILE</td>
+      <td>Unspecified</td>
+      <td>QUEENS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>40.702772</td>
+      <td>-73.837580</td>
+      <td>(40.70277200816068, -73.83758019372564)</td>
+      <td>STANDARD</td>
+      <td>Richmond Hill</td>
+      <td>Richmond Hill, NY</td>
+      <td>b'x\x9c\x8bV\n\xcaL\xce\xc8\xcd\xcfKQ\xf0\xc8\...</td>
+      <td>Queens County</td>
+      <td>NY</td>
+      <td>America/New_York</td>
+      <td>1.000000</td>
+      <td>b'x\x9cS261\xd7\xb14\x04b#K\x1dsC\x0b%\x00\x1d...</td>
+      <td>36256.0</td>
+      <td>22201.0</td>
       <td>1.63</td>
       <td>0.00</td>
       <td>11854.0</td>
@@ -2830,7 +5974,50 @@ memory usage: 7.8+ MB</code></pre>
       <td>Illegal Parking</td>
       <td>Posted Parking Sign Violation</td>
       <td>Street/Sidewalk</td>
-      <td>...</td>
+      <td>11217.0</td>
+      <td>50 NEVINS STREET</td>
+      <td>NEVINS STREET</td>
+      <td>SCHERMERHORN STREET</td>
+      <td>STATE STREET</td>
+      <td>SCHERMERHORN STREET</td>
+      <td>STATE STREET</td>
+      <td>ADDRESS</td>
+      <td>BROOKLYN</td>
+      <td>NEVINS STREET</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/15/2023 01:10:00 AM</td>
+      <td>02 BROOKLYN</td>
+      <td>3.001728e+09</td>
+      <td>BROOKLYN</td>
+      <td>989264.0</td>
+      <td>189641.0</td>
+      <td>MOBILE</td>
+      <td>Unspecified</td>
+      <td>BROOKLYN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>40.687196</td>
+      <td>-73.981921</td>
+      <td>(40.68719608843765, -73.98192072171082)</td>
+      <td>STANDARD</td>
+      <td>Brooklyn</td>
+      <td>Brooklyn, NY</td>
+      <td>b'x\x9c\x8bVr*\xca\xcf\xcf\xce\xa9\xccS\x8a\x0...</td>
+      <td>Kings County</td>
+      <td>NY</td>
+      <td>America/New_York</td>
+      <td>0.909091</td>
+      <td>b'x\x9cS231\xd317\xb4P\x02\x00\x08x\x01\xb1'</td>
+      <td>35881.0</td>
+      <td>47796.0</td>
       <td>0.75</td>
       <td>0.00</td>
       <td>17581.0</td>
@@ -2854,7 +6041,50 @@ memory usage: 7.8+ MB</code></pre>
       <td>Noise - Residential</td>
       <td>Loud Music/Party</td>
       <td>Residential Building/House</td>
-      <td>...</td>
+      <td>10472.0</td>
+      <td>1988 NEWBOLD AVENUE</td>
+      <td>NEWBOLD AVENUE</td>
+      <td>DEAD END</td>
+      <td>EAST  177 STREET</td>
+      <td>DEAD END</td>
+      <td>EAST  177 STREET</td>
+      <td>ADDRESS</td>
+      <td>BRONX</td>
+      <td>NEWBOLD AVENUE</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/15/2023 05:47:47 AM</td>
+      <td>09 BRONX</td>
+      <td>2.037940e+09</td>
+      <td>BRONX</td>
+      <td>1023295.0</td>
+      <td>242559.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>BRONX</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>40.832358</td>
+      <td>-73.858906</td>
+      <td>(40.83235751279932, -73.85890589915455)</td>
+      <td>STANDARD</td>
+      <td>Bronx</td>
+      <td>Bronx, NY</td>
+      <td>b'x\x9c\x8bVr*\xca\xcf\xabP\x8a\x05\x00\x0e\xb...</td>
+      <td>Bronx County</td>
+      <td>NY</td>
+      <td>America/New_York</td>
+      <td>1.000000</td>
+      <td>b'x\x9cS27\xb4P\x02\x00\x02\xb0\x00\xe5'</td>
+      <td>66358.0</td>
+      <td>63167.0</td>
       <td>1.05</td>
       <td>0.00</td>
       <td>23386.0</td>
@@ -2878,7 +6108,50 @@ memory usage: 7.8+ MB</code></pre>
       <td>Noise - Residential</td>
       <td>Banging/Pounding</td>
       <td>Residential Building/House</td>
-      <td>...</td>
+      <td>10028.0</td>
+      <td>522 EAST   83 STREET</td>
+      <td>EAST   83 STREET</td>
+      <td>YORK AVENUE</td>
+      <td>EAST END AVENUE</td>
+      <td>YORK AVENUE</td>
+      <td>EAST END AVENUE</td>
+      <td>ADDRESS</td>
+      <td>NEW YORK</td>
+      <td>EAST   83 STREET</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/15/2023 01:01:33 AM</td>
+      <td>08 MANHATTAN</td>
+      <td>1.015790e+09</td>
+      <td>MANHATTAN</td>
+      <td>998699.0</td>
+      <td>221149.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>MANHATTAN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>40.773667</td>
+      <td>-73.947833</td>
+      <td>(40.773667438961155, -73.94783272698673)</td>
+      <td>STANDARD</td>
+      <td>New York</td>
+      <td>New York, NY</td>
+      <td>b'x\x9c\x8bV\xf2K-W\x88\xcc/\xcaV\x8a\x05\x00\...</td>
+      <td>New York County</td>
+      <td>NY</td>
+      <td>America/New_York</td>
+      <td>0.852273</td>
+      <td>b'x\x9cS224\xd2161\xd7131\xd3\xb144W\x02\x00\x...</td>
+      <td>45141.0</td>
+      <td>143683.0</td>
       <td>0.31</td>
       <td>0.00</td>
       <td>28139.0</td>
@@ -2913,6 +6186,49 @@ memory usage: 7.8+ MB</code></pre>
       <td>...</td>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
       <th>21483</th>
@@ -2926,7 +6242,50 @@ memory usage: 7.8+ MB</code></pre>
       <td>Noise - Commercial</td>
       <td>Loud Music/Party</td>
       <td>Club/Bar/Restaurant</td>
-      <td>...</td>
+      <td>11237.0</td>
+      <td>112 HARRISON PLACE</td>
+      <td>HARRISON PLACE</td>
+      <td>KNICKERBOCKER AVENUE</td>
+      <td>PORTER AVENUE</td>
+      <td>KNICKERBOCKER AVENUE</td>
+      <td>PORTER AVENUE</td>
+      <td>ADDRESS</td>
+      <td>BROOKLYN</td>
+      <td>HARRISON PLACE</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/22/2023 01:30:45 AM</td>
+      <td>01 BROOKLYN</td>
+      <td>3.030040e+09</td>
+      <td>BROOKLYN</td>
+      <td>1003876.0</td>
+      <td>196783.0</td>
+      <td>PHONE</td>
+      <td>Unspecified</td>
+      <td>BROOKLYN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>40.706779</td>
+      <td>-73.929213</td>
+      <td>(40.70677887148764, -73.92921256734658)</td>
+      <td>STANDARD</td>
+      <td>Brooklyn</td>
+      <td>Brooklyn, NY</td>
+      <td>b'x\x9c\x8bVr*\xca\xcf\xcf\xce\xa9\xccS\x8a\x0...</td>
+      <td>Kings County</td>
+      <td>NY</td>
+      <td>America/New_York</td>
+      <td>1.000000</td>
+      <td>b'x\x9cS261\xd717\xb4P\x02\x00\x08f\x01\xaf'</td>
+      <td>49896.0</td>
+      <td>50927.0</td>
       <td>0.98</td>
       <td>0.02</td>
       <td>16724.0</td>
@@ -2950,7 +6309,50 @@ memory usage: 7.8+ MB</code></pre>
       <td>Noise - Residential</td>
       <td>Loud Music/Party</td>
       <td>Residential Building/House</td>
-      <td>...</td>
+      <td>11222.0</td>
+      <td>12 MCGUINNESS BLVD SOUTH</td>
+      <td>MCGUINNESS BLVD SOUTH</td>
+      <td>DRIGGS AVENUE</td>
+      <td>BROOME STREET</td>
+      <td>DRIGGS AVENUE</td>
+      <td>BROOME STREET</td>
+      <td>ADDRESS</td>
+      <td>BROOKLYN</td>
+      <td>MCGUINNESS BLVD SOUTH</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/22/2023 02:50:58 AM</td>
+      <td>01 BROOKLYN</td>
+      <td>3.027008e+09</td>
+      <td>BROOKLYN</td>
+      <td>998995.0</td>
+      <td>202512.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>BROOKLYN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>40.722513</td>
+      <td>-73.946805</td>
+      <td>(40.72251308480256, -73.94680489829233)</td>
+      <td>STANDARD</td>
+      <td>Brooklyn</td>
+      <td>Brooklyn, NY</td>
+      <td>b'x\x9c\x8bVr*\xca\xcf\xcf\xce\xa9\xccS\x8a\x0...</td>
+      <td>Kings County</td>
+      <td>NY</td>
+      <td>America/New_York</td>
+      <td>1.000000</td>
+      <td>b'x\x9cS261\xd717\xb4\xd0\xb144W\x02\x00\x11[\...</td>
+      <td>36934.0</td>
+      <td>24232.0</td>
       <td>1.52</td>
       <td>0.08</td>
       <td>18756.0</td>
@@ -2974,7 +6376,50 @@ memory usage: 7.8+ MB</code></pre>
       <td>Illegal Parking</td>
       <td>Posted Parking Sign Violation</td>
       <td>Street/Sidewalk</td>
-      <td>...</td>
+      <td>11205.0</td>
+      <td>93 SAINT EDWARDS STREET</td>
+      <td>SAINT EDWARDS STREET</td>
+      <td>MONUMENT WALK</td>
+      <td>AUBURN PLACE</td>
+      <td>MONUMENT WALK</td>
+      <td>AUBURN PLACE</td>
+      <td>ADDRESS</td>
+      <td>BROOKLYN</td>
+      <td>ST EDWARDS STREET</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/22/2023 06:41:52 AM</td>
+      <td>02 BROOKLYN</td>
+      <td>3.020390e+09</td>
+      <td>BROOKLYN</td>
+      <td>990352.0</td>
+      <td>192303.0</td>
+      <td>PHONE</td>
+      <td>Unspecified</td>
+      <td>BROOKLYN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>40.694502</td>
+      <td>-73.977995</td>
+      <td>(40.694501981434954, -73.97799524430377)</td>
+      <td>STANDARD</td>
+      <td>Brooklyn</td>
+      <td>Brooklyn, NY</td>
+      <td>b'x\x9c\x8bVr*\xca\xcf\xcf\xce\xa9\xccS\x8a\x0...</td>
+      <td>Kings County</td>
+      <td>NY</td>
+      <td>America/New_York</td>
+      <td>1.000000</td>
+      <td>b'x\x9cS224R\x02\x00\x02\x90\x00\xda'</td>
+      <td>40366.0</td>
+      <td>42508.0</td>
       <td>0.95</td>
       <td>0.00</td>
       <td>16409.0</td>
@@ -2998,7 +6443,50 @@ memory usage: 7.8+ MB</code></pre>
       <td>Noise - Residential</td>
       <td>Loud Music/Party</td>
       <td>Residential Building/House</td>
-      <td>...</td>
+      <td>11369.0</td>
+      <td>32-50 93 STREET</td>
+      <td>93 STREET</td>
+      <td>32 AVENUE</td>
+      <td>NORTHERN BOULEVARD</td>
+      <td>32 AVENUE</td>
+      <td>NORTHERN BOULEVARD</td>
+      <td>ADDRESS</td>
+      <td>EAST ELMHURST</td>
+      <td>93 STREET</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/22/2023 06:24:56 AM</td>
+      <td>03 QUEENS</td>
+      <td>4.014220e+09</td>
+      <td>QUEENS</td>
+      <td>1018788.0</td>
+      <td>215331.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>QUEENS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>40.757643</td>
+      <td>-73.875333</td>
+      <td>(40.75764288488996, -73.87533252677208)</td>
+      <td>STANDARD</td>
+      <td>East Elmhurst</td>
+      <td>East Elmhurst, NY</td>
+      <td>b'x\x9c\x8bVrM,.Qp\xcd\xc9\xcd(-*.Q\xd2QPr\xcb...</td>
+      <td>Queens County</td>
+      <td>NY</td>
+      <td>America/New_York</td>
+      <td>1.000000</td>
+      <td>b'x\x9cS224R\x02\x00\x02\x90\x00\xda'</td>
+      <td>38615.0</td>
+      <td>36170.0</td>
       <td>1.07</td>
       <td>0.00</td>
       <td>12184.0</td>
@@ -3022,7 +6510,50 @@ memory usage: 7.8+ MB</code></pre>
       <td>Noise - Residential</td>
       <td>Loud Music/Party</td>
       <td>Residential Building/House</td>
-      <td>...</td>
+      <td>10461.0</td>
+      <td>3109 ROBERTS AVENUE</td>
+      <td>ROBERTS AVENUE</td>
+      <td>MAHAN AVENUE</td>
+      <td>PARKVIEW AVENUE</td>
+      <td>MAHAN AVENUE</td>
+      <td>PARKVIEW AVENUE</td>
+      <td>ADDRESS</td>
+      <td>BRONX</td>
+      <td>ROBERTS AVENUE</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Police Department responded to the complai...</td>
+      <td>01/22/2023 04:29:21 AM</td>
+      <td>10 BRONX</td>
+      <td>2.041770e+09</td>
+      <td>BRONX</td>
+      <td>1031760.0</td>
+      <td>247686.0</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>BRONX</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>40.846388</td>
+      <td>-73.828280</td>
+      <td>(40.84638812959795, -73.82828029128923)</td>
+      <td>STANDARD</td>
+      <td>Bronx</td>
+      <td>Bronx, NY</td>
+      <td>b'x\x9c\x8bVr*\xca\xcf\xabP\x8a\x05\x00\x0e\xb...</td>
+      <td>Bronx County</td>
+      <td>NY</td>
+      <td>America/New_York</td>
+      <td>1.000000</td>
+      <td>b'x\x9cS261\xd717\xb4\xd0\xb144\xd7\xb14\xb2T\...</td>
+      <td>50502.0</td>
+      <td>21045.0</td>
       <td>2.40</td>
       <td>0.00</td>
       <td>21127.0</td>

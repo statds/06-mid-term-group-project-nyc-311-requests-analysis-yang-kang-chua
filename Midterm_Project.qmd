@@ -16,6 +16,8 @@ jupyter: python3
 import numpy as np
 import pandas as pd
 
+pd.set_option('display.max_columns', None)
+
 nyc311 = pd.read_csv("nyc311_011523-012123_by022023.csv")
 
 nyc311.head()
@@ -304,11 +306,12 @@ for index in Filter_1.index:
 Filter_1
 ```
 Summary after cleaning the data.
-    * There are more missing `X Coordinate (State Plane)` than `Y Coordinate (State Plane)`.
-    * There is duplicate when stating `Cross Street 1`, `Cross Street 2`, `Intersection Street 1`,and  `Intersection Street 2`.
-    * Agency from `DOT` seems commonly mixed up the `Closed Date` and `Created Date`.
-    * `Borough` that is `unspecified` should count as `missing`.
-    * Many `Park Facility Name` is `unspecified` should count as `missing`. 
+
+* There are more missing `X Coordinate (State Plane)` than `Y Coordinate (State Plane)`.
+* There is duplicate when stating `Cross Street 1`, `Cross Street 2`, `Intersection Street 1`,and  `Intersection Street 2`.
+* Agency from `DOT` seems commonly mixed up the `Closed Date` and `Created Date`.
+* `Borough` that is `unspecified` should count as `missing`.
+* Many `Park Facility Name` is `unspecified` should count as `missing`. 
 
 Remove the request not from NYPD
 
@@ -348,6 +351,17 @@ nyc311_NYPD
 ```
 
 Visualize the distribution of uncensored duration by weekdays/weekend and by borough.
+
+Lets check the Borough that is `Unspecified`.
+
+```{python}
+# Remove the unspecified Borough
+A = nyc311_NYPD[ nyc311_NYPD['Borough'] == 'Unspecified']
+
+A
+```
+
+The remaining borough that is `Unspecified` does not have `Incident Zip` which merging with uszipcode does not help to get more info about the data. 
 
 ```{python}
 # Remove the unspecified Borough
