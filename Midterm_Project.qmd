@@ -40,22 +40,6 @@ Get the type of the data frame
 ```{python}
 nyc311.info();
 ```
-
-Convert the time to date time format.
-
-```{python}
-nyc311['Created Date'] = pd.to_datetime(nyc311['Created Date'], errors='coerce')
-nyc311['Closed Date'] = pd.to_datetime(nyc311['Closed Date'], errors='coerce')
-```
-Let take a look on if `Closed Date` earlier than `Created Date`.
-
-```{python}
-# Create a filter to find if the Closed Date is earlier and Created Date
-
-Filter_1 = nyc311[nyc311['Created Date'] > nyc311['Closed Date']]
-
-Filter_1.head()
-```
 Check missing value percentage
 
 ```{python}
@@ -75,38 +59,45 @@ missing_value.columns = ['Missing Percentage']
 missing_value
 
 ```
+Convert the time to date time format.
+
+```{python}
+nyc311['Created Date'] = pd.to_datetime(nyc311['Created Date'], errors='coerce')
+nyc311['Closed Date'] = pd.to_datetime(nyc311['Closed Date'], errors='coerce')
+```
+Let take a look on if `Closed Date` earlier than `Created Date`.
+
+```{python}
+# Create a filter to find if the Closed Date is earlier and Created Date
+
+Filter_1 = nyc311[nyc311['Created Date'] > nyc311['Closed Date']]
+
+Filter_1.head()
+```
 
 Few thing we can do to clean the data:
 
-* Reorganize the `Created Date` and `Closed Date`.
+* Remove the `Created Date` and `Closed Date`.
 * Missing Value from `Incident Zip` can be found using `Latitude` and `Longitude` using `uszipcode`.
 * `Latitude` and `Longitude` can be found using the available `Incident Address`, `Street Name`, `Cross Street 1`, `Cross Street 2`, `Intersection Street 1`, `Intersection Street 2` or as known as `Address Type`.
 * We can get `X Coordinate (State Plane)`and `Y Coordinate (State Plane)` using `stateplane`.
 * Update `Borough` from `Incident Zip`.
 
-Begin by Reorganize the `Created Date` and `Closed Date`.
+Begin by remove the `Created Date` and `Closed Date`.
 
 ```{python}
-# Create a copy of a Closed Date(Created Date)
-Created_Date = Filter_1['Closed Date'].copy()
-
-for index in Filter_1.index:
-    Filter_1.loc[index,['Closed Date']] = Filter_1['Created Date'][index]
-    Filter_1.loc[index,['Created Date']] = Created_Date[index]
-
-Filter_1.head()
-```
-
-Put into the original data.
-
-```{python}
-for index in Filter_1.index:
-  nyc311.loc[index,['Created Date']] = Filter_1['Created Date'][index]
-  nyc311.loc[index,['Closed Date']]  = Filter_1['Closed Date'][index]
+nyc311 = nyc311[nyc311['Created Date'] < nyc311['Closed Date']]
 
 ```
 
 Now work on getting `Latitude` and `Longitude` can be found using the available `Incident Address`, `Street Name`, `Cross Street 1`, `Cross Street 2`, `Intersection Street 1`, `Intersection Street 2` or as known as `Address Type`.
+
+```{python}
+Filter_1 = nyc311[nyc311['Latitude'].isnull()]
+
+pd.crosstab(Filter_1["Incident Address"].isnull(), Filter_1["Latitude"].isnull())
+pd.crosstab(Filter_1["Street Name"].isnull(), Filter_1["Latitude"].isnull())
+```
 
 Begin with solving `Address Type` that is `INTERSECTION`.
 

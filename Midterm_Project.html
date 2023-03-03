@@ -646,321 +646,26 @@ dtypes: float64(6), int64(1), object(34)
 memory usage: 17.0+ MB</code></pre>
 </div>
 </div>
-<p>Convert the time to date time format.</p>
+<p>Check missing value percentage</p>
 <div class="cell" data-execution_count="5">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>nyc311[<span class="st">'Created Date'</span>] <span class="op">=</span> pd.to_datetime(nyc311[<span class="st">'Created Date'</span>], errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>nyc311[<span class="st">'Closed Date'</span>] <span class="op">=</span> pd.to_datetime(nyc311[<span class="st">'Closed Date'</span>], errors<span class="op">=</span><span class="st">'coerce'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find missing value</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>missing_value <span class="op">=</span> nyc311.isnull()</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Divide the full data length to get the percentage</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>missing_value <span class="op">=</span> missing_value.<span class="bu">sum</span>()<span class="op">/</span><span class="bu">len</span>(nyc311)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Convert into dataframe</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>missing_value <span class="op">=</span> missing_value.to_frame()</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Name the column</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>missing_value.columns <span class="op">=</span> [<span class="st">'Missing Percentage'</span>]</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Display</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>missing_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-</div>
-<p>Let take a look on if <code>Closed Date</code> earlier than <code>Created Date</code>.</p>
-<div class="cell" data-execution_count="6">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a filter to find if the Closed Date is earlier and Created Date</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Filter_1 <span class="op">=</span> nyc311[nyc311[<span class="st">'Created Date'</span>] <span class="op">&gt;</span> nyc311[<span class="st">'Closed Date'</span>]]</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>Filter_1.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="6">
-
-<div>
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Unique Key</th>
-      <th>Created Date</th>
-      <th>Closed Date</th>
-      <th>Agency</th>
-      <th>Agency Name</th>
-      <th>Complaint Type</th>
-      <th>Descriptor</th>
-      <th>Location Type</th>
-      <th>Incident Zip</th>
-      <th>Incident Address</th>
-      <th>Street Name</th>
-      <th>Cross Street 1</th>
-      <th>Cross Street 2</th>
-      <th>Intersection Street 1</th>
-      <th>Intersection Street 2</th>
-      <th>Address Type</th>
-      <th>City</th>
-      <th>Landmark</th>
-      <th>Facility Type</th>
-      <th>Status</th>
-      <th>Due Date</th>
-      <th>Resolution Description</th>
-      <th>Resolution Action Updated Date</th>
-      <th>Community Board</th>
-      <th>BBL</th>
-      <th>Borough</th>
-      <th>X Coordinate (State Plane)</th>
-      <th>Y Coordinate (State Plane)</th>
-      <th>Open Data Channel Type</th>
-      <th>Park Facility Name</th>
-      <th>Park Borough</th>
-      <th>Vehicle Type</th>
-      <th>Taxi Company Borough</th>
-      <th>Taxi Pick Up Location</th>
-      <th>Bridge Highway Name</th>
-      <th>Bridge Highway Direction</th>
-      <th>Road Ramp</th>
-      <th>Bridge Highway Segment</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th>Location</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>15759</th>
-      <td>56545596</td>
-      <td>2023-01-17 09:13:00</td>
-      <td>2023-01-16 09:12:00</td>
-      <td>DOT</td>
-      <td>Department of Transportation</td>
-      <td>Street Light Condition</td>
-      <td>Fixture/Luminaire Door Open</td>
-      <td>NaN</td>
-      <td>10470.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>OSMAN PLACE</td>
-      <td>EAST 241 STREET</td>
-      <td>INTERSECTION</td>
-      <td>BRONX</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Pending</td>
-      <td>NaN</td>
-      <td>Service Request status for this request is ava...</td>
-      <td>01/16/2023 09:12:00 AM</td>
-      <td>12 BRONX</td>
-      <td>NaN</td>
-      <td>BRONX</td>
-      <td>1026374.0</td>
-      <td>267996.0</td>
-      <td>UNKNOWN</td>
-      <td>Unspecified</td>
-      <td>BRONX</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>40.902160</td>
-      <td>-73.847620</td>
-      <td>(40.902160080380305, -73.8476196608694)</td>
-    </tr>
-    <tr>
-      <th>16346</th>
-      <td>56548261</td>
-      <td>2023-01-17 10:14:00</td>
-      <td>2023-01-16 09:37:00</td>
-      <td>DOT</td>
-      <td>Department of Transportation</td>
-      <td>Street Light Condition</td>
-      <td>Street Light Out</td>
-      <td>NaN</td>
-      <td>10470.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>WHITE PLAINS ROAD</td>
-      <td>EAST 241 STREET</td>
-      <td>INTERSECTION</td>
-      <td>BRONX</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Pending</td>
-      <td>NaN</td>
-      <td>Service Request status for this request is ava...</td>
-      <td>01/16/2023 09:37:00 AM</td>
-      <td>12 BRONX</td>
-      <td>NaN</td>
-      <td>BRONX</td>
-      <td>1025621.0</td>
-      <td>268476.0</td>
-      <td>UNKNOWN</td>
-      <td>Unspecified</td>
-      <td>BRONX</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>40.903481</td>
-      <td>-73.850341</td>
-      <td>(40.903481086856935, -73.85034060870207)</td>
-    </tr>
-    <tr>
-      <th>16374</th>
-      <td>56546592</td>
-      <td>2023-01-17 10:16:00</td>
-      <td>2023-01-16 10:15:00</td>
-      <td>DOT</td>
-      <td>Department of Transportation</td>
-      <td>Street Light Condition</td>
-      <td>Street Light Out</td>
-      <td>NaN</td>
-      <td>10470.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>EAST 239 STREET</td>
-      <td>MATILDA AVENUE</td>
-      <td>INTERSECTION</td>
-      <td>BRONX</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Pending</td>
-      <td>NaN</td>
-      <td>Service Request status for this request is ava...</td>
-      <td>01/16/2023 10:15:00 AM</td>
-      <td>12 BRONX</td>
-      <td>NaN</td>
-      <td>BRONX</td>
-      <td>1024368.0</td>
-      <td>267516.0</td>
-      <td>UNKNOWN</td>
-      <td>Unspecified</td>
-      <td>BRONX</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>40.900852</td>
-      <td>-73.854879</td>
-      <td>(40.90085198617899, -73.85487907500377)</td>
-    </tr>
-    <tr>
-      <th>16392</th>
-      <td>56552546</td>
-      <td>2023-01-17 10:18:00</td>
-      <td>2023-01-16 10:17:00</td>
-      <td>DOT</td>
-      <td>Department of Transportation</td>
-      <td>Street Light Condition</td>
-      <td>Fixture/Luminaire Out Of Position</td>
-      <td>NaN</td>
-      <td>10459.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>SOUTHERN BOULEVARD</td>
-      <td>JENNINGS STREET</td>
-      <td>INTERSECTION</td>
-      <td>BRONX</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Pending</td>
-      <td>NaN</td>
-      <td>Service Request status for this request is ava...</td>
-      <td>01/16/2023 10:17:00 AM</td>
-      <td>03 BRONX</td>
-      <td>NaN</td>
-      <td>BRONX</td>
-      <td>1014492.0</td>
-      <td>242563.0</td>
-      <td>UNKNOWN</td>
-      <td>Unspecified</td>
-      <td>BRONX</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>40.832403</td>
-      <td>-73.890717</td>
-      <td>(40.83240302209445, -73.890716609599)</td>
-    </tr>
-    <tr>
-      <th>16544</th>
-      <td>56549764</td>
-      <td>2023-01-17 10:28:00</td>
-      <td>2023-01-16 10:27:00</td>
-      <td>DOT</td>
-      <td>Department of Transportation</td>
-      <td>Street Light Condition</td>
-      <td>Fixture/Luminaire Hanging</td>
-      <td>NaN</td>
-      <td>10457.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>EAST 180 STREET</td>
-      <td>PROSPECT AVENUE</td>
-      <td>INTERSECTION</td>
-      <td>BRONX</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Pending</td>
-      <td>NaN</td>
-      <td>Service Request status for this request is ava...</td>
-      <td>01/16/2023 10:27:00 AM</td>
-      <td>06 BRONX</td>
-      <td>NaN</td>
-      <td>BRONX</td>
-      <td>1015598.0</td>
-      <td>247912.0</td>
-      <td>UNKNOWN</td>
-      <td>Unspecified</td>
-      <td>BRONX</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>40.847081</td>
-      <td>-73.886695</td>
-      <td>(40.84708060167133, -73.88669493748064)</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-</div>
-<p>Check missing value percentage</p>
-<div class="cell" data-execution_count="7">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find missing value</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>missing_value <span class="op">=</span> nyc311.isnull()</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Divide the full data length to get the percentage</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>missing_value <span class="op">=</span> missing_value.<span class="bu">sum</span>()<span class="op">/</span><span class="bu">len</span>(nyc311)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Convert into dataframe</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>missing_value <span class="op">=</span> missing_value.to_frame()</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Name the column</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>missing_value.columns <span class="op">=</span> [<span class="st">'Missing Percentage'</span>]</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Display</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>missing_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="5">
 
 <div>
 
@@ -1141,28 +846,25 @@ memory usage: 17.0+ MB</code></pre>
 </div>
 </div>
 </div>
-<p>Few thing we can do to clean the data:</p>
-<ul>
-<li>Reorganize the <code>Created Date</code> and <code>Closed Date</code>.</li>
-<li>Missing Value from <code>Incident Zip</code> can be found using <code>Latitude</code> and <code>Longitude</code> using <code>uszipcode</code>.</li>
-<li><code>Latitude</code> and <code>Longitude</code> can be found using the available <code>Incident Address</code>, <code>Street Name</code>, <code>Cross Street 1</code>, <code>Cross Street 2</code>, <code>Intersection Street 1</code>, <code>Intersection Street 2</code> or as known as <code>Address Type</code>.</li>
-<li>We can get <code>X Coordinate (State Plane)</code>and <code>Y Coordinate (State Plane)</code> using <code>stateplane</code>.</li>
-<li>Update <code>Borough</code> from <code>Incident Zip</code>.</li>
-</ul>
-<p>Begin by Reorganize the <code>Created Date</code> and <code>Closed Date</code>.</p>
-<div class="cell" data-execution_count="8">
+<p>Convert the time to date time format.</p>
+<div class="cell" data-execution_count="6">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a copy of a Closed Date(Created Date)</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>Created_Date <span class="op">=</span> Filter_1[<span class="st">'Closed Date'</span>].copy()</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> Filter_1.index:</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    Filter_1.loc[index,[<span class="st">'Closed Date'</span>]] <span class="op">=</span> Filter_1[<span class="st">'Created Date'</span>][index]</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    Filter_1.loc[index,[<span class="st">'Created Date'</span>]] <span class="op">=</span> Created_Date[index]</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>Filter_1.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nyc311[<span class="st">'Created Date'</span>] <span class="op">=</span> pd.to_datetime(nyc311[<span class="st">'Created Date'</span>], errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>nyc311[<span class="st">'Closed Date'</span>] <span class="op">=</span> pd.to_datetime(nyc311[<span class="st">'Closed Date'</span>], errors<span class="op">=</span><span class="st">'coerce'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="8">
+</div>
+<p>Let take a look on if <code>Closed Date</code> earlier than <code>Created Date</code>.</p>
+<div class="cell" data-execution_count="7">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a filter to find if the Closed Date is earlier and Created Date</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>Filter_1 <span class="op">=</span> nyc311[nyc311[<span class="st">'Created Date'</span>] <span class="op">&gt;</span> nyc311[<span class="st">'Closed Date'</span>]]</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>Filter_1.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="7">
 
 <div>
 
@@ -1217,8 +919,8 @@ memory usage: 17.0+ MB</code></pre>
     <tr>
       <th>15759</th>
       <td>56545596</td>
-      <td>2023-01-16 09:12:00</td>
       <td>2023-01-17 09:13:00</td>
+      <td>2023-01-16 09:12:00</td>
       <td>DOT</td>
       <td>Department of Transportation</td>
       <td>Street Light Condition</td>
@@ -1261,8 +963,8 @@ memory usage: 17.0+ MB</code></pre>
     <tr>
       <th>16346</th>
       <td>56548261</td>
-      <td>2023-01-16 09:37:00</td>
       <td>2023-01-17 10:14:00</td>
+      <td>2023-01-16 09:37:00</td>
       <td>DOT</td>
       <td>Department of Transportation</td>
       <td>Street Light Condition</td>
@@ -1305,8 +1007,8 @@ memory usage: 17.0+ MB</code></pre>
     <tr>
       <th>16374</th>
       <td>56546592</td>
-      <td>2023-01-16 10:15:00</td>
       <td>2023-01-17 10:16:00</td>
+      <td>2023-01-16 10:15:00</td>
       <td>DOT</td>
       <td>Department of Transportation</td>
       <td>Street Light Condition</td>
@@ -1349,8 +1051,8 @@ memory usage: 17.0+ MB</code></pre>
     <tr>
       <th>16392</th>
       <td>56552546</td>
-      <td>2023-01-16 10:17:00</td>
       <td>2023-01-17 10:18:00</td>
+      <td>2023-01-16 10:17:00</td>
       <td>DOT</td>
       <td>Department of Transportation</td>
       <td>Street Light Condition</td>
@@ -1393,8 +1095,8 @@ memory usage: 17.0+ MB</code></pre>
     <tr>
       <th>16544</th>
       <td>56549764</td>
-      <td>2023-01-16 10:27:00</td>
       <td>2023-01-17 10:28:00</td>
+      <td>2023-01-16 10:27:00</td>
       <td>DOT</td>
       <td>Department of Transportation</td>
       <td>Street Light Condition</td>
@@ -1439,16 +1141,59 @@ memory usage: 17.0+ MB</code></pre>
 </div>
 </div>
 </div>
-<p>Put into the original data.</p>
-<div class="cell" data-execution_count="9">
+<p>Few thing we can do to clean the data:</p>
+<ul>
+<li>Remove the <code>Created Date</code> and <code>Closed Date</code>.</li>
+<li>Missing Value from <code>Incident Zip</code> can be found using <code>Latitude</code> and <code>Longitude</code> using <code>uszipcode</code>.</li>
+<li><code>Latitude</code> and <code>Longitude</code> can be found using the available <code>Incident Address</code>, <code>Street Name</code>, <code>Cross Street 1</code>, <code>Cross Street 2</code>, <code>Intersection Street 1</code>, <code>Intersection Street 2</code> or as known as <code>Address Type</code>.</li>
+<li>We can get <code>X Coordinate (State Plane)</code>and <code>Y Coordinate (State Plane)</code> using <code>stateplane</code>.</li>
+<li>Update <code>Borough</code> from <code>Incident Zip</code>.</li>
+</ul>
+<p>Begin by remove the <code>Created Date</code> and <code>Closed Date</code>.</p>
+<div class="cell" data-execution_count="8">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> Filter_1.index:</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  nyc311.loc[index,[<span class="st">'Created Date'</span>]] <span class="op">=</span> Filter_1[<span class="st">'Created Date'</span>][index]</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  nyc311.loc[index,[<span class="st">'Closed Date'</span>]]  <span class="op">=</span> Filter_1[<span class="st">'Closed Date'</span>][index]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>nyc311 <span class="op">=</span> nyc311[nyc311[<span class="st">'Created Date'</span>] <span class="op">&lt;</span> nyc311[<span class="st">'Closed Date'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Now work on getting <code>Latitude</code> and <code>Longitude</code> can be found using the available <code>Incident Address</code>, <code>Street Name</code>, <code>Cross Street 1</code>, <code>Cross Street 2</code>, <code>Intersection Street 1</code>, <code>Intersection Street 2</code> or as known as <code>Address Type</code>.</p>
+<div class="cell" data-execution_count="9">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Filter_1 <span class="op">=</span> nyc311[nyc311[<span class="st">'Latitude'</span>].isnull()]</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>pd.crosstab(Filter_1[<span class="st">"Incident Address"</span>].isnull(), Filter_1[<span class="st">"Latitude"</span>].isnull())</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>pd.crosstab(Filter_1[<span class="st">"Street Name"</span>].isnull(), Filter_1[<span class="st">"Latitude"</span>].isnull())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="9">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>Latitude</th>
+      <th>True</th>
+    </tr>
+    <tr>
+      <th>Street Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>False</th>
+      <td>499</td>
+    </tr>
+    <tr>
+      <th>True</th>
+      <td>270</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
 <p>Begin with solving <code>Address Type</code> that is <code>INTERSECTION</code>.</p>
 <div class="cell" data-execution_count="10">
 <details>
@@ -1663,94 +1408,6 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>1873</th>
-      <td>56531825</td>
-      <td>2023-01-15 09:31:42</td>
-      <td>NaT</td>
-      <td>TLC</td>
-      <td>Taxi and Limousine Commission</td>
-      <td>Taxi Complaint</td>
-      <td>Driver Complaint - Non Passenger</td>
-      <td>Street</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>In Progress</td>
-      <td>NaN</td>
-      <td>The Taxi and Limousine Commission (TLC) has re...</td>
-      <td>01/20/2023 08:43:18 AM</td>
-      <td>0 Unspecified</td>
-      <td>NaN</td>
-      <td>Unspecified</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>ONLINE</td>
-      <td>Unspecified</td>
-      <td>Unspecified</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>3207</th>
-      <td>56537996</td>
-      <td>2023-01-15 12:57:30</td>
-      <td>NaT</td>
-      <td>TLC</td>
-      <td>Taxi and Limousine Commission</td>
-      <td>For Hire Vehicle Complaint</td>
-      <td>Driver Complaint - Non Passenger</td>
-      <td>Street</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>In Progress</td>
-      <td>NaN</td>
-      <td>The Taxi and Limousine Commission (TLC) has re...</td>
-      <td>01/20/2023 08:35:47 AM</td>
-      <td>0 Unspecified</td>
-      <td>NaN</td>
-      <td>Unspecified</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>ONLINE</td>
-      <td>Unspecified</td>
-      <td>Unspecified</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
       <th>4128</th>
       <td>56537038</td>
       <td>2023-01-15 15:32:05</td>
@@ -1839,6 +1496,94 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
     </tr>
     <tr>
+      <th>4837</th>
+      <td>56536597</td>
+      <td>2023-01-15 17:30:03</td>
+      <td>2023-01-20 15:41:43</td>
+      <td>DOT</td>
+      <td>Department of Transportation</td>
+      <td>Highway Sign - Dangling</td>
+      <td>Other/Unknown</td>
+      <td>Highway</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Department of Transportation has completed...</td>
+      <td>01/20/2023 03:41:48 PM</td>
+      <td>Unspecified BROOKLYN</td>
+      <td>NaN</td>
+      <td>BROOKLYN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>BROOKLYN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Belt Pkwy</td>
+      <td>West/Staten Island Bound</td>
+      <td>Roadway</td>
+      <td>Pennsylvania Ave (Exit 14) - Rockaway Pkwy (Ex...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>6096</th>
+      <td>56532447</td>
+      <td>2023-01-15 21:40:23</td>
+      <td>2023-02-07 13:49:37</td>
+      <td>DOT</td>
+      <td>Department of Transportation</td>
+      <td>Highway Condition</td>
+      <td>Loose Plate</td>
+      <td>Highway</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The condition was inspected and determined not...</td>
+      <td>02/07/2023 01:49:44 PM</td>
+      <td>Unspecified BRONX</td>
+      <td>NaN</td>
+      <td>BRONX</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>PHONE</td>
+      <td>Unspecified</td>
+      <td>BRONX</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Throgs Neck Expwy</td>
+      <td>South/Queens Bound</td>
+      <td>Roadway</td>
+      <td>Bruckner Expwy (I95 N) - Randall Ave</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
       <th>...</th>
       <td>...</td>
       <td>...</td>
@@ -1883,6 +1628,94 @@ memory usage: 17.0+ MB</code></pre>
       <td>...</td>
     </tr>
     <tr>
+      <th>49656</th>
+      <td>56585163</td>
+      <td>2023-01-21 10:10:44</td>
+      <td>2023-01-31 07:01:47</td>
+      <td>DOT</td>
+      <td>Department of Transportation</td>
+      <td>Highway Condition</td>
+      <td>Pothole - Highway</td>
+      <td>Highway</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Department of Transportation has completed...</td>
+      <td>01/31/2023 07:01:53 AM</td>
+      <td>Unspecified BROOKLYN</td>
+      <td>NaN</td>
+      <td>BROOKLYN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>PHONE</td>
+      <td>Unspecified</td>
+      <td>BROOKLYN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Belt Pkwy</td>
+      <td>West/Staten Island Bound</td>
+      <td>Roadway</td>
+      <td>Rockaway Pkwy (Exit 13) - Flatbush Ave (Exit 11N)</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>50143</th>
+      <td>56586047</td>
+      <td>2023-01-21 11:26:56</td>
+      <td>2023-01-24 08:33:48</td>
+      <td>DOT</td>
+      <td>Department of Transportation</td>
+      <td>Highway Condition</td>
+      <td>Pothole - Highway</td>
+      <td>Highway</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Department of Transportation has completed...</td>
+      <td>01/24/2023 08:33:52 AM</td>
+      <td>Unspecified QUEENS</td>
+      <td>NaN</td>
+      <td>QUEENS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>PHONE</td>
+      <td>Unspecified</td>
+      <td>QUEENS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Long Island Expwy</td>
+      <td>West/Manhattan Bound</td>
+      <td>Roadway</td>
+      <td>Junction Blvd (Exit 20) - Queens Blvd (NY 25) ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
       <th>50169</th>
       <td>56587808</td>
       <td>2023-01-21 11:31:51</td>
@@ -1922,94 +1755,6 @@ memory usage: 17.0+ MB</code></pre>
       <td>West/Manhattan Bound</td>
       <td>Roadway</td>
       <td>Junction Blvd (Exit 20) - Queens Blvd (NY 25) ...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>52200</th>
-      <td>56587713</td>
-      <td>2023-01-21 17:12:08</td>
-      <td>NaT</td>
-      <td>TLC</td>
-      <td>Taxi and Limousine Commission</td>
-      <td>For Hire Vehicle Complaint</td>
-      <td>Driver Complaint - Non Passenger</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>In Progress</td>
-      <td>NaN</td>
-      <td>The Taxi and Limousine Commission (TLC) has re...</td>
-      <td>01/25/2023 08:49:01 AM</td>
-      <td>0 Unspecified</td>
-      <td>NaN</td>
-      <td>Unspecified</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>MOBILE</td>
-      <td>Unspecified</td>
-      <td>Unspecified</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Northern Blvd, New York, ç¾å</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>52561</th>
-      <td>56587575</td>
-      <td>2023-01-21 18:19:49</td>
-      <td>NaT</td>
-      <td>DOT</td>
-      <td>Department of Transportation</td>
-      <td>Highway Condition</td>
-      <td>Graffiti - Highway</td>
-      <td>Highway</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>In Progress</td>
-      <td>NaN</td>
-      <td>The Department of Transportation inspected the...</td>
-      <td>02/02/2023 05:03:39 PM</td>
-      <td>Unspecified QUEENS</td>
-      <td>NaN</td>
-      <td>QUEENS</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>ONLINE</td>
-      <td>Unspecified</td>
-      <td>QUEENS</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Jackie Robinson/Interboro Pkwy</td>
-      <td>West/Brooklyn Bound</td>
-      <td>Roadway</td>
-      <td>Forest Park Dr (Exit 4) - Cypress Hills St (Ex...</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2104,7 +1849,7 @@ memory usage: 17.0+ MB</code></pre>
     </tr>
   </tbody>
 </table>
-<p>180 rows × 41 columns</p>
+<p>159 rows × 41 columns</p>
 </div>
 </div>
 </div>
@@ -2236,94 +1981,6 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>1873</th>
-      <td>56531825</td>
-      <td>2023-01-15 09:31:42</td>
-      <td>NaT</td>
-      <td>TLC</td>
-      <td>Taxi and Limousine Commission</td>
-      <td>Taxi Complaint</td>
-      <td>Driver Complaint - Non Passenger</td>
-      <td>Street</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>In Progress</td>
-      <td>NaN</td>
-      <td>The Taxi and Limousine Commission (TLC) has re...</td>
-      <td>01/20/2023 08:43:18 AM</td>
-      <td>0 Unspecified</td>
-      <td>NaN</td>
-      <td>Unspecified</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>ONLINE</td>
-      <td>Unspecified</td>
-      <td>Unspecified</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>3207</th>
-      <td>56537996</td>
-      <td>2023-01-15 12:57:30</td>
-      <td>NaT</td>
-      <td>TLC</td>
-      <td>Taxi and Limousine Commission</td>
-      <td>For Hire Vehicle Complaint</td>
-      <td>Driver Complaint - Non Passenger</td>
-      <td>Street</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>In Progress</td>
-      <td>NaN</td>
-      <td>The Taxi and Limousine Commission (TLC) has re...</td>
-      <td>01/20/2023 08:35:47 AM</td>
-      <td>0 Unspecified</td>
-      <td>NaN</td>
-      <td>Unspecified</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>ONLINE</td>
-      <td>Unspecified</td>
-      <td>Unspecified</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
       <th>4128</th>
       <td>56537038</td>
       <td>2023-01-15 15:32:05</td>
@@ -2412,6 +2069,94 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
     </tr>
     <tr>
+      <th>4837</th>
+      <td>56536597</td>
+      <td>2023-01-15 17:30:03</td>
+      <td>2023-01-20 15:41:43</td>
+      <td>DOT</td>
+      <td>Department of Transportation</td>
+      <td>Highway Sign - Dangling</td>
+      <td>Other/Unknown</td>
+      <td>Highway</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Department of Transportation has completed...</td>
+      <td>01/20/2023 03:41:48 PM</td>
+      <td>Unspecified BROOKLYN</td>
+      <td>NaN</td>
+      <td>BROOKLYN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>ONLINE</td>
+      <td>Unspecified</td>
+      <td>BROOKLYN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Belt Pkwy</td>
+      <td>West/Staten Island Bound</td>
+      <td>Roadway</td>
+      <td>Pennsylvania Ave (Exit 14) - Rockaway Pkwy (Ex...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>6096</th>
+      <td>56532447</td>
+      <td>2023-01-15 21:40:23</td>
+      <td>2023-02-07 13:49:37</td>
+      <td>DOT</td>
+      <td>Department of Transportation</td>
+      <td>Highway Condition</td>
+      <td>Loose Plate</td>
+      <td>Highway</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The condition was inspected and determined not...</td>
+      <td>02/07/2023 01:49:44 PM</td>
+      <td>Unspecified BRONX</td>
+      <td>NaN</td>
+      <td>BRONX</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>PHONE</td>
+      <td>Unspecified</td>
+      <td>BRONX</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Throgs Neck Expwy</td>
+      <td>South/Queens Bound</td>
+      <td>Roadway</td>
+      <td>Bruckner Expwy (I95 N) - Randall Ave</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
       <th>...</th>
       <td>...</td>
       <td>...</td>
@@ -2456,6 +2201,94 @@ memory usage: 17.0+ MB</code></pre>
       <td>...</td>
     </tr>
     <tr>
+      <th>49656</th>
+      <td>56585163</td>
+      <td>2023-01-21 10:10:44</td>
+      <td>2023-01-31 07:01:47</td>
+      <td>DOT</td>
+      <td>Department of Transportation</td>
+      <td>Highway Condition</td>
+      <td>Pothole - Highway</td>
+      <td>Highway</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Department of Transportation has completed...</td>
+      <td>01/31/2023 07:01:53 AM</td>
+      <td>Unspecified BROOKLYN</td>
+      <td>NaN</td>
+      <td>BROOKLYN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>PHONE</td>
+      <td>Unspecified</td>
+      <td>BROOKLYN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Belt Pkwy</td>
+      <td>West/Staten Island Bound</td>
+      <td>Roadway</td>
+      <td>Rockaway Pkwy (Exit 13) - Flatbush Ave (Exit 11N)</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>50143</th>
+      <td>56586047</td>
+      <td>2023-01-21 11:26:56</td>
+      <td>2023-01-24 08:33:48</td>
+      <td>DOT</td>
+      <td>Department of Transportation</td>
+      <td>Highway Condition</td>
+      <td>Pothole - Highway</td>
+      <td>Highway</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Department of Transportation has completed...</td>
+      <td>01/24/2023 08:33:52 AM</td>
+      <td>Unspecified QUEENS</td>
+      <td>NaN</td>
+      <td>QUEENS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>PHONE</td>
+      <td>Unspecified</td>
+      <td>QUEENS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Long Island Expwy</td>
+      <td>West/Manhattan Bound</td>
+      <td>Roadway</td>
+      <td>Junction Blvd (Exit 20) - Queens Blvd (NY 25) ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
       <th>50169</th>
       <td>56587808</td>
       <td>2023-01-21 11:31:51</td>
@@ -2495,94 +2328,6 @@ memory usage: 17.0+ MB</code></pre>
       <td>West/Manhattan Bound</td>
       <td>Roadway</td>
       <td>Junction Blvd (Exit 20) - Queens Blvd (NY 25) ...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>52200</th>
-      <td>56587713</td>
-      <td>2023-01-21 17:12:08</td>
-      <td>NaT</td>
-      <td>TLC</td>
-      <td>Taxi and Limousine Commission</td>
-      <td>For Hire Vehicle Complaint</td>
-      <td>Driver Complaint - Non Passenger</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>In Progress</td>
-      <td>NaN</td>
-      <td>The Taxi and Limousine Commission (TLC) has re...</td>
-      <td>01/25/2023 08:49:01 AM</td>
-      <td>0 Unspecified</td>
-      <td>NaN</td>
-      <td>Unspecified</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>MOBILE</td>
-      <td>Unspecified</td>
-      <td>Unspecified</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Northern Blvd, New York, ç¾å</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>52561</th>
-      <td>56587575</td>
-      <td>2023-01-21 18:19:49</td>
-      <td>NaT</td>
-      <td>DOT</td>
-      <td>Department of Transportation</td>
-      <td>Highway Condition</td>
-      <td>Graffiti - Highway</td>
-      <td>Highway</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>In Progress</td>
-      <td>NaN</td>
-      <td>The Department of Transportation inspected the...</td>
-      <td>02/02/2023 05:03:39 PM</td>
-      <td>Unspecified QUEENS</td>
-      <td>NaN</td>
-      <td>QUEENS</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>ONLINE</td>
-      <td>Unspecified</td>
-      <td>QUEENS</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Jackie Robinson/Interboro Pkwy</td>
-      <td>West/Brooklyn Bound</td>
-      <td>Roadway</td>
-      <td>Forest Park Dr (Exit 4) - Cypress Hills St (Ex...</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2677,7 +2422,7 @@ memory usage: 17.0+ MB</code></pre>
     </tr>
   </tbody>
 </table>
-<p>180 rows × 41 columns</p>
+<p>159 rows × 41 columns</p>
 </div>
 </div>
 </div>
@@ -2879,94 +2624,6 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>1260</th>
-      <td>56532819</td>
-      <td>2023-01-15 07:21:21</td>
-      <td>2023-01-15 07:21:21</td>
-      <td>DOT</td>
-      <td>Department of Transportation</td>
-      <td>Street Condition</td>
-      <td>Pothole</td>
-      <td>NaN</td>
-      <td>10026.0</td>
-      <td>WEST  110 STREET</td>
-      <td>WEST  110 STREET</td>
-      <td>7 AVENUE</td>
-      <td>LENOX AVENUE</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>BLOCKFACE</td>
-      <td>MANHATTAN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Closed</td>
-      <td>NaN</td>
-      <td>The Department of Transportation determined th...</td>
-      <td>01/15/2023 07:21:21 AM</td>
-      <td>64 MANHATTAN</td>
-      <td>NaN</td>
-      <td>MANHATTAN</td>
-      <td>303919.930630</td>
-      <td>70130.460992</td>
-      <td>UNKNOWN</td>
-      <td>Unspecified</td>
-      <td>MANHATTAN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>40.798201</td>
-      <td>-73.953550</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1261</th>
-      <td>56535357</td>
-      <td>2023-01-15 07:21:21</td>
-      <td>2023-01-15 07:21:21</td>
-      <td>DOT</td>
-      <td>Department of Transportation</td>
-      <td>Street Condition</td>
-      <td>Pothole</td>
-      <td>NaN</td>
-      <td>10026.0</td>
-      <td>WEST  110 STREET</td>
-      <td>WEST  110 STREET</td>
-      <td>7 AVENUE</td>
-      <td>LENOX AVENUE</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>BLOCKFACE</td>
-      <td>MANHATTAN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Closed</td>
-      <td>NaN</td>
-      <td>The Department of Transportation determined th...</td>
-      <td>01/15/2023 07:21:21 AM</td>
-      <td>64 MANHATTAN</td>
-      <td>NaN</td>
-      <td>MANHATTAN</td>
-      <td>303919.930630</td>
-      <td>70130.460992</td>
-      <td>UNKNOWN</td>
-      <td>Unspecified</td>
-      <td>MANHATTAN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>40.798201</td>
-      <td>-73.953550</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
       <th>1262</th>
       <td>56537491</td>
       <td>2023-01-15 07:21:21</td>
@@ -3008,6 +2665,94 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>40.798201</td>
       <td>-73.953550</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1294</th>
+      <td>56535076</td>
+      <td>2023-01-15 07:34:12</td>
+      <td>2023-01-17 08:55:00</td>
+      <td>DOT</td>
+      <td>Department of Transportation</td>
+      <td>Street Condition</td>
+      <td>Pothole</td>
+      <td>NaN</td>
+      <td>10472.0</td>
+      <td>WATSON AVENUE</td>
+      <td>WATSON AVENUE</td>
+      <td>LUIS ANGEL SUPA TORRES WAY</td>
+      <td>WHEELER AVENUE</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>BLOCKFACE</td>
+      <td>BRONX</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Department of Transportation inspected thi...</td>
+      <td>01/17/2023 08:55:00 AM</td>
+      <td>09 BRONX</td>
+      <td>NaN</td>
+      <td>BRONX</td>
+      <td>307703.798789</td>
+      <td>71621.279289</td>
+      <td>UNKNOWN</td>
+      <td>Unspecified</td>
+      <td>BRONX</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>40.811599</td>
+      <td>-73.908694</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1345</th>
+      <td>56533345</td>
+      <td>2023-01-15 07:54:56</td>
+      <td>2023-01-17 13:40:00</td>
+      <td>DOT</td>
+      <td>Department of Transportation</td>
+      <td>Street Condition</td>
+      <td>Pothole</td>
+      <td>NaN</td>
+      <td>11421.0</td>
+      <td>WOODHAVEN BOULEVARD</td>
+      <td>WOODHAVEN BOULEVARD</td>
+      <td>85 ROAD</td>
+      <td>86 AVENUE</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>BLOCKFACE</td>
+      <td>QUEENS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Closed</td>
+      <td>NaN</td>
+      <td>The Department of Transportation inspected thi...</td>
+      <td>01/17/2023 01:40:00 PM</td>
+      <td>09 QUEENS</td>
+      <td>NaN</td>
+      <td>QUEENS</td>
+      <td>311939.060927</td>
+      <td>58708.033587</td>
+      <td>UNKNOWN</td>
+      <td>Unspecified</td>
+      <td>QUEENS</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>40.695264</td>
+      <td>-73.858745</td>
       <td>NaN</td>
     </tr>
     <tr>
@@ -3055,10 +2800,10 @@ memory usage: 17.0+ MB</code></pre>
       <td>...</td>
     </tr>
     <tr>
-      <th>53691</th>
-      <td>56588548</td>
-      <td>2023-01-21 22:09:24</td>
-      <td>2023-01-21 22:09:24</td>
+      <th>53690</th>
+      <td>56588873</td>
+      <td>2023-01-21 22:09:23</td>
+      <td>2023-01-23 12:40:00</td>
       <td>DOT</td>
       <td>Department of Transportation</td>
       <td>Street Condition</td>
@@ -3077,8 +2822,8 @@ memory usage: 17.0+ MB</code></pre>
       <td>NaN</td>
       <td>Closed</td>
       <td>NaN</td>
-      <td>The Department of Transportation determined th...</td>
-      <td>01/21/2023 10:09:24 PM</td>
+      <td>The Department of Transportation inspected thi...</td>
+      <td>01/23/2023 12:40:00 PM</td>
       <td>01 STATEN ISLAND</td>
       <td>NaN</td>
       <td>STATEN ISLAND</td>
@@ -3276,11 +3021,18 @@ memory usage: 17.0+ MB</code></pre>
     </tr>
   </tbody>
 </table>
-<p>797 rows × 41 columns</p>
+<p>609 rows × 41 columns</p>
 </div>
 </div>
 </div>
-<p>Summary after cleaning the data. * There are more missing <code>X Coordinate (State Plane)</code> than <code>Y Coordinate (State Plane)</code>. * There is duplicate when stating <code>Cross Street 1</code>, <code>Cross Street 2</code>, <code>Intersection Street 1</code>,and <code>Intersection Street 2</code>. * Agency from <code>DOT</code> seems commonly mixed up the <code>Closed Date</code> and <code>Created Date</code>. * <code>Borough</code> that is <code>unspecified</code> should count as <code>missing</code>. * Many <code>Park Facility Name</code> is <code>unspecified</code> should count as <code>missing</code>.</p>
+<p>Summary after cleaning the data.</p>
+<ul>
+<li>There are more missing <code>X Coordinate (State Plane)</code> than <code>Y Coordinate (State Plane)</code>.</li>
+<li>There is duplicate when stating <code>Cross Street 1</code>, <code>Cross Street 2</code>, <code>Intersection Street 1</code>,and <code>Intersection Street 2</code>.</li>
+<li>Agency from <code>DOT</code> seems commonly mixed up the <code>Closed Date</code> and <code>Created Date</code>.</li>
+<li><code>Borough</code> that is <code>unspecified</code> should count as <code>missing</code>.</li>
+<li>Many <code>Park Facility Name</code> is <code>unspecified</code> should count as <code>missing</code>.</li>
+</ul>
 <p>Remove the request not from NYPD</p>
 <div class="cell" data-execution_count="19">
 <details>
@@ -3343,50 +3095,6 @@ memory usage: 17.0+ MB</code></pre>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th>2407</th>
-      <td>56532919</td>
-      <td>2023-01-15 11:05:17</td>
-      <td>NaT</td>
-      <td>NYPD</td>
-      <td>New York City Police Department</td>
-      <td>Blocked Driveway</td>
-      <td>No Access</td>
-      <td>Street/Sidewalk</td>
-      <td>11212.0</td>
-      <td>494 EAST   95 STREET</td>
-      <td>EAST   95 STREET</td>
-      <td>WILLMOHR STREET</td>
-      <td>CHURCH AVENUE</td>
-      <td>WILLMOHR STREET</td>
-      <td>CHURCH AVENUE</td>
-      <td>ADDRESS</td>
-      <td>BROOKLYN</td>
-      <td>EAST   95 STREET</td>
-      <td>NaN</td>
-      <td>In Progress</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>17 BROOKLYN</td>
-      <td>3.046910e+09</td>
-      <td>BROOKLYN</td>
-      <td>1007310.0</td>
-      <td>178148.0</td>
-      <td>MOBILE</td>
-      <td>Unspecified</td>
-      <td>BROOKLYN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>40.655622</td>
-      <td>-73.916891</td>
-      <td>(40.65562177191011, -73.91689052688147)</td>
-    </tr>
   </tbody>
 </table>
 </div>
@@ -5640,7 +5348,7 @@ memory usage: 17.0+ MB</code></pre>
 <p><img src="Midterm_Project_files/figure-html/cell-23-output-1.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="22">
-<pre><code>&lt;ggplot: (176471142009)&gt;</code></pre>
+<pre><code>&lt;ggplot: (194511588696)&gt;</code></pre>
 </div>
 </div>
 <p>Test whether the distributions are the same across weekdays/weekends.</p>
