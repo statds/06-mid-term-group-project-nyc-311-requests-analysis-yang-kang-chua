@@ -159,7 +159,7 @@ for index in Filter_1.index:
     nyc311.loc[index,'Longitude'] = Filter_1['Longitude'][index]
 ```
 
-Work on Address Type = `ADDRESS`
+Work on address type `ADDRESS`.
 ```{python}
 Filter_1 = nyc311[nyc311['Latitude'].isnull()]
 Filter_1 = Filter_1[Filter_1['Address Type'] == 'ADDRESS']
@@ -373,16 +373,17 @@ from plotnine import *
 Test whether the distributions are the same across weekdays/weekends.
 
 ```{python}
-from scipy.stats import kruskal
+from scipy.stats import kstest
 
 # Create the subset of data
 weekday_dur = nyc311_NYPD.loc[nyc311_NYPD['Day type'] == 'Weekday', 'Duration (hours)']
 
 weekend_dur = nyc311_NYPD.loc[nyc311_NYPD['Day type'] == 'Weekend', 'Duration (hours)']
 
-stat, pval = kruskal(weekday_dur, weekend_dur)
+# Perform the weekday/weekend comparison
+weekday_weekend_pvalue = kstest(weekday_dur, weekend_dur).pvalue
 
-print(pval)
+print(weekday_weekend_pvalue)
 ```
 The pvalue shows that is diffeent accross weekdays and weekends.
 
@@ -390,20 +391,20 @@ Test whether the distributions are the same across borough.
 
 ```{python}
 # Create the subset of the data
-bronx = nyc311_NYPD[nyc311_NYPD['Borough'] == 'BRONX']['Duration (hours)']
+from itertools import combinations
 
-brooklyn = nyc311_NYPD[nyc311_NYPD['Borough'] == 'BROOKLYN']['Duration (hours)']
+borough_groups = []
+for borough in nyc311_NYPD['Borough'].unique():
+    borough_group = nyc311_NYPD[nyc311_NYPD['Borough'] == borough]['Duration (hours)']
+    borough_groups.append(borough_group)
 
-manhattan = nyc311_NYPD[nyc311_NYPD['Borough'] == 'MANHATTAN']['Duration (hours)']
+# Perform the borough comparisons
+borough_pvalues = []
+for group1, group2 in combinations(borough_groups, 2):
+    pvalue = kstest(group1, group2).pvalue
+    borough_pvalues.append(pvalue)
 
-queens = nyc311_NYPD[nyc311_NYPD['Borough'] == 'QUEENS']['Duration (hours)']
-
-staten_island = nyc311_NYPD[nyc311_NYPD['Borough'] == 'STATEN ISLAND']['Duration (hours)']
-
-stat, pval = kruskal(bronx, brooklyn, manhattan, queens, staten_island)
-
-print(pval)
-
+print('Borough p-values:', borough_pvalues)
 ```
 The pvalue shows that the distribution are different across across borough. 
 
