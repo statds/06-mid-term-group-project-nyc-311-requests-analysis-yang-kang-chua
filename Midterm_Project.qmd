@@ -77,13 +77,13 @@ Filter_1.head()
 
 Few thing we can do to clean the data:
 
-* Remove the `Created Date` and `Closed Date`.
+* Remove the `Closed Date` earlier than `Created Date`.
 * Missing Value from `Incident Zip` can be found using `Latitude` and `Longitude` using `uszipcode`.
 * `Latitude` and `Longitude` can be found using the available `Incident Address`, `Street Name`, `Cross Street 1`, `Cross Street 2`, `Intersection Street 1`, `Intersection Street 2` or as known as `Address Type`.
 * We can get `X Coordinate (State Plane)`and `Y Coordinate (State Plane)` using `stateplane`.
 * Update `Borough` from `Incident Zip`.
 
-Begin by remove the `Created Date` and `Closed Date`.
+Begin by remove the `Closed Date` earlier than `Created Date``.
 
 ```{python}
 nyc311 = nyc311[nyc311['Created Date'] < nyc311['Closed Date']]
