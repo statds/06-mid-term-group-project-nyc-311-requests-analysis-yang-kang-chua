@@ -373,7 +373,7 @@ from plotnine import *
 Test whether the distributions are the same across weekdays/weekends.
 
 ```{python}
-from scipy.stats import kstest
+from scipy.stats import mannwhitneyu
 
 # Create the subset of data
 weekday_dur = nyc311_NYPD.loc[nyc311_NYPD['Day type'] == 'Weekday', 'Duration (hours)']
@@ -381,7 +381,7 @@ weekday_dur = nyc311_NYPD.loc[nyc311_NYPD['Day type'] == 'Weekday', 'Duration (h
 weekend_dur = nyc311_NYPD.loc[nyc311_NYPD['Day type'] == 'Weekend', 'Duration (hours)']
 
 # Perform the weekday/weekend comparison
-weekday_weekend_pvalue = kstest(weekday_dur, weekend_dur).pvalue
+weekday_weekend_pvalue = mannwhitneyu(weekday_dur, weekend_dur).pvalue
 
 print(weekday_weekend_pvalue)
 ```
@@ -391,20 +391,17 @@ Test whether the distributions are the same across borough.
 
 ```{python}
 # Create the subset of the data
-from itertools import combinations
+from scipy.stats import kruskal
 
-borough_groups = []
-for borough in nyc311_NYPD['Borough'].unique():
-    borough_group = nyc311_NYPD[nyc311_NYPD['Borough'] == borough]['Duration (hours)']
-    borough_groups.append(borough_group)
+group1 =nyc311_NYPD[nyc311_NYPD['Borough'] == 'BROOKLYN']['Duration (hours)']
+group2 = nyc311_NYPD[nyc311_NYPD['Borough'] == 'QUEENS']['Duration (hours)']
+group3 = nyc311_NYPD[nyc311_NYPD['Borough'] == 'MANHATTAN']['Duration (hours)']
+group4 = nyc311_NYPD[nyc311_NYPD['Borough'] == 'BRONX']['Duration (hours)']
+group5 = nyc311_NYPD[nyc311_NYPD['Borough'] == 'STATEN ISLAND']['Duration (hours)']
 
-# Perform the borough comparisons
-borough_pvalues = []
-for group1, group2 in combinations(borough_groups, 2):
-    pvalue = kstest(group1, group2).pvalue
-    borough_pvalues.append(pvalue)
+statistic, p_value = kruskal(group1, group2, group3, group4, group5)
 
-print('Borough p-values:', borough_pvalues)
+print('Borough p-values:', p_value)
 ```
 The pvalue shows that the distribution are different across across borough. 
 
