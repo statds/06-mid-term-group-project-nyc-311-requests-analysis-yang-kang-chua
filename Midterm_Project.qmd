@@ -1,7 +1,7 @@
 ---
 title: "Midterm Project"
-author: "Yang Kang Chua, Shen, Tong"
-date: "March 3, 2023"
+author: "Yang Kang Chua, Tong Shen"
+date: "March 5, 2023"
 format:
   html:
     code-fold: true
@@ -75,15 +75,15 @@ Filter_1 = nyc311[nyc311['Created Date'] > nyc311['Closed Date']]
 Filter_1.head()
 ```
 
-Few thing we can do to clean the data:
+Few things we can do to clean the data:
 
-* Remove the `Closed Date` earlier than `Created Date`.
+* Remove the rows in which `Closed Date` is earlier than `Created Date`.
 * Missing Value from `Incident Zip` can be found using `Latitude` and `Longitude` using `uszipcode`.
 * `Latitude` and `Longitude` can be found using the available `Incident Address`, `Street Name`, `Cross Street 1`, `Cross Street 2`, `Intersection Street 1`, `Intersection Street 2` or as known as `Address Type`.
 * We can get `X Coordinate (State Plane)`and `Y Coordinate (State Plane)` using `stateplane`.
 * Update `Borough` from `Incident Zip`.
 
-Begin by remove the `Closed Date` earlier than `Created Date``.
+Begin by removing the rows where `Closed Date` is earlier than `Created Date``.
 
 ```{python}
 nyc311 = nyc311[nyc311['Created Date'] < nyc311['Closed Date']]
@@ -386,7 +386,8 @@ weekday_weekend_pvalue = mannwhitneyu(weekday_dur, weekend_dur).pvalue
 
 print(weekday_weekend_pvalue)
 ```
-The pvalue shows that is diffeent accross weekdays and weekends.
+
+The null hypothesis is that there is no difference between the distribution of the durition between weekdays and weekends. We use Mann-Whitney U test to test this hypothesis. The p value is less than 0.05 so the null hypothesis is rejected, and thus the distribution is different accross weekdays and weekends.
 
 Test whether the distributions are the same across borough.
 
@@ -404,7 +405,7 @@ statistic, p_value = kruskal(group1, group2, group3, group4, group5)
 
 print('Borough p-values:', p_value)
 ```
-The pvalue shows that the distribution are different across across borough. 
+The null hypothesis is that there is no significant median difference in the distribution of the duration across the borough.  We use Kruskal-Wallis test to test this hypothesis. The p value is less than 0.05 so the null hypothesis is rejected, suggesting that the medians are different across borough. 
 
 Lets merge with uszipcode data.
 
@@ -439,10 +440,9 @@ merged_df
 
 ```
 
-## Model Selection
+## Build models to predict `over3h`
 
-### Importing new variable
-Lets choose a model to predict `duration`.
+### Data preparation
 
 ```{python}
 import pandas as pd
@@ -458,12 +458,12 @@ train['over3h'] = train['Duration (hours)'].\
 test['over3h'] = test['Duration (hours)'].\
     apply(lambda x: 1 if x >= 3 else 0)
 ```
-Construct a `hour` variable with integer values from 0 to 23.
+Construct an `hour` variable with integer values from 0 to 23.
 ```{python}
 train['hour'] = pd.to_datetime(train['Created Date']).dt.hour
 test['hour'] = pd.to_datetime(test['Created Date']).dt.hour
 ```
-Construct a `house_income_ratio` represent the ratio of `median_home_value` to `median_household_income`.
+Construct a `house_income_ratio` represents the ratio of `median_home_value` to `median_household_income`.
 ```{python}
 train['house_income_ratio'] = train['median_home_value'] / train['median_household_income']
 test['house_income_ratio'] = test['median_home_value'] / train['median_household_income']
@@ -492,9 +492,9 @@ train = train.drop(train[train['Resolution Description'] == \
 'Your complaint has been received by the Police Department and additional information will be available later.'].index)
 train = train.drop(train[train['Open Data Channel Type'] == 'UNKNOWN'].index)
 ```
-Get the training data and separate the categorical and continuous variables into separate dataframes.
+Get the training data 
 ```{python}
-
+# Separate the categorical and continuous variables into separate dataframes.
 train_categorical_variables = train[['hour', 'Day type', 'Complaint Type', 'Community Board',\
                  'Resolution Description', 'Open Data Channel Type']]
 train_continuous_variables = train[['population_density', 'median_home_value', 'house_income_ratio']]
@@ -505,8 +505,9 @@ train_categorical_encoded = pd.get_dummies(train_categorical_variables)
 X_train = pd.concat([train_categorical_encoded, train_continuous_variables], axis=1)
 print(X_train.shape) 
 ```
-Get the testing data and separate the categorical and continuous variables into separate dataframes
+Get the testing data 
 ```{python}
+# separate the categorical and continuous variables into separate dataframes
 test_categorical_variables = test[['hour', 'Day type', 'Complaint Type', 'Community Board',\
                  'Resolution Description', 'Open Data Channel Type']]
 test_continuous_variables = test[['population_density', 'median_home_value', 'house_income_ratio']]
@@ -526,7 +527,7 @@ y_train = train['over3h'].values
 y_test = test['over3h'].values
 ```
 
-### Import Model and fit the Model
+### Import and fit the models
 ```{python}
 from sklearn.svm import SVC
 
@@ -547,6 +548,7 @@ tree1.fit(X_train, y_train)
 tree1.tree_.node_count
 ```
 
+### Evaluation of the models
 ```{python}
 # caculate the predicted values
 svm_pred = svm.predict(X_test)
@@ -603,12 +605,7 @@ print("F1-score:", tree1_f1)
 print("AUC:", tree1_auc)
 ```
 
-### Summary on SVM model
-We observed that the SVM model performed poorly with the default parameters. To improve its performance, we decided to scale the continuous variables and use cross-validation to find the optimal hyperparameters. However, the SVM model took too long to train and did not converge even after running for half an hour.
-
-In contrast, the decision tree model provided accurate predictions with the default parameters and was much more efficient than the SVM model. Therefore, we decided to use the decision tree model for further optimazition.
-
-Here are the syntax that tried to optimize svm parameters
+Here are the syntax we tried to optimize svm parameters
 ```python
 from sklearn.preprocessing import StandardScaler
 
@@ -643,6 +640,12 @@ grid_search.fit(X_train_s, y_train)
 # print the best hyperparameters found
 print("Best hyperparameters: ", grid_search.best_params_)
 ```
+
+We observed that the SVM model performed poorly with the default parameters. To improve its performance, we decided to scale the continuous variables and use cross-validation to find the optimal hyperparameters. However, the SVM model took too long to train and did not converge even after running for half an hour.
+
+In contrast, the decision tree model provided accurate predictions with the default parameters and was much more efficient than the SVM model. Therefore, we decided to use the decision tree model for further optimazition.
+
+### Decision tree parameter tuning
 
 ```{python}
 # define the hyperparameter grid 
@@ -706,181 +709,5 @@ print("F1-score:", tree2_f1)
 print("AUC:", tree2_auc)
 ```
 
-### Summary for Model Selection
+### Summary for model selection
 Cross-validation was used to optimize the tuning parameters for building the second decision tree model with the objective of minimizing overfitting and maximizing AUC. While the second model (tree2) performed better on accuracy and precision, it did not perform as well as the first model (tree1) on other metrics such as recall, F1 score, and AUC. However, tree2 had significantly fewer nodes than tree1. Overall, both models performed adequately and the choice of model would depend on the specific metric that is more important for the task at hand. For instance, if higher precision is desired, then tree1 would be the preferred choice.
-
-
-## Research question of interest and exploration
-
-Our "research" question is what suggestions we can give for individuals (friends or clients) seeking to purchase a neighbor-friendly house in NYC. Our analysis involved exploring factors such as total complains, noise complaints, parking violations, NYPD location, and median house value. 
-
-```{python}
-import geopandas as gpd
-import matplotlib.pyplot as plt
-import pandas as pd
-from plotnine import *
-from plotnine.data import *
-import numpy as np
-%matplotlib inline
-from shapely.geometry import Point 
-```
-
-```{python}
-# Load data and select some columns
-nyc_merged = pd.read_csv('nyc311_NYPD_merged.csv')
-comp_df = nyc_merged[['Complaint Type', 'Incident Zip', 'Borough', 'Latitude', 'Longitude', 'median_home_value']].copy()
-comp_df['comp_type'] = comp_df['Complaint Type'].astype('category').cat.codes
-comp_df['zipstr'] = comp_df['Incident Zip'].apply(lambda f: str(int(f)))
-comp_df
-```
-
-### Get an idea of complaint distribution - Plot complaint locations
-
-To get a basic idea of complaint distribution, we can plot the locations of complaints reported in different boroughs. This will help us identify areas with a higher volume of complaints and any patterns or trends that may be specific to certain boroughs. We can do this by creating a map with different boroughs shown in different colors and using smaller markers to represent individual complaints. From the following map, we can see that Staten Island has the least complaint density.
-
-```{python}
-crs = 'epsg:4326' # coordinate reference system
-comp_geometry = gpd.points_from_xy(comp_df['Longitude'], comp_df['Latitude'])
-comp_gdf = gpd.GeoDataFrame(comp_df, crs=crs, geometry=comp_geometry)
-comp_gdf.plot(column = 'Borough',markersize=0.5, legend=True)
-```
-
-While Staten Island may have a much lower complaint density than other boroughs, it may have certain disadvantages such as limited transportation options. For example, commuting from Staten Island to Manhattan may be time-consuming and inconvenient for those who need to work in Manhattan. Therefore, we continue to explore the complaint density in different zip codes.
-
-```{python}
-# Load new york borough boundary data
-nybb_gdf = gpd.read_file(gpd.datasets.get_path('nybb'))
-```
-
-```{python}
-# zipcodes = gpd.read_file('data/tl_2022_us_zcta520/tl_2022_us_zcta520.shp')
-zipcodes = gpd.read_file('nyc_zipcode.geojson')
-# Count total complaints per zip code
-total_comp_df = comp_df.groupby('zipstr')['comp_type'].count().reset_index(name='total complaints')
-total_comp_df
-# merge it with zip code area and plot it on the map
-merge_total_comps = zipcodes.merge(total_comp_df, left_on='GEOID20', right_on='zipstr')
-comp_map = merge_total_comps.explore(column='total complaints', cmap='OrRd', legend=True)
-
-comp_map = nybb_gdf.explore(m=comp_map, color='black', style_kwds={'fill': False})
-comp_map
-```
-
-Based on the interactive map above (displaying complaint density for different zip codes), it would be advisable to avoid certain areas in Brooklyn and the Bronx.
-
-## Explore certain complaint type per zip code
-
-While we have explored some general neighbor-friendly areas by analyzing the total number of complaints, it's important to consider specific needs of individuals. For instance, if your friends/clients are sensitive to noise and prefer a quiet environment, or if they drive and dislike areas with high incidents of illegal parking, we need to take those specific needs into account when suggesting neighborhoods.
-
-#### Noise-related issues
-
-```{python}
-comp_zipcode_df = comp_df.groupby('zipstr')['Complaint Type'].value_counts().\
-reset_index(name='count')
-# Get noise related complaints
-noise_df = comp_zipcode_df[comp_zipcode_df['Complaint Type'].\
-                           apply(lambda comp_type: comp_type.startswith('Noise'))].copy()
-noise_df = noise_df.groupby('zipstr')['count'].sum().reset_index(name='noise complaints')
-# merge it with zip code area and plot it on the map
-merge_noise = zipcodes.merge(noise_df, left_on='GEOID20', right_on='zipstr')
-noise_map = merge_noise.explore(column='noise complaints', cmap='OrRd', legend=True)
-
-noise_map = nybb_gdf.explore(m=noise_map, color='black', style_kwds={'fill': False})
-noise_map
-```
-
-Based on the noise complaint map, it is recommended to consider Staten Island (excluding the northeast area with zip code 10301) and most areas in Queens (avoide the western area) for those who are sensitive to noise. For those who  prefer a quieter location but want to live in Manhattan, the Upper East Side might be a good choice. 
-
-#### Illegal parking
-
-```{python}
-# Get illegal parking data
-illpark_df = comp_zipcode_df[comp_zipcode_df['Complaint Type'] == 'Illegal Parking'].copy()
-# merge it with zip code area and plot it on the map
-merge_illpark = zipcodes.merge(illpark_df, left_on='GEOID20', right_on='zipstr')
-illpark_map = merge_illpark.explore(column='count', cmap='OrRd', legend=True)
-illpark_map = nybb_gdf.explore(m=illpark_map, color='black', style_kwds={'fill': False})
-illpark_map
-```
-
-This map shows that Staten Island and most areas in Queens (avoide the western area) are also good choices for people who need to drive and dislike illegal parking. In addition, Manhattan has relatively low numbers of illegal parking complaints.
-
-### Exploring factors that might impact certain types of complaints
-
-Now that we have found some larger areas that we might want to suggest based on different needs, such as Staten Island, the Upper East Sideand, or most areas in Queens. You may still want more specific suggestions for a good place to live. For example, you may be wondering if it is a good idea to live near NYPD as this could potentially reduce noise and illegal activities in the area. Or, you may be curious if higher house prices correlate with having more friendly neighbors (do you need to pay more for a more friendly neighborhood). Let's take a look.
-
-#### Live near NYPD?
-
-Load NYPD Precincts data
-Source: precinct locations are looked up from [here](https://www.nyc.gov/site/nypd/bureaus/patrol/precincts-landing.page)
-Longitudes and latitudes are queried through Google Maps
-
-Use this data to explore if 311 calls have any relationship with NYPD precinct locations
-
-```{python}
-# Add NYPD precinct locations
-crs = {'init': 'epsg:4326'} # coordinate reference system
-nypd_location = pd.read_csv('nypd_precinct_locations.csv')
-nypd_geometry = gpd.points_from_xy(nypd_location['Longitude'], nypd_location['Latitude'])
-nypd_gdf = gpd.GeoDataFrame(nypd_location, crs=crs, geometry=nypd_geometry)
-
-nypd_gdf.explore(m = comp_map, marker_type='circle_marker', marker_kwds={'radius': 1}, legend=True)
-```
-
-From the eyeball, it is not easy to tell if there is any relationship between the complaint counts and the distance to NYPD. To investigate whether living near NYPD impacts the number of complaints, I created a histogram of the distance between complaint locations and the nearest police station as x axis and the number of complaints as y axis.
-
-```{python}
-# To calculate distance, need to use a coordinate reference system that preserves distance. Here we use UTM.
-# reference: https://gis.ny.gov/coordinationprogram/workgroups/wg_1/related/standards/datum.htm
-nyc_utm = '+proj=utm +zone=18 +north +ellps=WGS84 +datum=WGS84 +units=m +no_defs'
-
-comp_gdf2 = comp_gdf.to_crs(crs=nyc_utm) # Convert total compliants' GeoDataFrame
-nypd_gdf2 = nypd_gdf.to_crs(crs=nyc_utm) # Covert NYPD precinct GeoDataFrame
-
-# Calculate the distance to nearest precinct for each complaint
-nearest_res = nypd_gdf2.sindex.nearest(comp_gdf2.geometry, return_all=False, return_distance=True)
-dist_to_pd = nearest_res[1] # second element is the distance array
-
-# View the data in a histogram
-fig, ax = plt.subplots()
-ax.hist(dist_to_pd, bins=100)
-ax.set_xlabel('Distance to precinct (m)')
-ax.set_ylabel('Number of complaints')
-```
-
-From this histogram, our suggestion is: don't specifically look for houses or apartments that near NYPD. 
-
-#### Buy a more expensive house/apartment?
-
-```{python}
-# Get mean median home value for each zip code and drop NA values
-median_homeval_df = comp_df.groupby('zipstr')['median_home_value'].mean().reset_index(name='median home value').dropna()
-
-# merge it with zip code area and plot it on the map
-merge_total_comps = zipcodes.merge(median_homeval_df, left_on='GEOID20', right_on='zipstr')
-homeval_map = merge_total_comps.explore(column='median home value', cmap='OrRd', legend=True)
-homeval_map
-```
-
-From the map, we can see that Manhattan and Western Brooklyn have the highest median house value. However, from our earlier exploration, we found that these areas also have high total complaints and high noise complaints. So, it's not necessarily true that higher house prices correlate with more friendly neighbors. Admittedly, the earlier suggestion was just a general one based on boroughs. However, it is possible that house prices within a borough may moderate the relationship between complaints and house values. To explore this possibility, we can look at scatter plots of complaint counts against median house values for each borough. This will allow us to see if there are any notable trends or patterns within each borough.
-
-```{python}
-### Plot total complaints against mean home value
-comp_homeval_df = median_homeval_df.merge(total_comp_df, left_on='zipstr', right_on='zipstr').copy()
-comp_homeval_df = comp_homeval_df.merge(comp_df[['zipstr', 'Borough']], on='zipstr')
-comp_homeval_df
-```
-
-```{python}
-(
-    ggplot(comp_homeval_df, # The dataset we are using
-        aes(x = 'median home value', y='total complaints', fill = 'Borough')) 
-        + geom_point(size=3, stroke=0)
-)
-```
-
-Based on the scatter plots for each borough, there doesn't seem to be a clear correlation between the number of complaints and house prices. This suggests that higher house prices may not necessarily lead to more friendly neighbors.
-
-### Conclusion
-
-In conclusion, analyzing complaint data can provide valuable insights for people looking to find a good place to live. By plotting complaint locations on a map, we can identify areas with higher complaint volumes and specific patterns or trends that may be unique to certain boroughs or neighborhoods. From the maps and analyses presented, we have identified some general areas that might be friendlier for different needs, such as Staten Island for those who are sensitive to noise or need to drive, or the Upper East Side for those who want a quieter location in Manhattan. However, when it comes to specific questions such as whether living near NYPD or paying higher house prices correlates with more friendly neighbors, the data does not provide clear evidence of any such correlation. Therefore, it is important to consider individual needs and preferences when selecting a neighborhood to live in.
