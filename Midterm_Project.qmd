@@ -1,7 +1,7 @@
 ---
 title: "Midterm Project"
-author: "Yang Kang Chua, Shen, Tong"
-date: "March 3, 2023"
+author: "Yang Kang Chua, Tong Shen"
+date: "March 5, 2023"
 format:
   html:
     code-fold: true
@@ -75,15 +75,15 @@ Filter_1 = nyc311[nyc311['Created Date'] > nyc311['Closed Date']]
 Filter_1.head()
 ```
 
-Few thing we can do to clean the data:
+Few things we can do to clean the data:
 
-* Remove the `Closed Date` earlier than `Created Date`.
+* Remove the rows in which `Closed Date` is earlier than `Created Date`.
 * Missing Value from `Incident Zip` can be found using `Latitude` and `Longitude` using `uszipcode`.
 * `Latitude` and `Longitude` can be found using the available `Incident Address`, `Street Name`, `Cross Street 1`, `Cross Street 2`, `Intersection Street 1`, `Intersection Street 2` or as known as `Address Type`.
 * We can get `X Coordinate (State Plane)`and `Y Coordinate (State Plane)` using `stateplane`.
 * Update `Borough` from `Incident Zip`.
 
-Begin by remove the `Closed Date` earlier than `Created Date``.
+Begin by removing the rows where `Closed Date` is earlier than `Created Date``.
 
 ```{python}
 nyc311 = nyc311[nyc311['Created Date'] < nyc311['Closed Date']]
@@ -386,7 +386,8 @@ weekday_weekend_pvalue = mannwhitneyu(weekday_dur, weekend_dur).pvalue
 
 print(weekday_weekend_pvalue)
 ```
-The pvalue shows that is diffeent accross weekdays and weekends.
+
+The null hypothesis is that there is no difference between the distribution of the durition between weekdays and weekends. We use Mann-Whitney U test to test this hypothesis. The p value is less than 0.05 so the null hypothesis is rejected, and thus the distribution is different accross weekdays and weekends.
 
 Test whether the distributions are the same across borough.
 
@@ -404,7 +405,7 @@ statistic, p_value = kruskal(group1, group2, group3, group4, group5)
 
 print('Borough p-values:', p_value)
 ```
-The pvalue shows that the distribution are different across across borough. 
+The null hypothesis is that there is no significant median difference in the distribution of the duration across the borough.  We use Kruskal-Wallis test to test this hypothesis. The p value is less than 0.05 so the null hypothesis is rejected, suggesting that the medians are different across borough. 
 
 Lets merge with uszipcode data.
 
@@ -439,10 +440,9 @@ merged_df
 
 ```
 
-## Model Selection
+## Build models to predict `over3h`
 
-### Importing new variable
-Lets choose a model to predict `duration`.
+### Data preparation
 
 ```{python}
 import pandas as pd
@@ -458,12 +458,12 @@ train['over3h'] = train['Duration (hours)'].\
 test['over3h'] = test['Duration (hours)'].\
     apply(lambda x: 1 if x >= 3 else 0)
 ```
-Construct a `hour` variable with integer values from 0 to 23.
+Construct an `hour` variable with integer values from 0 to 23.
 ```{python}
 train['hour'] = pd.to_datetime(train['Created Date']).dt.hour
 test['hour'] = pd.to_datetime(test['Created Date']).dt.hour
 ```
-Construct a `house_income_ratio` represent the ratio of `median_home_value` to `median_household_income`.
+Construct a `house_income_ratio` represents the ratio of `median_home_value` to `median_household_income`.
 ```{python}
 train['house_income_ratio'] = train['median_home_value'] / train['median_household_income']
 test['house_income_ratio'] = test['median_home_value'] / train['median_household_income']
@@ -492,9 +492,9 @@ train = train.drop(train[train['Resolution Description'] == \
 'Your complaint has been received by the Police Department and additional information will be available later.'].index)
 train = train.drop(train[train['Open Data Channel Type'] == 'UNKNOWN'].index)
 ```
-Get the training data and separate the categorical and continuous variables into separate dataframes.
+Get the training data 
 ```{python}
-
+# Separate the categorical and continuous variables into separate dataframes.
 train_categorical_variables = train[['hour', 'Day type', 'Complaint Type', 'Community Board',\
                  'Resolution Description', 'Open Data Channel Type']]
 train_continuous_variables = train[['population_density', 'median_home_value', 'house_income_ratio']]
@@ -505,8 +505,9 @@ train_categorical_encoded = pd.get_dummies(train_categorical_variables)
 X_train = pd.concat([train_categorical_encoded, train_continuous_variables], axis=1)
 print(X_train.shape) 
 ```
-Get the testing data and separate the categorical and continuous variables into separate dataframes
+Get the testing data 
 ```{python}
+# separate the categorical and continuous variables into separate dataframes
 test_categorical_variables = test[['hour', 'Day type', 'Complaint Type', 'Community Board',\
                  'Resolution Description', 'Open Data Channel Type']]
 test_continuous_variables = test[['population_density', 'median_home_value', 'house_income_ratio']]
@@ -526,7 +527,7 @@ y_train = train['over3h'].values
 y_test = test['over3h'].values
 ```
 
-### Import Model and fit the Model
+### Import and fit the models
 ```{python}
 from sklearn.svm import SVC
 
@@ -547,6 +548,7 @@ tree1.fit(X_train, y_train)
 tree1.tree_.node_count
 ```
 
+### Evaluation of the models
 ```{python}
 # caculate the predicted values
 svm_pred = svm.predict(X_test)
@@ -603,12 +605,7 @@ print("F1-score:", tree1_f1)
 print("AUC:", tree1_auc)
 ```
 
-### Summary on SVM model
-We observed that the SVM model performed poorly with the default parameters. To improve its performance, we decided to scale the continuous variables and use cross-validation to find the optimal hyperparameters. However, the SVM model took too long to train and did not converge even after running for half an hour.
-
-In contrast, the decision tree model provided accurate predictions with the default parameters and was much more efficient than the SVM model. Therefore, we decided to use the decision tree model for further optimazition.
-
-Here are the syntax that tried to optimize svm parameters
+Here are the syntax we tried to optimize svm parameters
 ```python
 from sklearn.preprocessing import StandardScaler
 
@@ -643,6 +640,12 @@ grid_search.fit(X_train_s, y_train)
 # print the best hyperparameters found
 print("Best hyperparameters: ", grid_search.best_params_)
 ```
+
+We observed that the SVM model performed poorly with the default parameters. To improve its performance, we decided to scale the continuous variables and use cross-validation to find the optimal hyperparameters. However, the SVM model took too long to train and did not converge even after running for half an hour.
+
+In contrast, the decision tree model provided accurate predictions with the default parameters and was much more efficient than the SVM model. Therefore, we decided to use the decision tree model for further optimazition.
+
+### Decision tree parameter tuning
 
 ```{python}
 # define the hyperparameter grid 
@@ -706,13 +709,13 @@ print("F1-score:", tree2_f1)
 print("AUC:", tree2_auc)
 ```
 
-### Summary for Model Selection
+### Summary for model selection
 Cross-validation was used to optimize the tuning parameters for building the second decision tree model with the objective of minimizing overfitting and maximizing AUC. While the second model (tree2) performed better on accuracy and precision, it did not perform as well as the first model (tree1) on other metrics such as recall, F1 score, and AUC. However, tree2 had significantly fewer nodes than tree1. Overall, both models performed adequately and the choice of model would depend on the specific metric that is more important for the task at hand. For instance, if higher precision is desired, then tree1 would be the preferred choice.
 
 
 ## Research question of interest and exploration
 
-Our "research" question is what suggestions we can give for individuals (friends or clients) seeking to purchase a neighbor-friendly house in NYC. Our analysis involved exploring factors such as total complains, noise complaints, parking violations, NYPD location, and median house value. 
+Our research question is what suggestions we can give for individuals (friends or clients) seeking to purchase a neighbor-friendly house in NYC. Our analysis involved exploring factors such as total complains, noise complaints, parking violations, NYPD location, and median house value. 
 
 ```{python}
 import geopandas as gpd
@@ -768,7 +771,7 @@ comp_map
 
 Based on the interactive map above (displaying complaint density for different zip codes), it would be advisable to avoid certain areas in Brooklyn and the Bronx.
 
-## Explore certain complaint type per zip code
+### Explore certain complaint type per zip code
 
 While we have explored some general neighbor-friendly areas by analyzing the total number of complaints, it's important to consider specific needs of individuals. For instance, if your friends/clients are sensitive to noise and prefer a quiet environment, or if they drive and dislike areas with high incidents of illegal parking, we need to take those specific needs into account when suggesting neighborhoods.
 
@@ -883,4 +886,4 @@ Based on the scatter plots for each borough, there doesn't seem to be a clear co
 
 ### Conclusion
 
-In conclusion, analyzing complaint data can provide valuable insights for people looking to find a good place to live. By plotting complaint locations on a map, we can identify areas with higher complaint volumes and specific patterns or trends that may be unique to certain boroughs or neighborhoods. From the maps and analyses presented, we have identified some general areas that might be friendlier for different needs, such as Staten Island for those who are sensitive to noise or need to drive, or the Upper East Side for those who want a quieter location in Manhattan. However, when it comes to specific questions such as whether living near NYPD or paying higher house prices correlates with more friendly neighbors, the data does not provide clear evidence of any such correlation. Therefore, it is important to consider individual needs and preferences when selecting a neighborhood to live in.
+In conclusion, analyzing complaint data can provide valuable insights for people looking to find a good place to live. By plotting complaint locations on a map, we can identify areas with higher complaint volumes and specific patterns or trends that may be unique to certain boroughs or neighborhoods. From the maps and analyses presented, we have identified some general areas that might be friendlier for different needs, such as Staten Island for those who are sensitive to noise or need to drive, or the Upper East Side for those who want a quieter location in Manhattan. However, when it comes to specific questions such as whether living near NYPD or paying higher house prices correlates with more friendly neighbors, the data does not provide clear evidence of any such correlation.
