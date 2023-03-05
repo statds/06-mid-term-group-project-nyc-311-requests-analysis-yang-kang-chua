@@ -11,7 +11,7 @@ format:
       - left=20mm
 jupyter: python3
 ---
-
+## Data Cleaning
 ```{python}
 import numpy as np
 import pandas as pd
@@ -296,7 +296,7 @@ for index in Filter_1.index:
 #Show the filled state plane 
 Filter_1
 ```
-Summary after cleaning the data.
+### Summary after cleaning the data.
 
 * There are more missing `X Coordinate (State Plane)` than `Y Coordinate (State Plane)`.
 * There is duplicate when stating `Cross Street 1`, `Cross Street 2`, `Intersection Street 1`,and  `Intersection Street 2`.
@@ -304,6 +304,7 @@ Summary after cleaning the data.
 * `Borough` that is `unspecified` should count as `missing`.
 * Many `Park Facility Name` is `unspecified` should count as `missing`. 
 
+## Generating new variable
 Remove the request not from NYPD
 
 ```{python}
@@ -313,7 +314,7 @@ A = nyc311_NYPD[nyc311_NYPD['Closed Date'].isnull()]
 
 A
 ```
-Only one data still in progress. We can remove that too.
+Only one data still in progress. We can remove that too. Add a new variable called `Duration (hours)`
 
 ```{python}
 nyc311_NYPD = nyc311_NYPD[nyc311_NYPD['Closed Date'].notnull()]
@@ -341,7 +342,7 @@ nyc311_NYPD.insert(4,col.name ,col)
 nyc311_NYPD
 ```
 
-Visualize the distribution of uncensored duration by weekdays/weekend and by borough.
+### Visualize the distribution of uncensored duration by weekdays/weekend and by borough.
 
 Lets check the Borough that is `Unspecified`.
 
@@ -437,3 +438,273 @@ Displaying merged data.
 merged_df
 
 ```
+
+## Model Selection
+
+### Importing new variable
+Lets choose a model to predict `duration`.
+
+```{python}
+import pandas as pd
+import numpy as np
+
+# load data 
+train = pd.read_csv("nyc311_NYPD_merged.csv")
+test = pd.read_csv("nyc311_NYPD_test_merged.csv")
+
+# Create new variable over3h.
+train['over3h'] = train['Duration (hours)'].\
+    apply(lambda x: 1 if x >= 3 else 0)
+test['over3h'] = test['Duration (hours)'].\
+    apply(lambda x: 1 if x >= 3 else 0)
+```
+Construct a `hour` variable with integer values from 0 to 23.
+```{python}
+train['hour'] = pd.to_datetime(train['Created Date']).dt.hour
+test['hour'] = pd.to_datetime(test['Created Date']).dt.hour
+```
+Construct a `house_income_ratio` represent the ratio of `median_home_value` to `median_household_income`.
+```{python}
+train['house_income_ratio'] = train['median_home_value'] / train['median_household_income']
+test['house_income_ratio'] = test['median_home_value'] / train['median_household_income']
+```
+Drop cases with missing values for certain columns.
+```{python}
+train = train.dropna(subset=['hour', 'Day type', 'Complaint Type', 'Community Board',\
+                 'Resolution Description', 'Open Data Channel Type','population_density',\
+                 'median_home_value', 'house_income_ratio'])
+test = test.dropna(subset=['hour', 'Day type', 'Complaint Type', 'Community Board',\
+                 'Resolution Description', 'Open Data Channel Type','population_density',\
+                 'median_home_value', 'house_income_ratio'])
+```
+
+When using the fitted model to predict the test data, we noticed that there are certain features that appear only in the testing data (3 cases) and certain features that appear only in the training data (6 cases). Therefore, we need to revisit this step and drop these cases before proceeding with the fit and prediction.
+
+Drop cases with certain values for certain columns
+
+```{python}
+test = test.drop(test[test['Community Board'] == '28 BRONX'].index)
+test = test.drop(test[test['Community Board'] == '80 QUEENS'].index)
+test = test.drop(test[test['Complaint Type'] == 'Squeegee'].index)
+train = train.drop(train[train['Community Board'] == '27 BRONX'].index)
+train = train.drop(train[train['Community Board'] == '81 QUEENS'].index)
+train = train.drop(train[train['Resolution Description'] == \
+'Your complaint has been received by the Police Department and additional information will be available later.'].index)
+train = train.drop(train[train['Open Data Channel Type'] == 'UNKNOWN'].index)
+```
+Get the training data and separate the categorical and continuous variables into separate dataframes.
+```{python}
+
+train_categorical_variables = train[['hour', 'Day type', 'Complaint Type', 'Community Board',\
+                 'Resolution Description', 'Open Data Channel Type']]
+train_continuous_variables = train[['population_density', 'median_home_value', 'house_income_ratio']]
+
+# Perform one-hot encoding on the categorical variables
+train_categorical_encoded = pd.get_dummies(train_categorical_variables)
+# Combine the one-hot encoded categorical variables with the continuous variables
+X_train = pd.concat([train_categorical_encoded, train_continuous_variables], axis=1)
+print(X_train.shape) 
+```
+Get the testing data and separate the categorical and continuous variables into separate dataframes
+```{python}
+test_categorical_variables = test[['hour', 'Day type', 'Complaint Type', 'Community Board',\
+                 'Resolution Description', 'Open Data Channel Type']]
+test_continuous_variables = test[['population_density', 'median_home_value', 'house_income_ratio']]
+
+# Perform one-hot encoding on the categorical variables
+test_categorical_encoded = pd.get_dummies(test_categorical_variables)
+
+# Combine the one-hot encoded categorical variables with the continuous variables
+X_test = pd.concat([test_categorical_encoded, test_continuous_variables], axis=1)
+
+print(X_test.shape)
+```
+
+```{python}
+# Get y for both the training and test data
+y_train = train['over3h'].values
+y_test = test['over3h'].values
+```
+
+### Import Model and fit the Model
+```{python}
+from sklearn.svm import SVC
+
+# Fit SVM
+svm = SVC()
+svm.fit(X_train, y_train)
+```
+
+```{python}
+from sklearn import tree
+
+# Fit decision tree
+tree1 = tree.DecisionTreeClassifier()
+tree1.fit(X_train, y_train)
+```
+
+```{python}
+tree1.tree_.node_count
+```
+
+```{python}
+# caculate the predicted values
+svm_pred = svm.predict(X_test)
+tree1_pred = tree1.predict(X_test)
+```
+
+```{python}
+# evaluate the model with default parameters
+from sklearn.metrics import confusion_matrix, \
+accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+
+# Confusion matrix
+svm_cm = confusion_matrix(y_test, svm_pred)
+tree1_cm = confusion_matrix(y_test, tree1_pred)
+
+# Accuracy
+svm_acc = accuracy_score(y_test, svm_pred)
+tree1_acc = accuracy_score(y_test, tree1_pred)
+
+# Precision
+svm_precision = precision_score(y_test, svm_pred, zero_division=1)
+tree1_precision = precision_score(y_test, tree1_pred)
+
+# Recall
+svm_recall = recall_score(y_test, svm_pred)
+tree1_recall = recall_score(y_test, tree1_pred)
+
+# F1-score
+svm_f1 = f1_score(y_test, svm_pred)
+tree1_f1 = f1_score(y_test, tree1_pred)
+
+# AUC
+svm_auc = roc_auc_score(y_test, svm_pred)
+tree1_auc = roc_auc_score(y_test, tree1_pred)
+```
+
+```{python}
+print("SVM results:")
+print("Confusion matrix:")
+print(svm_cm)
+print("Accuracy:", svm_acc)
+print("Precision:", svm_precision)
+print("Recall:", svm_recall)
+print("F1-score:", svm_f1)
+print("AUC:", svm_auc)
+
+print("decision tree results:")
+print("Confusion matrix:")
+print(tree1_cm)
+print("Accuracy:", tree1_acc)
+print("Precision:", tree1_precision)
+print("Recall:", tree1_recall)
+print("F1-score:", tree1_f1)
+print("AUC:", tree1_auc)
+```
+
+### Summary on SVM model
+We observed that the SVM model performed poorly with the default parameters. To improve its performance, we decided to scale the continuous variables and use cross-validation to find the optimal hyperparameters. However, the SVM model took too long to train and did not converge even after running for half an hour.
+
+In contrast, the decision tree model provided accurate predictions with the default parameters and was much more efficient than the SVM model. Therefore, we decided to use the decision tree model for further optimazition.
+
+Here are the syntax that tried to optimize svm parameters
+```python
+from sklearn.preprocessing import StandardScaler
+
+# scale the continuous variables 
+
+scaler = StandardScaler()
+X_train_cont_scaled = scaler.fit_transform(train_continuous_variables)
+X_test_cont_scaled = scaler.transform(test_continuous_variables)
+X_train_cont_scaled = pd.DataFrame(X_train_cont_scaled, columns=['scaled1', 'scaled2', 'scaled3'])
+X_test_cont_scaled = pd.DataFrame(X_test_cont_scaled, columns=['scaled1', 'scaled2', 'scaled3'])
+train_categorical_encoded = train_categorical_encoded.reset_index()
+test_categorical_encoded = test_categorical_encoded.reset_index()
+X_train_s = pd.concat([train_categorical_encoded, X_train_cont_scaled], axis=1)
+X_test_s = pd.concat([test_categorical_encoded, X_test_cont_scaled], axis=1)
+
+# Fit SVM with scaled variables
+svm2 = SVC()
+svm2.fit(X_train_s, y_train)
+
+# define the hyperparameter space to search over for svm
+from sklearn.model_selection import GridSearchCV
+param_grid = {'C': [0.001, 0.01, 0.1],
+              'gamma': [0.01, 0.1, 1, 'scale', 'auto'],
+              'kernel': ['linear', 'rbf', 'sigmoid']}
+
+# perform cross-validation with GridSearchCV
+grid_search = GridSearchCV(svm2, param_grid, cv=5, scoring='f1')
+
+# fit the GridSearchCV object to the training data
+grid_search.fit(X_train_s, y_train)
+
+# print the best hyperparameters found
+print("Best hyperparameters: ", grid_search.best_params_)
+```
+
+```{python}
+# define the hyperparameter grid 
+
+from sklearn.model_selection import GridSearchCV
+
+param_grid = {'criterion': ['gini', 'entropy'],
+              'min_impurity_decrease': [0, 1e-5, 1e-4, 1e-3],
+              'ccp_alpha': [0.0, 1e-5, 1e-4, 1e-3, 0.01, 0.1]}
+
+# perform cross-validation with GridSearchCV
+grid_search = GridSearchCV(tree1, param_grid, cv=5, scoring='roc_auc')
+
+# fit the GridSearchCV object to the training data
+grid_search.fit(X_train, y_train)
+
+# print the best hyperparameters found
+grid_search.best_params_
+```
+
+```{python}
+# Use parameters from cross-validation to train another model
+tree2 = tree.DecisionTreeClassifier(criterion='entropy', ccp_alpha=0.001, min_impurity_decrease=0)
+tree2 = tree2.fit(X_train, y_train)
+tree2.tree_.node_count
+```
+
+```{python}
+# caculate the predicted values
+tree2_pred = tree2.predict(X_test)
+
+# evaluate the model 
+
+# Confusion matrix
+tree2_cm = confusion_matrix(y_test, tree2_pred)
+
+# Accuracy
+tree2_acc = accuracy_score(y_test, tree2_pred)
+
+# Precision
+tree2_precision = precision_score(y_test, tree2_pred)
+
+# Recall
+tree2_recall = recall_score(y_test, tree2_pred)
+
+# F1-score
+tree2_f1 = f1_score(y_test, tree2_pred)
+
+# AUC
+tree2_auc = roc_auc_score(y_test, tree2_pred)
+```
+
+```{python}
+print("decision tree2 results:")
+print("Confusion matrix:")
+print(tree2_cm)
+print("Accuracy:", tree2_acc)
+print("Precision:", tree2_precision)
+print("Recall:", tree2_recall)
+print("F1-score:", tree2_f1)
+print("AUC:", tree2_auc)
+```
+
+### Summary for Model Selection
+Cross-validation was used to optimize the tuning parameters for building the second decision tree model with the objective of minimizing overfitting and maximizing AUC. While the second model (tree2) performed better on accuracy and precision, it did not perform as well as the first model (tree1) on other metrics such as recall, F1 score, and AUC. However, tree2 had significantly fewer nodes than tree1. Overall, both models performed adequately and the choice of model would depend on the specific metric that is more important for the task at hand. For instance, if higher precision is desired, then tree1 would be the preferred choice.
