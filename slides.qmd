@@ -1,0 +1,223 @@
+---
+title: "NYC 311 Data"
+subtitle: "Intrest and Exploration"
+author: "Yang Kang Chua and Shen Tong"
+format:
+  revealjs: 
+    embed-resources: true
+    slide-number: true
+#    chalkboard: 
+#      buttons: false
+    preview-links: auto
+#    logo: images/quarto.png
+#    css: styles.css
+    footer: "UConn Intro to Data Science: STAT 3255/5255"
+resources:
+  - demo.pdf
+---
+## Overview
+
++ Research Questions
++ Data
++ Analysis and Visualisation
++ Conclusion
+
+```{python}
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import pandas as pd
+from plotnine import *
+from plotnine.data import *
+import numpy as np
+%matplotlib inline
+from shapely.geometry import Point 
+
+```
+
+## Research Question
+:::{style="text-align: center; line-height: 100vh;"}
+
+What suggestions we can give for individuals (friends or clients) seeking to purchase a neighbor-friendly house in NYC?
+:::
+## Data Review
+
+Lets take a look at our current cleaned data set.
+
+```{python}
+#| echo: false
+#| fig-height: 6
+#| fig-width: 4
+import pandas as pd
+
+nyc_merged = pd.read_csv('nyc311_NYPD_merged.csv')
+nyc_merged = nyc_merged.drop(['zipcode_type', 'major_city', 'post_office_city', 'common_city_list',
+       'county', 'state', 'timezone', 'radius_in_miles', 'area_code_list',
+       'population', 'population_density', 'land_area_in_sqmi',
+       'water_area_in_sqmi', 'housing_units', 'occupied_housing_units',
+       'median_home_value', 'median_household_income', 'bounds_west',
+       'bounds_east', 'bounds_north', 'bounds_south','Unnamed: 0'], axis = 1)
+nyc_merged.columns
+
+```
+
+## Merging {.smaller .scrollable}
+
+We begin by merging the data with zipcode database.
+
+```{python}
+#| echo: false
+nyc_merged = pd.read_csv('nyc311_NYPD_merged.csv')
+pd.set_option('display.max_columns', None)
+nyc_merged = nyc_merged.drop("Unnamed: 0", axis = 1)
+nyc_merged.style.set_table_styles([{'selector': 'th', 'props': [('font-size', 'smaller')]}])
+
+nyc_merged.head()
+```
+
+# Visualisation {.smaller}
+
+## Complaint Locations
+
+Show plot (and the code that generated it)
+
+```{python}
+crs = 'epsg:4326' # coordinate reference system
+comp_df = nyc_merged[['Complaint Type', 'Incident Zip', 'Borough', 'Latitude', 'Longitude', 'median_home_value']].copy()
+comp_df['comp_type'] = comp_df['Complaint Type'].astype('category').cat.codes
+comp_df['zipstr'] = comp_df['Incident Zip'].apply(lambda f: str(int(f)))
+comp_geometry = gpd.points_from_xy(comp_df['Longitude'], comp_df['Latitude'])
+comp_gdf = gpd.GeoDataFrame(comp_df, crs=crs, geometry=comp_geometry)
+comp_gdf.plot(column = 'Borough',markersize=0.5, legend=True);
+
+```
+
+## Complaint Density
+
+```{python}
+nybb_gdf = gpd.read_file(gpd.datasets.get_path('nybb'))
+
+# zipcodes = gpd.read_file('data/tl_2022_us_zcta520/tl_2022_us_zcta520.shp')
+zipcodes = gpd.read_file('nyc_zipcode.geojson')
+# Count total complaints per zip code
+total_comp_df = comp_df.groupby('zipstr')['comp_type'].count().reset_index(name='total complaints')
+total_comp_df
+# merge it with zip code area and plot it on the map
+merge_total_comps = zipcodes.merge(total_comp_df, left_on='GEOID20', right_on='zipstr')
+comp_map = merge_total_comps.explore(column='total complaints', cmap='OrRd', legend=True)
+ax = nybb_gdf.plot(figsize=(10, 8))
+comp_map = nybb_gdf.explore(m=comp_map, color='black', style_kwds={'fill': False})
+comp_map
+```
+
+## Complaint type per zip code {.smaller}
+
+::: {.panel-tabset}
+### Noise-related issues
+```{python}
+comp_zipcode_df = comp_df.groupby('zipstr')['Complaint Type'].value_counts().\
+reset_index(name='count')
+# Get noise related complaints
+noise_df = comp_zipcode_df[comp_zipcode_df['Complaint Type'].\
+                           apply(lambda comp_type: comp_type.startswith('Noise'))].copy()
+noise_df = noise_df.groupby('zipstr')['count'].sum().reset_index(name='noise complaints')
+# merge it with zip code area and plot it on the map
+merge_noise = zipcodes.merge(noise_df, left_on='GEOID20', right_on='zipstr')
+noise_map = merge_noise.explore(column='noise complaints', cmap='OrRd', legend=True)
+
+noise_map = nybb_gdf.explore(m=noise_map, color='black', style_kwds={'fill': False})
+noise_map
+```
+
+### Illegal parking
+
+```{python}
+# Get illegal parking data
+illpark_df = comp_zipcode_df[comp_zipcode_df['Complaint Type'] == 'Illegal Parking'].copy()
+# merge it with zip code area and plot it on the map
+merge_illpark = zipcodes.merge(illpark_df, left_on='GEOID20', right_on='zipstr')
+illpark_map = merge_illpark.explore(column='count', cmap='OrRd', legend=True)
+illpark_map = nybb_gdf.explore(m=illpark_map, color='black', style_kwds={'fill': False})
+illpark_map
+```
+
+:::
+
+# Factor that impact the complaints {.smaller}
++ Live near NYPD?
++ Live in a area with higher house price?
+
+## Live Near NYPD? {.smaller}
+
+::: {.panel-tabset}
+### Full Map
+```{python}
+crs = {'init': 'epsg:4326'} # coordinate reference system
+nypd_location = pd.read_csv('nypd_precinct_locations.csv')
+nypd_geometry = gpd.points_from_xy(nypd_location['Longitude'], nypd_location['Latitude'])
+nypd_gdf = gpd.GeoDataFrame(nypd_location, crs=crs, geometry=nypd_geometry)
+
+nypd_gdf.explore(m = comp_map, marker_type='circle_marker', marker_kwds={'radius': 1}, legend=True)
+
+```
+
+### Histogram
+
+```{python}
+# To calculate distance, need to use a coordinate reference system that preserves distance. Here we use UTM.
+# reference: https://gis.ny.gov/coordinationprogram/workgroups/wg_1/related/standards/datum.htm
+nyc_utm = '+proj=utm +zone=18 +north +ellps=WGS84 +datum=WGS84 +units=m +no_defs'
+
+comp_gdf2 = comp_gdf.to_crs(crs=nyc_utm) # Convert total compliants' GeoDataFrame
+nypd_gdf2 = nypd_gdf.to_crs(crs=nyc_utm) # Covert NYPD precinct GeoDataFrame
+
+# Calculate the distance to nearest precinct for each complaint
+nearest_res = nypd_gdf2.sindex.nearest(comp_gdf2.geometry, return_all=False, return_distance=True)
+dist_to_pd = nearest_res[1] # second element is the distance array
+
+# View the data in a histogram
+fig, ax = plt.subplots()
+ax.hist(dist_to_pd, bins=100);
+ax.set_xlabel('Distance to precinct (m)');
+ax.set_ylabel('Number of complaints');
+
+```
+
+:::
+
+## Live in a area with higher house price? {.smaller}
+
+::: {.panel-tabset}
+
+### Full Map
+```{python}
+# Get mean median home value for each zip code and drop NA values
+median_homeval_df = comp_df.groupby('zipstr')['median_home_value'].mean().reset_index(name='median home value').dropna()
+
+# merge it with zip code area and plot it on the map
+merge_total_comps = zipcodes.merge(median_homeval_df, left_on='GEOID20', right_on='zipstr')
+homeval_map = merge_total_comps.explore(column='median home value', cmap='OrRd', legend=True)
+homeval_map
+```
+
+### Scatter Plot
+```{python}
+### Plot total complaints against mean home value
+comp_homeval_df = median_homeval_df.merge(total_comp_df, left_on='zipstr', right_on='zipstr').copy()
+comp_homeval_df = comp_homeval_df.merge(comp_df[['zipstr', 'Borough']], on='zipstr')
+comp_homeval_df
+
+(
+    ggplot(comp_homeval_df, # The dataset we are using
+        aes(x = 'median home value', y='total complaints', fill = 'Borough')) 
+        + geom_point(size=3, stroke=0)
+)
+
+```
+:::
+
+## Conclusion {.smaller}
+
++ Analyzing complaint data can help us find a good place to live.
++ Plotting complaints on a map shows areas with higher complaint volumes and patterns unique to certain neighborhoods.
++ We found some neighborhoods that might be friendlier for different needs, but there's no clear evidence that living near NYPD or paying higher house prices correlates with friendlier neighbors.
++ When choosing a neighborhood, it's important to consider personal needs and preferences.
